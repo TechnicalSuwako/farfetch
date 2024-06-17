@@ -3,6 +3,38 @@
 #include <stdio.h>
 #include <string.h>
 
+void run_user_command(const char *command) {
+  char buf[64];
+#if defined(__NetBSD__) || defined(__FreeBSD__)
+  FILE *p = popen(command, "r");
+  if (!p) {
+    snprintf(buf, sizeof(buf), "「%s」コマンドを見つけられません。", command);
+    perror(buf);
+    return;
+  }
+
+  while (fgets(buf, sizeof(buf), p) != NULL) {
+    printf("%s", buf);
+  }
+
+  pclose(p);
+  // 
+#else
+  FILE *f = fopen(command, "r");
+  if (!f) {
+    snprintf(buf, sizeof(buf), "「%s」ファイルを見つけられません。", command);
+    perror(buf);
+    return;
+  }
+
+  while (fgets(buf, sizeof(buf), f) != NULL) {
+    printf("%s", buf);
+  }
+
+  fclose(f);
+#endif
+}
+
 void display_user_name() {
   char buf[128];
   FILE *p = popen("whoami", "r");
@@ -20,38 +52,13 @@ void display_user_name() {
 }
 
 void display_user_host() {
-  char buf[64];
-#ifdef __NetBSD__
-  FILE *p = popen("hostname", "r");
-  if (!p) {
-    perror("hostnameコマンドを見つけられません。");
-    return;
-  }
-
-  while (fgets(buf, sizeof(buf), p) != NULL) {
-    buf[strcspn(buf, "\n")] = '\0';
-    printf("%s", buf);
-  }
-
-  pclose(p);
+#if defined(__OpenBSD__)
+  run_user_command("/etc/myname");
+#elif defined(__NetBSD__)
+  run_user_command("hostname");
+#elif defined(__FreeBSD__)
+  run_user_command("sysctl -n kern.hostname");
 #else
-  const char *filename;
-#ifdef __OpenBSD__
-  filename = "/etc/myname";
-#else
-  filename = "/etc/hostname";
-#endif
-  FILE *f = fopen(filename, "r");
-  if (!f) {
-    snprintf(buf, sizeof(buf), "「%s」ファイルを見つけられません。", filename);
-    perror(buf);
-    return;
-  }
-
-  while (fgets(buf, sizeof(buf), f) != NULL) {
-    printf("%s", buf);
-  }
-
-  fclose(f);
+  run_user_command("/etc/hostname");
 #endif
 }

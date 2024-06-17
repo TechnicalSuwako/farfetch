@@ -1,23 +1,24 @@
 #include "host.h"
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 #if defined(__linux__)
 #include <unistd.h>
 
 int skip = 0;
-#elif defined(__APPLE__)
-#include <stdlib.h>
 #endif
 
-void run_host_command(const char *command) {
+const char *run_host_command(const char *command) {
   char buf[64];
+  char *out = NULL;
+  size_t outsize = 0;
 
   FILE *p = popen(command, "r");
   if (!p) {
     fprintf(stderr, "ホストコマンドを実効に失敗: %s", command);
-    return;
+    return NULL;
   }
 
   while (fgets(buf, sizeof(buf), p) != NULL) {
@@ -40,28 +41,52 @@ void run_host_command(const char *command) {
       skip = 1;
       break;
     }
-
-    if (!skip) printf("%s", buf);
-#else
-    printf("%s", buf);
 #endif
+
+    size_t len = strlen(buf);
+    char *nout = realloc(out, outsize + len + 1);
+    if (nout == NULL) {
+      perror("メモリの役割に失敗");
+      free(out);
+      pclose(p);
+      return NULL;
+    }
+
+    out = nout;
+
+    memcpy(out + outsize, buf, len);
+    outsize += len;
+    out[outsize] = '\0';
   }
 
   pclose(p);
+
+  return out;
 }
 
 void display_host_model() {
-#if defined(__OpenBSD__) || defined(__FreeBSD__) || \
-  defined(__DragonFly__)
-  run_host_command("sysctl -n hw.vendor && echo \" \" && "
+#if defined(__OpenBSD__)
+  printf("%s", run_host_command("sysctl -n hw.vendor && echo \" \" && "
               "sysctl -n hw.version && echo \" \" &&"
-              "sysctl -n hw.product");
+              "sysctl -n hw.product"));
+#elif defined(__FreeBSD__)
+  const char *family = run_host_command("kenv | grep smbios.system.family | "
+        "sed 's/\"//g' | sed 's/smbios.system.family=//'");
+  if (strncmp(family, " ", strlen(family)) == 0) {
+    family = run_host_command("kenv | grep smbios.system.version | "
+        "sed 's/\"//g' | sed 's/smbios.system.version=//'");
+  }
+  const char *product = run_host_command("kenv | grep smbios.system.product | "
+        "sed 's/\"//g' | sed 's/smbios.system.product=//'");
+  const char *maker = run_host_command("kenv | grep smbios.system.maker | "
+        "sed 's/\"//g' | sed 's/smbios.system.maker=//'");
+  printf("%s %s %s", maker, family, product);
 #elif defined(__NetBSD__)
-  run_host_command("sysctl -n machdep.dmi.system-vendor && "
+  printf("%s", run_host_command("sysctl -n machdep.dmi.system-vendor && "
               "echo \" \" && sysctl -n machdep.dmi.system-version && "
-              "echo \" \" && sysctl -n machdep.dmi.system-product");
+              "echo \" \" && sysctl -n machdep.dmi.system-product"));
 #elif defined(__sun)
-  run_host_command("prtconf -b | awk -F':' '/banner-name/ {printf $2}'");
+  printf("%s", run_host_command("prtconf -b | awk -F':' '/banner-name/ {printf $2}'"));
 #elif defined(__linux__)
   const char *cmd1 = NULL;
   const char *cmd2 = NULL;
@@ -83,15 +108,15 @@ void display_host_model() {
   if (!cmd1) {
     printf("Unknown");
   } else {
-    run_host_command(cmd1);
+    printf("%s", run_host_command(cmd1));
   }
 
   if (cmd2) {
-    printf(" ");
-    run_host_command(cmd2);
+    const char *model = run_host_command(cmd2);
+    if (!skip) printf(" %s", model);
   }
 #elif defined(__APPLE__)
-  run_host_command("sysctl -n hw.model");
+  printf("%s", run_host_command("sysctl -n hw.model"));
 
   FILE *p = popen("kextstat | grep -F -e \"FakeSMC\" -e \"VirtualSMC\"", "r");
   if (!p) {

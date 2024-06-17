@@ -17,11 +17,7 @@ int main() {
   display_user_name();
   printf("@");
   display_user_host();
-#ifdef __NetBSD__
-  printf("\n------------------\n");
-#else
   printf("------------------\n");
-#endif
 
   printf("OS: ");
   display_os_name();
