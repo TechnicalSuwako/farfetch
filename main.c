@@ -8,6 +8,7 @@
 #if defined(__linux__)
 #include "src/distro.h"
 #endif
+#include "src/memory.h"
 
 const char *sofname = "farfetch";
 const char *version = "0.0.1";
@@ -26,15 +27,19 @@ int main() {
   display_os_arch();
   printf("\n");
 
-  printf("Host: ");
-  display_host_model();
-  printf("\n");
-
 #if defined(__linux__)
   printf("Distro: ");
   display_distro();
   printf("\n");
 #endif
+
+  printf("Host: ");
+  display_host_model();
+  printf("\n");
+
+  printf("Memory: ");
+  display_memory();
+  printf("\n");
 
   // TODO:
   // * ロゴ
@@ -47,7 +52,6 @@ int main() {
   // * 端末
   // * CPU
   // * GPU
-  // * メモリー
   // * ストレージ
   return 0;
 }
