@@ -5,11 +5,13 @@
 
 #if defined(__linux__)
 #include <unistd.h>
+
+int skip = 0;
 #elif defined(__APPLE__)
 #include <stdlib.h>
 #endif
 
-void run_command(const char *command) {
+void run_host_command(const char *command) {
   char buf[64];
 
   FILE *p = popen(command, "r");
@@ -20,7 +22,29 @@ void run_command(const char *command) {
 
   while (fgets(buf, sizeof(buf), p) != NULL) {
     buf[strcspn(buf, "\n")] = '\0';
+#if defined(__linux__)
+    if (
+        strstr(buf, "To be filled by O.E.M.") != NULL ||
+        strstr(buf, "To Be Filled By O.E.M.") != NULL ||
+        strstr(buf, "OEM") != NULL ||
+        strstr(buf, "Not Applicable") != NULL ||
+        strstr(buf, "System Product Name") != NULL ||
+        strstr(buf, "System Version") != NULL ||
+        strstr(buf, "Undefined") != NULL ||
+        strstr(buf, "Default string") != NULL ||
+        strstr(buf, "Not Specified") != NULL ||
+        strstr(buf, "Type1ProductConfigId") != NULL ||
+        strstr(buf, "INVALID") != NULL ||
+        strstr(buf, "All Series") != NULL
+    ) {
+      skip = 1;
+      break;
+    }
+
+    if (!skip) printf("%s", buf);
+#else
     printf("%s", buf);
+#endif
   }
 
   pclose(p);
@@ -29,15 +53,15 @@ void run_command(const char *command) {
 void display_host_model() {
 #if defined(__OpenBSD__) || defined(__FreeBSD__) || \
   defined(__DragonFly__)
-  run_command("sysctl -n hw.vendor && echo \" \" && "
+  run_host_command("sysctl -n hw.vendor && echo \" \" && "
               "sysctl -n hw.version && echo \" \" &&"
               "sysctl -n hw.product");
 #elif defined(__NetBSD__)
-  run_command("sysctl -n machdep.dmi.system-vendor && "
+  run_host_command("sysctl -n machdep.dmi.system-vendor && "
               "echo \" \" && sysctl -n machdep.dmi.system-version && "
               "echo \" \" && sysctl -n machdep.dmi.system-product");
 #elif defined(__sun)
-  run_command("prtconf -b | awk -F':' '/banner-name/ {printf $2}'");
+  run_host_command("prtconf -b | awk -F':' '/banner-name/ {printf $2}'");
 #elif defined(__linux__)
   const char *cmd1 = NULL;
   const char *cmd2 = NULL;
@@ -59,15 +83,15 @@ void display_host_model() {
   if (!cmd1) {
     printf("Unknown");
   } else {
-    run_command(cmd1);
+    run_host_command(cmd1);
   }
 
   if (cmd2) {
     printf(" ");
-    run_command(cmd2);
+    run_host_command(cmd2);
   }
 #elif defined(__APPLE__)
-  run_command("sysctl -n hw.model");
+  run_host_command("sysctl -n hw.model");
 
   FILE *p = popen("kextstat | grep -F -e \"FakeSMC\" -e \"VirtualSMC\"", "r");
   if (!p) {
