@@ -32,7 +32,8 @@ void display_host_model() {
 #elif defined(__sun)
   run_command("prtconf -b | awk -F':' '/banner-name/ {printf $2}'");
 #elif defined(__linux__)
-  const char *cmd1, *cmd2;
+  const char *cmd1 = NULL;
+  const char *cmd2 = NULL;
   if (access("/system/app/", F_OK) != -1) {
     cmd1 = "getprop ro.product.brand";
     cmd2 = "getprop ro.product.model";
