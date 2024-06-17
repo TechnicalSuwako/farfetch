@@ -17,7 +17,7 @@ int main() {
   display_user_name();
   printf("@");
   display_user_host();
-  puts("------------------");
+  printf("\n------------------\n");
 
   printf("OS: ");
   display_os_name();

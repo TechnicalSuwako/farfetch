@@ -27,9 +27,13 @@ void run_command(const char *command) {
 }
 
 void display_host_model() {
-#if defined(__OpenBSD__) || defined(__FreeBSD__) || defined(__NetBSD__) || \
-  defined(__DragonFly__) || defined(__minix)
+#if defined(__OpenBSD__) || defined(__FreeBSD__) || \
+  defined(__DragonFly__)
   run_command("sysctl -n hw.vendor hw.product");
+#elif defined(__NetBSD__)
+  run_command("sysctl -n machdep.dmi.system-vendor && "
+              "echo \" \" && sysctl -n machdep.dmi.system-version && "
+              "echo \" \" && sysctl -n machdep.dmi.system-product");
 #elif defined(__sun)
   run_command("prtconf -b | awk -F':' '/banner-name/ {printf $2}'");
 #elif defined(__linux__)

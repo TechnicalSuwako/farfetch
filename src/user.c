@@ -21,6 +21,20 @@ void display_user_name() {
 
 void display_user_host() {
   char buf[64];
+#ifdef __NetBSD__
+  FILE *p = popen("hostname", "r");
+  if (!p) {
+    perror("hostnameコマンドを見つけられません。");
+    return;
+  }
+
+  while (fgets(buf, sizeof(buf), p) != NULL) {
+    buf[strcspn(buf, "\n")] = '\0';
+    printf("%s", buf);
+  }
+
+  pclose(p);
+#else
   const char *filename;
 #ifdef __OpenBSD__
   filename = "/etc/myname";
@@ -29,7 +43,7 @@ void display_user_host() {
 #endif
   FILE *f = fopen(filename, "r");
   if (!f) {
-    snprintf(buf, sizeof(buf), "「%s」を見つけられません。", filename);
+    snprintf(buf, sizeof(buf), "「%s」ファイルを見つけられません。", filename);
     perror(buf);
     return;
   }
@@ -38,15 +52,6 @@ void display_user_host() {
     printf("%s", buf);
   }
 
-  /* char hostname[128]; */
-  /* int cnt = 0; */
-  /* for (int i = 0; i < 128; i++) { */
-  /*   unsigned char key; */
-  /*   fread(&key, sizeof(key), 1, f); */
-  /*   hostname[i] = key; */
-  /*   cnt += 1; */
-  /* } */
-
-  /* hostname[cnt] = '\0'; */
   fclose(f);
+#endif
 }
