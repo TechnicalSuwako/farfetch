@@ -29,7 +29,9 @@ void run_command(const char *command) {
 void display_host_model() {
 #if defined(__OpenBSD__) || defined(__FreeBSD__) || \
   defined(__DragonFly__)
-  run_command("sysctl -n hw.vendor hw.product");
+  run_command("sysctl -n hw.vendor && echo \" \" && "
+              "sysctl -n hw.version && echo \" \" &&"
+              "sysctl -n hw.product");
 #elif defined(__NetBSD__)
   run_command("sysctl -n machdep.dmi.system-vendor && "
               "echo \" \" && sysctl -n machdep.dmi.system-version && "
