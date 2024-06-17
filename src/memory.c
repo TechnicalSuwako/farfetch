@@ -31,6 +31,8 @@ void display_memory() {
   memused = run_mem_command("vmstat | awk 'END {printf $3}' | sed 's/M//'");
   memtotal = run_mem_command("sysctl -n hw.physmem") / 1024LL / 1024LL;
 #elif defined(__FreeBSD__) || defined(__DragonFly__)
+  memused = run_mem_command("top | grep \"Mem:\" | awk '{print $2}' | "
+      "sed 's/M//'");
   memtotal = run_mem_command("sysctl -n hw.physmem") / 1024LL / 1024LL;
 #elif defined(__NetBSD__)
   memused = run_mem_command("top | grep \"Memory:\" | awk '{print $2}' | "
