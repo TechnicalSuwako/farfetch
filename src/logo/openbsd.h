@@ -1,3 +1,6 @@
+#ifndef LOGO_OPENBSD_H
+#define LOGO_OPENBSD_H
+
 #define GREY    "\e[1;30m"
 #define RED     "\e[1;31m"
 #define YELLOW  "\e[1;33m"
@@ -46,3 +49,5 @@ YELLOW "                 " RESET,
 YELLOW "                 " RESET,
 YELLOW "                 " RESET
 };
+
+#endif

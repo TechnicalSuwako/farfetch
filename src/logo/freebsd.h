@@ -1,3 +1,6 @@
+#ifndef LOGO_FREEBSD_H
+#define LOGO_FREEBSD_H
+
 #define RED    "\e[1;31m"
 #define WHITE  "\e[1;37m"
 #define RESET   "\e[0m"
@@ -34,3 +37,5 @@ RED "|           |  " RESET,
 RED " ;         ;   " RESET,
 RED "  '-_____-'    " RESET
 };
+
+#endif

@@ -32,7 +32,7 @@ MANPREFIX = ${PREFIX}/man
 .endif
 
 CC = cc
-FILES = main.c src/*.c
+FILES = main.c src/*.c src/logo/*.c
 CFLAGS = -Wall -Wextra -O3 -I${PREFIX}/include -L${PREFIX}/lib
 .if ${UNAME_S} == "NetBSD"
 CFLAGS += -I/usr/pkg/include -L/usr/pkg/lib -I/usr/include -L/usr/lib

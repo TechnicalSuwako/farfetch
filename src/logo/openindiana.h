@@ -1,3 +1,6 @@
+#ifndef LOGO_OPENINDIANA_H
+#define LOGO_OPENINDIANA_H
+
 #define BLUE   "\e[1;34m"
 #define WHITE  "\e[1;37m"
 #define RESET   "\e[0m"
@@ -26,3 +29,5 @@ WHITE "                                           " RESET,
 WHITE "                                           " RESET,
 WHITE "                                           " RESET
 };
+
+#endif

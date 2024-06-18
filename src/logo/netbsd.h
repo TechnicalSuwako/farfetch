@@ -1,3 +1,6 @@
+#ifndef LOGO_NETBSD_H
+#define LOGO_NETBSD_H
+
 #define MAGENTA "\e[1;35m"
 #define WHITE   "\e[1;37m"
 #define RESET   "\e[0m"
@@ -35,3 +38,5 @@ char *LOGO_SMALL[] = {
 "     \\\\               " RESET,
 "      \\\\              " RESET
 };
+
+#endif

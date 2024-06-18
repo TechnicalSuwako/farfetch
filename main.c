@@ -1,11 +1,11 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 
 #include "src/user.h"
 #include "src/os.h"
 #if defined(__linux__)
 #include "src/distro.h"
+#include "src/logo/linux_def.h"
 #endif
 #include "src/host.h"
 #include "src/uptime.h"
@@ -32,6 +32,9 @@ int main(int argc, char *argv[]) {
 #include "src/logo/netbsd.h"
 #elif defined(__FreeBSD__)
 #include "src/logo/freebsd.h"
+#elif defined(__linux__)
+  getDistro(distroname);
+#include "src/logo/linux.h"
 #else
 #define COLOR "\e[1;30m"
 #define RESET "\e[0m"
