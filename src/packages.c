@@ -4,6 +4,12 @@
 #include <stdlib.h>
 #include <string.h>
 
+#if defined(__linux__)
+#include "distro.h"
+
+/*const char *distroname;*/
+#endif
+
 const char *run_package_command(const char *command) {
   char buf[64];
   char *out = NULL;
@@ -41,8 +47,15 @@ const char *run_package_command(const char *command) {
 
 void display_packages() {
 #if defined(__OpenBSD__) || defined(__NetBSD__)
-  printf("%s (pkg_info)", run_package_command("pkg_info -a | wc -l | sed \"s/ //g\""));
+  printf("%s (pkg_info)", run_package_command("pkg_info -a | wc -l | "
+         "sed \"s/ //g\""));
 #elif defined(__FreeBSD__) || defined(__DragonFly__)
-  printf("%s (pkg)", run_package_command("pkg info -a | wc -l | sed \"s/ //g\""));
+  printf("%s (pkg)", run_package_command("pkg info -a | wc -l | "
+         "sed \"s/ //g\""));
+#elif defined(__linux__)
+  if (strncmp(distroname, "void", strlen("void")) == 0) {
+    printf("%s (xbps-query)", run_package_command("xbps-query -l | wc -l | "
+           "sed \"s/ //g\""));
+  }
 #endif
 }
