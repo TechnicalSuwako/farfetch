@@ -43,6 +43,10 @@ void display_cpu() {
   double fmt;
   FILE *fp = fopen("/sys/devices/system/cpu/cpu0/cpufreq/bios_limit", "r");
   if (fp == NULL) {
+    fp = fopen("/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq", "r");
+  }
+
+  if (fp == NULL) {
     perror("失敗");
     return;
   }
