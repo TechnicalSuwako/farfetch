@@ -4,10 +4,13 @@
 
 #include "src/user.h"
 #include "src/os.h"
-#include "src/host.h"
-#include "src/uptime.h"
 #if defined(__linux__)
 #include "src/distro.h"
+#endif
+#include "src/host.h"
+#include "src/uptime.h"
+#if defined(__OpenBSD__)
+#include "src/recording.h"
 #endif
 #include "src/cpu.h"
 #include "src/memory.h"
@@ -44,6 +47,14 @@ int main() {
   printf(", ");
   display_time();
   printf("\n");
+
+#if defined(__OpenBSD__)
+  printf("Recording: audio = ");
+  display_recording_audio();
+  printf(", video = ");
+  display_recording_video();
+  printf("\n");
+#endif
 
   printf("CPU: ");
   display_cpu();

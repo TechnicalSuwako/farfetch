@@ -1,4 +1,4 @@
-#include "memory.h"
+#include "uptime.h"
 
 #include <stdio.h>
 #include <string.h>
