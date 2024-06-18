@@ -72,8 +72,10 @@ int main() {
 
   printf("%s ", LOGO[4]);
   printf(COLOR"%s%s"RESET, "Uptime", ": ");
+#ifndef __NetBSD__
   display_days();
   printf(", ");
+#endif
   display_time();
   printf("\n");
 
