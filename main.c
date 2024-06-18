@@ -5,9 +5,11 @@
 #include "src/user.h"
 #include "src/os.h"
 #include "src/host.h"
+#include "src/uptime.h"
 #if defined(__linux__)
 #include "src/distro.h"
 #endif
+#include "src/cpu.h"
 #include "src/memory.h"
 
 const char *sofname = "farfetch";
@@ -37,20 +39,27 @@ int main() {
   display_host_model();
   printf("\n");
 
+  printf("Uptime: ");
+  display_days();
+  printf(", ");
+  display_time();
+  printf("\n");
+
+  printf("CPU: ");
+  display_cpu();
+  printf("\n");
+
   printf("Memory: ");
   display_memory();
   printf("\n");
 
   // TODO:
   // * ロゴ
-  // * カーネル(LinuxとIllumosのみ)
-  // * 起動時間
   // * パッケージ
   // * libc
   // * シェル
   // * 解像度
   // * 端末
-  // * CPU
   // * GPU
   // * ストレージ
   return 0;
