@@ -4,5 +4,7 @@
 
 void display_distro();
 
+const char *distroname;
+
 #endif
 #endif

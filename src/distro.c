@@ -49,6 +49,7 @@ void display_distro() {
   while (fgets(buf, sizeof(buf), p) != NULL) {
     buf[strcspn(buf, "\n")] = '\0';
     printf("%s", buf);
+    distroname = buf;
   }
 
   pclose(p);
