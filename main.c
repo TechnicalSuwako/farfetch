@@ -67,7 +67,6 @@ int main() {
 
   printf("%s ", LOGO[3]);
   printf(COLOR"%s%s"RESET, "Host", ": ");
-  printf("Host: ");
   display_host_model();
   printf("\n");
 
@@ -95,7 +94,6 @@ int main() {
 
   printf("%s ", LOGO[7]);
   printf(COLOR"%s%s"RESET, "Memory", ": ");
-  printf("Memory: ");
   display_memory();
   printf("\n");
 
