@@ -9,7 +9,7 @@ void run_uptime_command(const char *command) {
 
   FILE *p = popen(command, "r");
   if (!p) {
-    fprintf(stderr, "ホストコマンドを実効に失敗: %s", command);
+    fprintf(stderr, "起動時間コマンドを実効に失敗: %s", command);
     return;
   }
 

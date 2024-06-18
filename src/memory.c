@@ -10,7 +10,7 @@ long long int run_mem_command(const char *command) {
 
   FILE *p = popen(command, "r");
   if (!p) {
-    fprintf(stderr, "ホストコマンドを実効に失敗: %s", command);
+    fprintf(stderr, "メモリコマンドを実効に失敗: %s", command);
     return 0;
   }
 
