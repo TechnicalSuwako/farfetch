@@ -32,3 +32,14 @@ YELLOW "      / .-.\\                              " RESET,
 YELLOW "      \\ (  `\\                             " RESET,
 YELLOW "       `.\\                                " RESET
 };
+
+char *LOGO_SMALL[] = {
+YELLOW "      _____      " RESET,
+YELLOW "    \\-     -/    " RESET,
+YELLOW " \\_/         \\   " RESET,
+YELLOW " |        " RESET "O O" YELLOW" |  " RESET,
+YELLOW " |_  <   )  3 )  " RESET,
+YELLOW " / \\         /   " RESET,
+YELLOW "    /-_____-\\    " RESET,
+YELLOW "                 " RESET
+};

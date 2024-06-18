@@ -28,3 +28,13 @@ GREEN "               -~|{*l}*|~                        " RESET,
 GREEN "                                                 " RESET,
 GREEN "                                                 " RESET
 };
+
+char *LOGO_SMALL[] = {
+GREEN "    _______    " RESET,
+GREEN " _ \\______ -   " RESET,
+GREEN "| \\  ___  \\ |  " RESET,
+GREEN "| | /   \\ | |  " RESET,
+GREEN "| | \\___/ | |  " RESET,
+GREEN "| \\______ \\_|  " RESET,
+GREEN " -_______\\     " RESET
+};

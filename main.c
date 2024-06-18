@@ -18,8 +18,12 @@
 const char *sofname = "farfetch";
 const char *version = "0.0.1";
 
-int main() {
+int main(int argc, char *argv[]) {
   int lc = 0;
+  int issmall = 0;
+  if (argc == 2 && strncmp(argv[1], "-s", strlen("-s")) == 0) {
+    issmall = 1;
+  }
 #if defined(__OpenBSD__)
 #include "src/logo/openbsd.h"
 #elif defined(__NetBSD__)
@@ -43,6 +47,15 @@ int main() {
 "⠀⠀⠀⠀⠀⠀⠀⠈⠉⠛⠛⠶⠶⠶⣶⣤⣴⡶⠶⠶⠟⠛⠉⠀⠀⠀⠀⠀⠀⠀"
   };
 #endif
+
+  size_t ls = sizeof(LOGO) / sizeof(LOGO[0]);
+  if (issmall) {
+    size_t ne = sizeof(LOGO_SMALL) / sizeof(LOGO_SMALL[0]);
+    for (size_t i = 0; i < ne; i++) {
+      LOGO[i] = LOGO_SMALL[i];
+    }
+    ls = ne;
+  }
 
   printf("%s ", LOGO[lc]);
   printf(COLOR);
@@ -114,7 +127,7 @@ int main() {
   printf("\n");
   lc++;
 
-  for (size_t i = lc; i < sizeof(LOGO) / sizeof(LOGO[0]); i++) {
+  for (size_t i = lc; i < ls; i++) {
     printf("%s\n", LOGO[i]);
   }
 

@@ -25,3 +25,13 @@ WHITE   "             :Ms                           " RESET,
 WHITE   "              :Ms                          " RESET,
 WHITE   "                                           " RESET
 };
+
+char *LOGO_SMALL[] = {
+"\\\\" MAGENTA "\\`-______,----__    " RESET,
+" \\\\        " MAGENTA "__,---\\`_  " RESET,
+"  \\\\       " MAGENTA "\\`.____    " RESET,
+"   \\\\" MAGENTA "-______,----\\`-  " RESET,
+"    \\\\                " RESET,
+"     \\\\               " RESET,
+"      \\\\              " RESET
+};

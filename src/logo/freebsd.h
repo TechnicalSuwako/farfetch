@@ -25,3 +25,12 @@ RED   "                                   " RESET,
 RED   "                                   " RESET,
 RED   "                                   " RESET
 };
+
+char *LOGO_SMALL[] = {
+RED "/\\,-'''''-,/\\  " RESET,
+RED "\\_)       (_/  " RESET,
+RED "|           |  " RESET,
+RED "|           |  " RESET,
+RED " ;         ;   " RESET,
+RED "  '-_____-'    " RESET
+};
