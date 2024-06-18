@@ -5,6 +5,8 @@
 #include <string.h>
 #include <unistd.h>
 
+const char *distroname;
+
 void display_distro() {
   char buf[1288];
   const char *cmd = NULL;

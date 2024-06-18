@@ -19,8 +19,13 @@ const char *sofname = "farfetch";
 const char *version = "0.0.1";
 
 int main() {
+  int lc = 0;
 #if defined(__OpenBSD__)
 #include "src/logo/openbsd.h"
+#elif defined(__NetBSD__)
+#include "src/logo/netbsd.h"
+#elif defined(__FreeBSD__)
+#include "src/logo/freebsd.h"
 #else
 #define COLOR "\e[1;30m"
 #define RESET "\e[0m"
@@ -39,7 +44,7 @@ int main() {
   };
 #endif
 
-  printf("%s ", LOGO[0]);
+  printf("%s ", LOGO[lc]);
   printf(COLOR);
   display_user_name();
   printf(RESET);
@@ -47,10 +52,12 @@ int main() {
   printf(COLOR);
   display_user_host();
   printf(RESET);
-  printf("%s ", LOGO[1]);
+  lc++;
+  printf("%s ", LOGO[lc]);
   printf("------------------\n");
+  lc++;
 
-  printf("%s ", LOGO[2]);
+  printf("%s ", LOGO[lc]);
   printf(COLOR"%s%s"RESET, "OS", ": ");
   display_os_name();
   printf(" ");
@@ -58,19 +65,23 @@ int main() {
   printf(" ");
   display_os_arch();
   printf("\n");
+  lc++;
 
 #if defined(__linux__)
+  printf("%s ", LOGO[lc]);
   printf(COLOR"%s%s"RESET, "Distro", ": ");
   display_distro();
   printf("\n");
+  lc++;
 #endif
 
-  printf("%s ", LOGO[3]);
+  printf("%s ", LOGO[lc]);
   printf(COLOR"%s%s"RESET, "Host", ": ");
   display_host_model();
   printf("\n");
+  lc++;
 
-  printf("%s ", LOGO[4]);
+  printf("%s ", LOGO[lc]);
   printf(COLOR"%s%s"RESET, "Uptime", ": ");
 #ifndef __NetBSD__
   display_days();
@@ -78,28 +89,32 @@ int main() {
 #endif
   display_time();
   printf("\n");
+  lc++;
 
 #if defined(__OpenBSD__)
-  printf("%s ", LOGO[5]);
+  printf("%s ", LOGO[lc]);
   printf(COLOR"%s%s"RESET, "Recording", ": ");
   printf("audio = ");
   display_recording_audio();
   printf(", video = ");
   display_recording_video();
   printf("\n");
+  lc++;
 #endif
 
-  printf("%s ", LOGO[6]);
+  printf("%s ", LOGO[lc]);
   printf(COLOR"%s%s"RESET, "CPU", ": ");
   display_cpu();
   printf("\n");
+  lc++;
 
-  printf("%s ", LOGO[7]);
+  printf("%s ", LOGO[lc]);
   printf(COLOR"%s%s"RESET, "Memory", ": ");
   display_memory();
   printf("\n");
+  lc++;
 
-  for (size_t i = 8; i < sizeof(LOGO) / sizeof(LOGO[0]); i++) {
+  for (size_t i = lc; i < sizeof(LOGO) / sizeof(LOGO[0]); i++) {
     printf("%s\n", LOGO[i]);
   }
 
