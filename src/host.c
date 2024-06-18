@@ -54,7 +54,7 @@ const char *run_host_command(const char *command) {
 
     out = nout;
 
-    memcpy(out + outsize, buf, len);
+    memccpy(out + outsize, buf, sizeof(buf), len);
     outsize += len;
     out[outsize] = '\0';
   }

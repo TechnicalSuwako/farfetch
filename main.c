@@ -12,6 +12,7 @@
 #if defined(__OpenBSD__)
 #include "src/recording.h"
 #endif
+#include "src/packages.h"
 #include "src/cpu.h"
 #include "src/memory.h"
 
@@ -112,6 +113,12 @@ int main(int argc, char *argv[]) {
   printf("\n");
   lc++;
 #endif
+
+  printf("%s ", LOGO[lc]);
+  printf(COLOR"%s%s"RESET, "Packages", ": ");
+  display_packages();
+  printf("\n");
+  lc++;
 
   printf("%s ", LOGO[lc]);
   printf(COLOR"%s%s"RESET, "CPU", ": ");
