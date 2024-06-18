@@ -14,6 +14,7 @@
 #endif
 #include "src/packages.h"
 #include "src/cpu.h"
+#include "src/gpu.h"
 #include "src/memory.h"
 
 const char *sofname = "farfetch";
@@ -123,6 +124,12 @@ int main(int argc, char *argv[]) {
   printf("%s ", LOGO[lc]);
   printf(COLOR"%s%s"RESET, "CPU", ": ");
   display_cpu();
+  printf("\n");
+  lc++;
+
+  printf("%s ", LOGO[lc]);
+  printf(COLOR"%s%s"RESET, "GPU", ": ");
+  display_gpu();
   printf("\n");
   lc++;
 

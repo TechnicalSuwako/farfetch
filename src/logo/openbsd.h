@@ -43,5 +43,6 @@ YELLOW " / \\         /   " RESET,
 YELLOW "    /-_____-\\    " RESET,
 YELLOW "                 " RESET,
 YELLOW "                 " RESET,
+YELLOW "                 " RESET,
 YELLOW "                 " RESET
 };
