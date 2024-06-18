@@ -43,7 +43,7 @@ void display_cpu() {
   double fmt;
   FILE *fp = fopen("/sys/devices/system/cpu/cpu0/cpufreq/bios_limit", "r");
   if (fp == NULL) {
-    perror("Error opening file");
+    perror("失敗");
     return;
   }
 
