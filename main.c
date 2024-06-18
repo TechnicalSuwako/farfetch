@@ -96,10 +96,8 @@ int main(int argc, char *argv[]) {
 
   printf("%s ", LOGO[lc]);
   printf(COLOR"%s%s"RESET, "Uptime", ": ");
-#ifndef __NetBSD__
   display_days();
   printf(", ");
-#endif
   display_time();
   printf("\n");
   lc++;

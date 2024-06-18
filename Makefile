@@ -16,9 +16,9 @@ OS = linux
 UNAME_M = amd64
 .endif
 
-NAME != cat main.c | grep "const char \*sofname" | awk '{print $$5}' | \
+NAME != cat main.c | grep "const char \*sofname" | awk '{print $$5}' |\
 	sed "s/\"//g" | sed "s/;//"
-VERSION != cat main.c | grep "const char \*version" | awk '{print $$5}' | \
+VERSION != cat main.c | grep "const char \*version" | awk '{print $$5}' |\
 	sed "s/\"//g" | sed "s/;//"
 PREFIX = /usr/local
 .if ${UNAME_S} == "Linux"
@@ -37,7 +37,7 @@ CFLAGS = -Wall -Wextra -O3 -I${PREFIX}/include -L${PREFIX}/lib
 .if ${UNAME_S} == "NetBSD"
 CFLAGS += -I/usr/pkg/include -L/usr/pkg/lib -I/usr/include -L/usr/lib
 .endif
-LDFLAGS = 
+LDFLAGS = -lc
 
 all:
 	${CC} ${CFLAGS} -o ${NAME} ${FILES} ${LDFLAGS}
@@ -48,7 +48,7 @@ clean:
 
 dist:
 	mkdir -p ${NAME}-${VERSION} release/src
-	cp -R LICENSE.txt Makefile README.md CHANGELOG.md \
+	cp -R LICENSE.txt Makefile README.md CHANGELOG.md\
 		${NAME}-completion.zsh ${NAME}.1 main.c src ${NAME}-${VERSION}
 	tar zcfv release/src/${NAME}-${VERSION}.tar.gz ${NAME}-${VERSION}
 	rm -rf ${NAME}-${VERSION}
@@ -62,8 +62,8 @@ depend:
 
 release:
 	mkdir -p release/bin
-	${CC} ${CFLAGS} -o release/bin/${NAME}-${VERSION}-${OS}-${UNAME_M} ${FILES} \
-		-static ${LDFLAGS} -lc
+	${CC} ${CFLAGS} -o release/bin/${NAME}-${VERSION}-${OS}-${UNAME_M} ${FILES}\
+		-static ${LDFLAGS}
 	strip release/bin/${NAME}-${VERSION}-${OS}-${UNAME_M}
 
 install: all
