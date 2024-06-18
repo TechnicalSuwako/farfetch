@@ -1,5 +1,20 @@
 UNAME_S != uname -s
 UNAME_M != uname -m
+OS = ${UNAME_S}
+
+.if ${UNAME_S} == "OpenBSD"
+OS = openbsd
+.elif ${UNAME_S} == "NetBSD"
+OS = netbsd
+.elif ${UNAME_S} == "FreeBSD"
+OS = freebsd
+.elif ${UNAME_S} == "Linux"
+OS = linux
+.endif
+
+.if ${UNAME_M} == "x86_64"
+UNAME_M = amd64
+.endif
 
 NAME != cat main.c | grep "const char \*sofname" | awk '{print $$5}' | \
 	sed "s/\"//g" | sed "s/;//"
@@ -31,41 +46,25 @@ all:
 clean:
 	rm -f ${NAME}
 
-dist: clean
-	mkdir -p dist
-	mkdir -p ${NAME}-${VERSION}
+dist:
+	mkdir -p ${NAME}-${VERSION} release/src
 	cp -R LICENSE.txt Makefile README.md CHANGELOG.md \
 		${NAME}-completion.zsh ${NAME}.1 main.c src ${NAME}-${VERSION}
-	tar zcfv dist/${NAME}-${VERSION}.tar.gz ${NAME}-${VERSION}
+	tar zcfv release/src/${NAME}-${VERSION}.tar.gz ${NAME}-${VERSION}
 	rm -rf ${NAME}-${VERSION}
+
+man:
+	mkdir -p release/man
+	cp ${NAME}.1 release/man/${NAME}-${VERSION}.1
 
 depend:
 	${DEPS}
 
-release-openbsd:
-	mkdir -p release
-	${CC} ${CFLAGS} -o release/${NAME}-${VERSION}-openbsd-${UNAME_M} ${FILES} \
+release:
+	mkdir -p release/bin
+	${CC} ${CFLAGS} -o release/bin/${NAME}-${VERSION}-${OS}-${UNAME_M} ${FILES} \
 		-static ${LDFLAGS} -lc
-	strip release/${NAME}-${VERSION}-openbsd-${UNAME_M}
-
-release-freebsd:
-	mkdir -p release
-	${CC} ${CFLAGS} -o release/${NAME}-${VERSION}-freebsd-${UNAME_M} ${FILES} \
-		-static ${LDFLAGS} -lc
-	strip release/${NAME}-${VERSION}-freebsd-${UNAME_M}
-
-release-netbsd:
-	mkdir -p release
-	export LD_LIBRARY_PATH=/usr/pkg/lib:/usr/local/lib:$LD_LIBRARY_PATH
-	${CC} ${CFLAGS} -o release/${NAME}-${VERSION}-netbsd-${UNAME_M} ${FILES} \
-		-static ${LDFLAGS} -lc
-	strip release/${NAME}-${VERSION}-netbsd-${UNAME_M}
-
-release-linux:
-	mkdir -p release
-	${CC} ${CFLAGS} -o release/${NAME}-${VERSION}-linux-${UNAME_M} ${FILES} \
-		-static ${LDFLAGS} -lc
-	strip release/${NAME}-${VERSION}-linux-${UNAME_M}
+	strip release/bin/${NAME}-${VERSION}-${OS}-${UNAME_M}
 
 install: all
 	mkdir -p ${DESTDIR}${PREFIX}/bin
