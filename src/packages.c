@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 
 #if defined(__linux__)
 #include "distro.h"
@@ -53,8 +54,11 @@ void display_packages() {
   printf("%s (pkg)", run_package_command("pkg info -a | wc -l | "
          "sed \"s/ //g\""));
 #elif defined(__linux__)
-  if (strncmp(distroname, "void", strlen("void")) == 0) {
+  if (access("/bin/xbps-query", F_OK) != -1) {
     printf("%s (xbps-query)", run_package_command("xbps-query -l | wc -l | "
+           "sed \"s/ //g\""));
+  } else if (access("/usr/bin/dpkg-query", F_OK) != -1) {
+    printf("%s (dpkg)", run_package_command("dpkg-query -f '.\n' -W | wc -l | "
            "sed \"s/ //g\""));
   }
 #endif
