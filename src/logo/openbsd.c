@@ -3,6 +3,7 @@
 #include "../resolution.h"
 
 #include <string.h>
+#include <stdlib.h>
 
 char *LOGO[23];
 char *LOGO_SMALL[23];
@@ -14,7 +15,9 @@ int minsize = MIN_SIZE;
 void getOS() {
   color = YELLOW;
   titlecolor = YELLOW;
-  if (!display_resolution()) minsize--;
+  const char *res = display_resolution();
+  if (!res) minsize--;
+  else free((void *)res);
 
   for (int i = 0; i < LOGO_SIZE; i++) {
     LOGO[i] = NULL;

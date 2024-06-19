@@ -4,6 +4,7 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 char *LOGO[23];
 char *LOGO_SMALL[23];
@@ -13,7 +14,9 @@ size_t logosize;
 int minsize = MIN_SIZE;
 
 void getDistro(const char *distroname) {
-  if (!display_resolution()) minsize--;
+  const char *res = display_resolution();
+  if (!res) minsize--;
+  else free((void *)res);
 
   if (strncmp((char *)distroname, "alpine", strlen("alpine")) == 0) {
     color = MAGENTA;

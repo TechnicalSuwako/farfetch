@@ -68,6 +68,7 @@ void display_host_model() {
               "\"sysctl: hw.version: value is not available\" ]; then "
               "sysctl -n hw.version && echo \" \"; fi && "
               "sysctl -n hw.product");
+  if (!cmd) return;
   printf("%s", cmd);
   free((void *)cmd);
 #elif defined(__FreeBSD__)
@@ -82,12 +83,22 @@ void display_host_model() {
   const char *maker = run_host_command("kenv | grep smbios.system.maker | "
         "sed 's/\"//g' | sed 's/smbios.system.maker=//'");
   printf("%s %s %s", maker, family, product);
+  if (maker) free((void *)maker);
+  if (family) free((void *)family);
+  if (product) free((void *)product);
 #elif defined(__NetBSD__)
-  printf("%s", run_host_command("sysctl -n machdep.dmi.system-vendor && "
+  const char *cmd = run_host_command("sysctl -n machdep.dmi.system-vendor && "
               "echo \" \" && sysctl -n machdep.dmi.system-version && "
-              "echo \" \" && sysctl -n machdep.dmi.system-product"));
+              "echo \" \" && sysctl -n machdep.dmi.system-product");
+  if (!cmd) return;
+  printf("%s", cmd);
+  free((void *)cmd);
 #elif defined(__sun)
-  printf("%s", run_host_command("prtconf -b | awk -F':' '/banner-name/ {printf $2}'"));
+  const char *cmd = run_host_command("prtconf -b | "
+                    "awk -F':' '/banner-name/ {printf $2}'");
+  if (!cmd) return;
+  printf("%s", cmd);
+  free((void *)cm(void *)cmd);
 #elif defined(__linux__)
   const char *cmd1 = NULL;
   const char *cmd2 = NULL;
@@ -109,15 +120,23 @@ void display_host_model() {
   if (!cmd1) {
     printf("Unknown");
   } else {
-    printf("%s", run_host_command(cmd1));
+    const char *cmd = run_host_command(cmd1);
+    if (!cmd) return;
+    printf("%s", cmd);
+    free((void *)cmd);
   }
 
   if (cmd2) {
     const char *model = run_host_command(cmd2);
-    if (model) printf(" %s", model);
+    if (!model) return;
+    printf(" %s", model);
+    free((void *)model);
   }
 #elif defined(__APPLE__)
-  printf("%s", run_host_command("sysctl -n hw.model"));
+  const char *cmd = run_host_command("sysctl -n hw.model");
+  if (!cmd) return;
+  printf("%s", cmd);
+  free((void *)cmd);
 
   FILE *p = popen("kextstat | grep -F -e \"FakeSMC\" -e \"VirtualSMC\"", "r");
   if (!p) {
