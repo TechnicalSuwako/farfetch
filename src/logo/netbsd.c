@@ -1,5 +1,6 @@
 #if defined(__NetBSD__)
 #include "netbsd.h"
+#include "../resolution.h"
 
 #include <string.h>
 
@@ -8,10 +9,12 @@ char *LOGO_SMALL[23];
 const char *color;
 const char *titlecolor;
 size_t logosize = 18;
+int minsize = MIN_SIZE;
 
 void getOS() {
   color = MAGENTA;
   titlecolor = MAGENTA;
+  if (!display_resolution()) minsize--;
 
   LOGO[0]  = MAGENTA "                     `-/oshdmNMNdhyo+:-`   " RESET;
   LOGO[1]  = WHITE   "y" MAGENTA "/s+:-``    `.-:+oydNMMMMNhs/-``           " RESET;
@@ -39,7 +42,7 @@ void getOS() {
   LOGO_SMALL[4] = "    \\\\                " RESET;
   LOGO_SMALL[5] = "     \\\\               " RESET;
   LOGO_SMALL[6] = "      \\\\              " RESET;
-  for (int i = 7; i < MIN_SIZE; i++) {
+  for (int i = 7; i < minsize; i++) {
     LOGO_SMALL[i]  = MAGENTA "                      " RESET;
   }
 }

@@ -1,5 +1,6 @@
 #if defined(__sun)
 #include "openindiana.h"
+#include "../resolution.h"
 
 #include <string.h>
 
@@ -8,10 +9,12 @@ char *LOGO_SMALL[23];
 const char *color;
 const char *titlecolor;
 size_t logosize = 17;
+int minsize = MIN_SIZE;
 
 void getOS() {
   color = BLUE;
   titlecolor = BLUE;
+  if (!display_resolution()) minsize--;
 
   LOGO[0] = WHITE "                         .sy/              " RESET;
   LOGO[1]  = WHITE "                         .yh+              " RESET;

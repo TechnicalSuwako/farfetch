@@ -9,7 +9,7 @@ const char *display_resolution() {
   if (
       isexist == NULL ||
       strlen(isexist) == 0 ||
-      strncmp(isexist, "xrandr not found", strlen("xrandr not found"))
+      strncmp(isexist, "xrandr not found", strlen("xrandr not found")) == 0
   ) return NULL;
 
   return run_command_s("xrandr --nograb --current | "

@@ -1,5 +1,6 @@
 #if defined(__FreeBSD__)
 #include "freebsd.h"
+#include "../resolution.h"
 
 #include <string.h>
 
@@ -8,10 +9,12 @@ char *LOGO_SMALL[23];
 const char *color;
 const char *titlecolor;
 size_t logosize = 16;
+int minsize = MIN_SIZE;
 
 void getOS() {
   color = RED;
   titlecolor = RED;
+  if (!display_resolution()) minsize--;
 
   LOGO[0]  = WHITE "```                        " RED "`       " RESET;
   LOGO[1]  = WHITE "  ` `.....---..." RED "....--.```   -/    " RESET;
@@ -36,7 +39,7 @@ void getOS() {
   LOGO_SMALL[3] = RED "|           |  " RESET;
   LOGO_SMALL[4] = RED " ;         ;   " RESET;
   LOGO_SMALL[5] = RED "  '-_____-'    " RESET;
-  for (int i = 6; i < MIN_SIZE; i++) {
+  for (int i = 6; i < minsize; i++) {
     LOGO_SMALL[i]  = RED "               " RESET;
   }
 }

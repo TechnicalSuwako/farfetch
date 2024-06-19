@@ -71,14 +71,16 @@ int main(int argc, char *argv[]) {
   };
 #endif
 
+  int minsize = MIN_SIZE;
+  if (!display_resolution()) minsize--;
   const char *reset = RESET;
-  size_t ls = logosize <= MIN_SIZE ? MIN_SIZE : logosize;
+  size_t ls = logosize <= (size_t)minsize ? (size_t)minsize : logosize;
   if (issmall) {
     size_t ne = sizeof(LOGO_SMALL) / sizeof(LOGO_SMALL[0]);
     for (size_t i = 0; i < ne; i++) {
       LOGO[i] = LOGO_SMALL[i];
     }
-    ls = ne >= MIN_SIZE ? MIN_SIZE : ne;
+    ls = ne >= (size_t)minsize ? (size_t)minsize : ne;
   }
 
   if (display_user_name() || display_user_host()) {

@@ -1,5 +1,6 @@
 #if defined(__linux__)
 #include "linux.h"
+#include "../resolution.h"
 
 #include <stdio.h>
 #include <string.h>
@@ -9,8 +10,11 @@ char *LOGO_SMALL[23];
 const char *color;
 const char *titlecolor;
 size_t logosize;
+int minsize = MIN_SIZE;
 
 void getDistro(const char *distroname) {
+  if (!display_resolution()) minsize--;
+
   if (strncmp((char *)distroname, "alpine", strlen("alpine")) == 0) {
     color = MAGENTA;
     titlecolor = BLUE;
@@ -44,7 +48,7 @@ void getDistro(const char *distroname) {
     LOGO_SMALL[3] = BLUE  "/" WHITE "//    " BLUE "\\  \\   " RESET;
     LOGO_SMALL[4] = WHITE "//      " BLUE "\\  \\  " RESET;
     LOGO_SMALL[5] = BLUE  "         \\    " RESET;
-    for (int i = 6; i < MIN_SIZE; i++) {
+    for (int i = 6; i < minsize; i++) {
       LOGO_SMALL[i]  = BLUE "              " RESET;
     }
   } else if (strncmp((char *)distroname, "artix", strlen("artix")) == 0) {
@@ -80,7 +84,7 @@ void getDistro(const char *distroname) {
     LOGO_SMALL[4] = WHITE "  /   ,,   \\    " RESET;
     LOGO_SMALL[5] = WHITE " /   |  |  -\\   " RESET;
     LOGO_SMALL[6] = WHITE "/_-''    ''-_\\  " RESET;
-    for (int i = 7; i < MIN_SIZE; i++) {
+    for (int i = 7; i < minsize; i++) {
       LOGO_SMALL[i]  = CYAN "                " RESET;
     }
   } else if (strncmp((char *)distroname, "arch", strlen("arch")) == 0) {
@@ -117,7 +121,7 @@ void getDistro(const char *distroname) {
     LOGO_SMALL[4] = CYAN "  /      ,`\\    " RESET;
     LOGO_SMALL[5] = CYAN " /   ,.'`.  \\   " RESET;
     LOGO_SMALL[6] = CYAN "/.,'`     `'.\\  " RESET;
-    for (int i = 7; i < MIN_SIZE; i++) {
+    for (int i = 7; i < minsize; i++) {
       LOGO_SMALL[i]  = CYAN "                " RESET;
     }
   } else if (strncmp((char *)distroname, "crux", strlen("crux")) == 0) {
@@ -152,7 +156,7 @@ void getDistro(const char *distroname) {
     LOGO_SMALL[4] = BLUE    " ( " WHITE "/  \\" BLUE " /|  " RESET;
     LOGO_SMALL[5] = MAGENTA "_" BLUE "/\\ "WHITE "__)" BLUE "/" MAGENTA "_" BLUE ")  " RESET;
     LOGO_SMALL[6] = MAGENTA "\\/" BLUE "-____" MAGENTA "\\/   " RESET;
-    for (int i = 7; i < MIN_SIZE; i++) {
+    for (int i = 7; i < minsize; i++) {
       LOGO_SMALL[i]  = BLUE "                 " RESET;
     }
   } else if (strncmp((char *)distroname, "debian", strlen("debian")) == 0) {
@@ -185,7 +189,7 @@ void getDistro(const char *distroname) {
     LOGO_SMALL[3] = RED "|  \\___-   " RESET;
     LOGO_SMALL[4] = RED "-_         " RESET;
     LOGO_SMALL[5] = RED "  --_      " RESET;
-    for (int i = 6; i < MIN_SIZE; i++) {
+    for (int i = 6; i < minsize; i++) {
       LOGO_SMALL[i]  = RED "           " RESET;
     }
   } else if (strncmp((char *)distroname, "devuan", strlen("devuan")) == 0) {
@@ -213,7 +217,7 @@ void getDistro(const char *distroname) {
     LOGO_SMALL[0] = MAGENTA "__   " RESET;
     LOGO_SMALL[1] = MAGENTA "  \\  " RESET;
     LOGO_SMALL[2] = MAGENTA " _/  " RESET;
-    for (int i = 3; i < MIN_SIZE; i++) {
+    for (int i = 3; i < minsize; i++) {
       LOGO_SMALL[i]  = MAGENTA "     " RESET;
     }
   } else if (strncmp((char *)distroname, "gentoo", strlen("gentoo")) == 0) {
@@ -248,7 +252,7 @@ void getDistro(const char *distroname) {
     LOGO_SMALL[4] = WHITE   " /      _/   " RESET;
     LOGO_SMALL[5] = WHITE   "(     _-     " RESET;
     LOGO_SMALL[6] = WHITE   "\\____-       " RESET;
-    for (int i = 7; i < MIN_SIZE; i++) {
+    for (int i = 7; i < minsize; i++) {
       LOGO_SMALL[i]  = MAGENTA "             " RESET;
     }
   } else if (
@@ -290,7 +294,7 @@ void getDistro(const char *distroname) {
     LOGO_SMALL[6] = GREEN "  /   / ____/  \\    " RESET;
     LOGO_SMALL[7] = GREEN " /    \\ \\       \\   " RESET;
     LOGO_SMALL[8] = GREEN "/_____/ /________\\  " RESET;
-    for (int i = 9; i < MIN_SIZE; i++) {
+    for (int i = 9; i < minsize; i++) {
       LOGO_SMALL[i]  = GREEN "                    " RESET;
     }
   } else if (strncmp((char *)distroname, "void", strlen("void")) == 0) {
@@ -325,7 +329,7 @@ void getDistro(const char *distroname) {
     LOGO_SMALL[4] = GREEN "| | \\___/ | |  " RESET;
     LOGO_SMALL[5] = GREEN "| \\______ \\_|  " RESET;
     LOGO_SMALL[6] = GREEN " -_______\\     " RESET;
-    for (int i = 7; i < MIN_SIZE; i++) {
+    for (int i = 7; i < minsize; i++) {
       LOGO_SMALL[i]  = GREEN "               " RESET;
     }
   } else {
@@ -355,7 +359,7 @@ void getDistro(const char *distroname) {
     LOGO_SMALL[5] = GREY   " | " WHITE "\\_/" GREY " |   " RESET;
     LOGO_SMALL[6] = YELLOW "/ " GREY "_____" YELLOW " \\  " RESET;
     LOGO_SMALL[7] = YELLOW "\\/     \\/  " RESET;
-    for (int i = 8; i < MIN_SIZE; i++) {
+    for (int i = 8; i < minsize; i++) {
       LOGO_SMALL[i]  = GREY "           " RESET;
     }
   }
