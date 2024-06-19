@@ -1,5 +1,5 @@
 #if defined(__FreeBSD__)
-#include "openbsd.h"
+#include "freebsd.h"
 
 #include <string.h>
 
@@ -17,20 +17,17 @@ void getOS() {
   LOGO[2]  = WHITE "  +o   .--`         " RED "/y:`      +.   " RESET;
   LOGO[3]  = WHITE "   yo`:.            " RED ":o      `+-    " RESET;
   LOGO[4]  = WHITE "    y/               " RED "-/`   -o/     " RESET;
-  LOGO[7]  = WHITE "   .-                  " RED "::/sy+:.    " RESET;
-  LOGO[8]  = WHITE "   /                     " RED "`--  /    " RESET;
-  LOGO[9]  = WHITE "  `:                          " RED ":`   " RESET;
-  LOGO[10] = WHITE "  `:                          " RED ":`   " RESET;
-  LOGO[11] = WHITE "   /                          " RED "/    " RESET;
-  LOGO[12] = WHITE "   .-                        " RED "-.    " RESET;
-  LOGO[13] = WHITE "    --                      " RED "-.     " RESET;
-  LOGO[14] = WHITE "     `:`                  " RED "`:`      " RESET;
-  LOGO[15] = RED   "       .--             `--.        " RESET;
-  LOGO[16] = RED   "          .---.....----.           " RESET;
-  LOGO[17] = RED   "                                   " RESET;
-  LOGO[18] = RED   "                                   " RESET;
-  LOGO[19] = RED   "                                   " RESET;
-  for (int i = 20; i < 23; i++) {
+  LOGO[5]  = WHITE "   .-                  " RED "::/sy+:.    " RESET;
+  LOGO[6]  = WHITE "   /                     " RED "`--  /    " RESET;
+  LOGO[7]  = WHITE "  `:                          " RED ":`   " RESET;
+  LOGO[8] = WHITE "  `:                          " RED ":`   " RESET;
+  LOGO[9] = WHITE "   /                          " RED "/    " RESET;
+  LOGO[10] = WHITE "   .-                        " RED "-.    " RESET;
+  LOGO[11] = WHITE "    --                      " RED "-.     " RESET;
+  LOGO[12] = WHITE "     `:`                  " RED "`:`      " RESET;
+  LOGO[13] = RED   "       .--             `--.        " RESET;
+  LOGO[14] = RED   "          .---.....----.           " RESET;
+  for (int i = 15; i < 23; i++) {
     LOGO[i]  = RED   "                                   " RESET;
   }
 

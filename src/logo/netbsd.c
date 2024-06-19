@@ -1,5 +1,5 @@
 #if defined(__NetBSD__)
-#include "openbsd.h"
+#include "netbsd.h"
 
 #include <string.h>
 

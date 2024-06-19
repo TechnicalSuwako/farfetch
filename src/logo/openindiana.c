@@ -1,5 +1,5 @@
 #if defined(__sun)
-#include "openbsd.h"
+#include "openindiana.h"
 
 #include <string.h>
 
