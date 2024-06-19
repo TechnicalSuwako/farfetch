@@ -6,14 +6,6 @@
 #include <unistd.h>
 
 const char *run_gpu_command(const char *command) {
-  if (
-      access("/bin/glxinfo", F_OK) == -1 &&
-      access("/usr/bin/glxinfo", F_OK) == -1 &&
-      access("/usr/local/bin/glxinfo", F_OK) == -1 &&
-      access("/usr/X11R6/bin/glxinfo", F_OK) == -1 &&
-      access("/usr/X11R7/bin/glxinfo", F_OK) == -1 &&
-      access("/usr/pkg/bin/glxinfo", F_OK) == -1
-  ) return NULL;
   char buf[128];
   char *out = NULL;
   size_t outsize = 0;
@@ -49,7 +41,22 @@ const char *run_gpu_command(const char *command) {
 }
 
 const char *display_gpu() {
+#if defined(__FreeBSD__) || defined(__DragonFly__)
+  return run_gpu_command("pciconf -lv | grep -B 4 -F \"VGA\" | "
+                         "grep -F \"device\" | sed 's/^.* device//' | "
+                         "sed \"s/^.* '//\" | sed \"s/'//\" | tail -1 | "
+                         "sed 's/ Core Processor Integrated Graphics Controller//'");
+#else
+  if (
+      access("/bin/glxinfo", F_OK) == -1 &&
+      access("/usr/bin/glxinfo", F_OK) == -1 &&
+      access("/usr/local/bin/glxinfo", F_OK) == -1 &&
+      access("/usr/X11R6/bin/glxinfo", F_OK) == -1 &&
+      access("/usr/X11R7/bin/glxinfo", F_OK) == -1 &&
+      access("/usr/pkg/bin/glxinfo", F_OK) == -1
+  ) return NULL;
   return run_gpu_command("glxinfo -B | grep -F 'OpenGL renderer string' | "
                   "sed 's/OpenGL renderer string: //' | sed 's/Mesa //' | "
                   "sed 's/DRI //' | sed 's/(R)//' | sed 's/(.*$//'");
+#endif
 }
