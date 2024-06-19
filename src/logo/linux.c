@@ -1,6 +1,7 @@
 #if defined(__linux__)
 #include "linux.h"
 
+#include <stdio.h>
 #include <string.h>
 
 char *LOGO[23];
@@ -213,8 +214,8 @@ void getDistro(const char *distroname) {
     LOGO[14] = MAGENTA "   `'''`                           " RESET;
     LOGO[15] = MAGENTA "                                   " RESET;
     LOGO[16] = MAGENTA "                                   " RESET;
-    LOGO[17] = MA8ENTA "                                   " RESET;
-    for (int i = 19; i < 23; i++) {
+    LOGO[17] = MAGENTA "                                   " RESET;
+    for (int i = 18; i < 23; i++) {
       LOGO[i]  = MAGENTA "                                           " RESET;
     }
 

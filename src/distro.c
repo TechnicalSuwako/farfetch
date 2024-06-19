@@ -2,13 +2,17 @@
 #include "distro.h"
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
 
 const char *distroname;
 
-void display_distro() {
+const char *display_distro() {
   char buf[1288];
+  char *out = NULL;
+  size_t outsize = 0;
+
   const char *cmd = NULL;
 
   if (access("/bedrock/etc/bedrock-release", F_OK) != -1) {
@@ -45,13 +49,35 @@ void display_distro() {
   FILE *p = popen(cmd, "r");
   if (!p) {
     fprintf(stderr, "ディストロを見つけられるコマンドを実効に失敗: %s", cmd);
-    return;
+    return NULL;
   }
 
   while (fgets(buf, sizeof(buf), p) != NULL) {
     buf[strcspn(buf, "\n")] = '\0';
-    printf("%s", buf);
+
+    size_t len = strlen(buf);
+    char *nout = realloc(out, outsize + len + 1);
+    if (nout == NULL) {
+      perror("メモリの役割に失敗");
+      free(out);
+      pclose(p);
+      return NULL;
+    }
+
+    out = nout;
+
+    memccpy(out + outsize, buf, sizeof(buf), len);
+    outsize += len;
+    out[outsize] = '\0';
   }
+
+  pclose(p);
+
+  return out;
+}
+
+void get_distro() {
+  const char *buf = display_distro();
 
   if (strstr(buf, "Devuan") != NULL) distroname = "devuan";
   else if (strstr(buf, "Void Linux") != NULL) distroname = "void";
@@ -60,7 +86,5 @@ void display_distro() {
   else if (strstr(buf, "Artix Linux") != NULL) distroname = "artix";
   else if (strstr(buf, "CRUX") != NULL) distroname = "crux";
   else distroname = "linux";
-
-  pclose(p);
 }
 #endif

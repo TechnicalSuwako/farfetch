@@ -35,6 +35,7 @@ int main(int argc, char *argv[]) {
 #include "src/logo/freebsd.h"
   getOS();
 #elif defined(__linux__)
+  get_distro();
 #include "src/logo/linux.h"
   getDistro(distroname);
 #else
@@ -102,9 +103,8 @@ int main(int argc, char *argv[]) {
 
 #if defined(__linux__)
   printf("%s ", LOGO[lc]);
-  printf(COLOR"%s%s"RESET, "Distro", ": ");
-  display_distro();
-  printf("\n");
+  printf("%s%s%s"RESET, color, "Distro", ": ");
+  printf("%s\n", display_distro());
   lc++;
 #endif
 
