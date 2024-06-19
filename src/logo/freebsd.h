@@ -35,7 +35,11 @@ RED "\\_)       (_/  " RESET,
 RED "|           |  " RESET,
 RED "|           |  " RESET,
 RED " ;         ;   " RESET,
-RED "  '-_____-'    " RESET
+RED "  '-_____-'    " RESET,
+RED "               " RESET,
+RED "               " RESET,
+RED "               " RESET,
+RED "               " RESET
 };
 
 #endif
