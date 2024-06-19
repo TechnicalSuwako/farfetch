@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 #include "src/user.h"
 #include "src/os.h"
@@ -91,6 +92,8 @@ int main(int argc, char *argv[]) {
         titlecolor, display_user_host(), reset
     );
     lc++;
+    if (display_user_name()) free((void *)display_user_name());
+    if (display_user_host()) free((void *)display_user_host());
   }
 
   printf("%s ", LOGO[lc]);
@@ -101,6 +104,7 @@ int main(int argc, char *argv[]) {
     printf("%s ", LOGO[lc]);
     printf("%sOS%s: %s\n", color, reset, display_os());
     lc++;
+    free((void *)display_os());
   }
 
 #if defined(__linux__)
@@ -108,6 +112,7 @@ int main(int argc, char *argv[]) {
     printf("%s ", LOGO[lc]);
     printf("%sDistro%s: %s\n", color, reset, display_distro());
     lc++;
+    free((void *)display_distro());
   }
 #endif
 
@@ -129,6 +134,8 @@ int main(int argc, char *argv[]) {
     }
     printf("\n");
     lc++;
+    if (display_days()) free((void *)display_days());
+    if (display_time()) free((void *)display_time());
   }
 
 #if defined(__OpenBSD__)
@@ -144,6 +151,8 @@ int main(int argc, char *argv[]) {
     }
     printf("\n");
     lc++;
+    if (display_recording_audio()) free((void *)display_recording_audio());
+    if (display_recording_video()) free((void *)display_recording_video());
   }
 #endif
 
@@ -151,24 +160,28 @@ int main(int argc, char *argv[]) {
     printf("%s ", LOGO[lc]);
     printf("%sPackages%s: %s\n", color, reset, display_packages());
     lc++;
+    free((void *)display_packages());
   }
 
   if (display_resolution()) {
     printf("%s ", LOGO[lc]);
     printf("%sResolution%s: %s\n", color, reset, display_resolution());
     lc++;
+    free((void *)display_resolution());
   }
 
   if (display_cpu()) {
     printf("%s ", LOGO[lc]);
     printf("%sCPU%s: %s\n", color, reset, display_cpu());
     lc++;
+    free((void *)display_cpu());
   }
 
   if (display_gpu()) {
     printf("%s ", LOGO[lc]);
     printf("%sGPU%s: %s\n", color, reset, display_gpu());
     lc++;
+    free((void *)display_gpu());
   }
 
   printf("%s ", LOGO[lc]);
