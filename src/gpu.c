@@ -49,6 +49,9 @@ const char *display_gpu() {
                          "grep -F \"device\" | sed 's/^.* device//' | "
                          "sed \"s/^.* '//\" | sed \"s/'//\" | tail -1 | "
                          "sed 's/ Core Processor Integrated Graphics Controller//'");
+#elif defined(__linux__)
+  return run_gpu_command("lspci | grep VGA | sed 's/^.*: //' | "
+                         "sed 's/Corporation //' | sed 's/ (.*$//'");
 #else
   if (
       access("/bin/glxinfo", F_OK) == -1 &&
