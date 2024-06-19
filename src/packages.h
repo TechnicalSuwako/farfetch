@@ -1,6 +1,6 @@
 #ifndef PACKAGES_H
 #define PACKAGES_H
 
-void display_packages();
+const char *display_packages();
 
 #endif

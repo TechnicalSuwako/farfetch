@@ -2,8 +2,8 @@
 #ifndef RECORDING_H
 #define RECORDING_H
 
-void display_recording_audio();
-void display_recording_video();
+const char *display_recording_audio();
+const char *display_recording_video();
 
 #endif
 #endif

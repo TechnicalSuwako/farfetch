@@ -73,6 +73,7 @@ size_t logosize = 11;
   };
 #endif
 
+  const char *reset = RESET;
   size_t ls = logosize <= MIN_SIZE ? MIN_SIZE : logosize;
   if (issmall) {
     size_t ne = sizeof(LOGO_SMALL) / sizeof(LOGO_SMALL[0]);
@@ -83,45 +84,41 @@ size_t logosize = 11;
   }
 
   printf("%s ", LOGO[lc]);
-  printf("%s", titlecolor);
-  display_user_name();
-  printf(RESET);
-  printf("@");
-  printf("%s", titlecolor);
-  display_user_host();
-  printf(RESET);
-  lc++;
+  if (display_user_name() || display_user_host()) {
+    printf(
+        "%s%s%s@%s%s%s\n",
+        titlecolor, display_user_name(), reset,
+        titlecolor, display_user_host(), reset
+    );
+    lc++;
+  }
+
   printf("%s ", LOGO[lc]);
   printf("------------------\n");
   lc++;
 
   printf("%s ", LOGO[lc]);
-  printf("%s%s%s"RESET, color, "OS", ": ");
-  display_os_name();
-  printf(" ");
-  display_os_vers();
-  printf(" ");
-  display_os_arch();
-  printf("\n");
-  lc++;
+  if (display_os()) {
+    printf("%sOS%s: %s\n", color, reset, display_os());
+    lc++;
+  }
 
 #if defined(__linux__)
-  if (display_distro() != NULL) {
-    printf("%s ", LOGO[lc]);
-    printf("%s%s%s"RESET, color, "Distro", ": ");
-    printf("%s\n", display_distro());
+  printf("%s ", LOGO[lc]);
+  if (display_distro()) {
+    printf("%sDistro%s: %s\n", color, reset, display_distro());
     lc++;
   }
 #endif
 
   printf("%s ", LOGO[lc]);
-  printf("%s%s%s"RESET, color, "Host", ": ");
+  printf("%s%s%s%s", color, "Host", reset, ": ");
   display_host_model();
   printf("\n");
   lc++;
 
   printf("%s ", LOGO[lc]);
-  printf("%s%s%s"RESET, color, "Uptime", ": ");
+  printf("%s%s%s%s", color, "Uptime", reset, ": ");
   display_days();
   printf(", ");
   display_time();
@@ -130,43 +127,46 @@ size_t logosize = 11;
 
 #if defined(__OpenBSD__)
   printf("%s ", LOGO[lc]);
-  printf("%s%s%s"RESET, color, "Recording", ": ");
-  printf("audio = ");
-  display_recording_audio();
-  printf(", video = ");
-  display_recording_video();
-  printf("\n");
-  lc++;
+  if (display_recording_audio() || display_recording_video()) {
+    printf("%sRecording%s: ", color, reset);
+    if (display_recording_audio()) {
+      printf("audio = %s", display_recording_audio());
+      if (display_recording_video()) printf(", ");
+    }
+    if (display_recording_video()) {
+      printf("video = %s", display_recording_video());
+    }
+    printf("\n");
+    lc++;
+  }
 #endif
 
   printf("%s ", LOGO[lc]);
-  printf("%s%s%s"RESET, color, "Packages", ": ");
-  display_packages();
-  printf("\n");
-  lc++;
+  if (display_packages()) {
+    printf("%sPackages%s: %s\n", color, reset, display_packages());
+    lc++;
+  }
 
+  printf("%s ", LOGO[lc]);
   if (display_resolution()) {
-    printf("%s ", LOGO[lc]);
-    printf("%s%s%s"RESET, color, "Resolution", ": ");
-    printf("%s\n", display_resolution());
+    printf("%sResolution%s: %s\n", color, reset, display_resolution());
     lc++;
   }
 
   printf("%s ", LOGO[lc]);
-  printf("%s%s%s"RESET, color, "CPU", ": ");
-  display_cpu();
-  printf("\n");
-  lc++;
+  if (display_cpu()) {
+    printf("%sCPU%s: %s\n", color, reset, display_cpu());
+    lc++;
+  }
 
+  printf("%s ", LOGO[lc]);
   if (display_gpu()) {
-    printf("%s ", LOGO[lc]);
-    printf("%s%s%s"RESET, color, "GPU", ": ");
-    printf("%s\n", display_gpu());
+    printf("%sGPU%s: %s\n", color, reset, display_gpu());
     lc++;
   }
 
   printf("%s ", LOGO[lc]);
-  printf("%s%s%s"RESET, color, "Memory", ": ");
+  printf("%s%s%s%s", color, "Memory", reset, ": ");
   display_memory();
   printf("\n");
   lc++;

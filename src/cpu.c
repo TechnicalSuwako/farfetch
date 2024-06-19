@@ -1,37 +1,17 @@
 #include "cpu.h"
+#include "common.h"
 
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-
-void run_cpu_command(const char *command) {
-  char buf[128];
-
-  FILE *p = popen(command, "r");
-  if (!p) {
-    fprintf(stderr, "CPUコマンドを実効に失敗: %s", command);
-    return;
-  }
-
-  while (fgets(buf, sizeof(buf), p) != NULL) {
-    buf[strcspn(buf, "\n")] = '\0';
-    printf("%s", buf);
-  }
-
-  pclose(p);
-}
-
-void display_cpu() {
+const char *display_cpu() {
 #if defined(__NetBSD__)
-  run_cpu_command("sysctl -n machdep.cpu_brand | sed 's/(R)//' | "
+  return run_command_s("sysctl -n machdep.cpu_brand | sed 's/(R)//' | "
                   "sed 's/(TM)//' | sed 's/CPU //' | sed 's/Processor//'");
-  run_cpu_command("echo \" (\" && sysctl -n hw.ncpu && echo \" core)\"");
+  return run_command_s("echo \" (\" && sysctl -n hw.ncpu && echo \" core)\"");
 #elif defined(__FreeBSD__) || defined(__OpenBSD__)
-  run_cpu_command("sysctl -n hw.model | sed 's/(R)//' | "
+  return run_command_s("sysctl -n hw.model | sed 's/(R)//' | "
                   "sed 's/(TM)//' | sed 's/CPU //' | sed 's/Processor//'");
-  run_cpu_command("echo \" (\" && sysctl -n hw.ncpu && echo \" core)\"");
+  return run_command_s("echo \" (\" && sysctl -n hw.ncpu && echo \" core)\"");
 #elif defined(__linux__)
-  run_cpu_command("cat /proc/cpuinfo | awk -F '\\\\s*: | @' "
+  return run_command_s("cat /proc/cpuinfo | awk -F '\\\\s*: | @' "
       "'/model name|Hardware|Processor|^cpu model|chip type|^cpu type/ { "
       "cpu=$2; if ($1 == \"Hardware\") exit } END { print cpu }' | "
       "sed 's/(R)//' | sed 's/(TM)//' | sed 's/CPU //' | sed 's/ Processor//' | "
@@ -62,6 +42,6 @@ void display_cpu() {
   }
 
   fclose(fp);
-  run_cpu_command("echo \"GHz (\" && nproc && echo \" core)\"");
+  return run_command_s("echo \"GHz (\" && nproc && echo \" core)\"");
 #endif
 }

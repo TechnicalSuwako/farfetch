@@ -1,6 +1,6 @@
 #ifndef CPU_H
 #define CPU_H
 
-void display_cpu();
+const char *display_cpu();
 
 #endif

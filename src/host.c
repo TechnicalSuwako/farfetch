@@ -6,8 +6,6 @@
 
 #if defined(__linux__)
 #include <unistd.h>
-
-int skip = 0;
 #endif
 
 const char *run_host_command(const char *command) {
@@ -38,8 +36,7 @@ const char *run_host_command(const char *command) {
         strstr(buf, "INVALID") != NULL ||
         strstr(buf, "All Series") != NULL
     ) {
-      skip = 1;
-      break;
+      return NULL;
     }
 #endif
 
@@ -113,7 +110,7 @@ void display_host_model() {
 
   if (cmd2) {
     const char *model = run_host_command(cmd2);
-    if (!skip) printf(" %s", model);
+    if (model) printf(" %s", model);
   }
 #elif defined(__APPLE__)
   printf("%s", run_host_command("sysctl -n hw.model"));
