@@ -143,11 +143,11 @@ int main(int argc, char *argv[]) {
   printf("\n");
   lc++;
 
-  printf("%s ", LOGO[lc]);
-  printf(COLOR"%s%s"RESET, "GPU", ": ");
-  display_gpu();
-  printf("\n");
-  lc++;
+  if (display_gpu()) {
+    printf("%s ", LOGO[lc]);
+    printf(COLOR"%s%s%s\n"RESET, "GPU", ": ", display_gpu());
+    lc++;
+  }
 
   printf("%s ", LOGO[lc]);
   printf(COLOR"%s%s"RESET, "Memory", ": ");
