@@ -12,6 +12,7 @@
 #include "src/recording.h"
 #endif
 #include "src/packages.h"
+#include "src/resolution.h"
 #include "src/cpu.h"
 #include "src/gpu.h"
 #include "src/memory.h"
@@ -105,10 +106,12 @@ size_t logosize = 11;
   lc++;
 
 #if defined(__linux__)
-  printf("%s ", LOGO[lc]);
-  printf("%s%s%s"RESET, color, "Distro", ": ");
-  printf("%s\n", display_distro());
-  lc++;
+  if (display_distro() != NULL) {
+    printf("%s ", LOGO[lc]);
+    printf("%s%s%s"RESET, color, "Distro", ": ");
+    printf("%s\n", display_distro());
+    lc++;
+  }
 #endif
 
   printf("%s ", LOGO[lc]);
@@ -142,6 +145,13 @@ size_t logosize = 11;
   printf("\n");
   lc++;
 
+  if (display_resolution()) {
+    printf("%s ", LOGO[lc]);
+    printf("%s%s%s"RESET, color, "Resolution", ": ");
+    printf("%s\n", display_resolution());
+    lc++;
+  }
+
   printf("%s ", LOGO[lc]);
   printf("%s%s%s"RESET, color, "CPU", ": ");
   display_cpu();
@@ -166,13 +176,9 @@ size_t logosize = 11;
   }
 
   // TODO:
-  // * ロゴ
-  // * パッケージ
   // * libc
   // * シェル
-  // * 解像度
   // * 端末
-  // * GPU
   // * ストレージ
 
   return 0;

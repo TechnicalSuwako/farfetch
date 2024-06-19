@@ -2,9 +2,9 @@
 #define LOGO_COLORS_H
 
 #if defined(__OpenBSD__) || defined(__linux__)
-#define MIN_SIZE 11
+#define MIN_SIZE 12
 #else
-#define MIN_SIZE 10
+#define MIN_SIZE 11
 #endif
 
 #define LOGO_SIZE 24
