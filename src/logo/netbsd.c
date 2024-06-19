@@ -30,9 +30,6 @@ void getOS() {
   LOGO[15] = WHITE   "             :Ms                           " RESET;
   LOGO[16] = WHITE   "              :Ms                          " RESET;
   LOGO[17] = WHITE   "                                           " RESET;
-  for (int i = 18; i < 23; i++) {
-    LOGO[i]  = WHITE   "                                           " RESET;
-  }
 
   LOGO_SMALL[0] = "\\\\" MAGENTA "\\`-______,----__    " RESET;
   LOGO_SMALL[1] = " \\\\        " MAGENTA "__,---\\`_  " RESET;
@@ -41,7 +38,7 @@ void getOS() {
   LOGO_SMALL[4] = "    \\\\                " RESET;
   LOGO_SMALL[5] = "     \\\\               " RESET;
   LOGO_SMALL[6] = "      \\\\              " RESET;
-  for (int i = 7; i < 23; i++) {
+  for (int i = 7; i < MIN_SIZE; i++) {
     LOGO_SMALL[i]  = MAGENTA "                      " RESET;
   }
 }

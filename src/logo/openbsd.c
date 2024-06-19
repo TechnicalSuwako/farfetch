@@ -40,6 +40,7 @@ void getOS() {
   LOGO[20] = YELLOW "      / .-.\\                              " RESET;
   LOGO[21] = YELLOW "      \\ (  `\\                             " RESET;
   LOGO[22] = YELLOW "       `.\\                                " RESET;
+  LOGO[22] = YELLOW "                                          " RESET;
 
   LOGO_SMALL[0] = YELLOW "      _____      " RESET;
   LOGO_SMALL[1] = YELLOW "    \\-     -/    " RESET;
@@ -48,7 +49,7 @@ void getOS() {
   LOGO_SMALL[4] = YELLOW " |_  <   )  3 )  " RESET;
   LOGO_SMALL[5] = YELLOW " / \\         /   " RESET;
   LOGO_SMALL[6] = YELLOW "    /-_____-\\    " RESET;
-  for (int i = 7; i < LOGO_SIZE; i++) {
+  for (int i = 7; i < MIN_SIZE; i++) {
     LOGO_SMALL[i] = YELLOW "                 " RESET;
   }
 }

@@ -75,7 +75,7 @@ int main(int argc, char *argv[]) {
     for (size_t i = 0; i < ne; i++) {
       LOGO[i] = LOGO_SMALL[i];
     }
-    ls = ne;
+    ls = ne >= MIN_SIZE ? MIN_SIZE : ne;
   }
 
   printf("%s ", LOGO[lc]);

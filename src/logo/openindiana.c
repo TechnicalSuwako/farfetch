@@ -29,10 +29,5 @@ void getOS() {
   LOGO[14] = WHITE "h+`      `.-:+oyyyo/-`                     " RESET;
   LOGO[15] = WHITE "`/ossssysso+/-.`                           " RESET;
   LOGO[16] = WHITE "                                           " RESET;
-  LOGO[17] = WHITE "                                           " RESET;
-  LOGO[18] = WHITE "                                           " RESET;
-  for (int i = 19; i < 23; i++) {
-    LOGO[i]  = WHITE "                                           " RESET;
-  }
 }
 #endif
