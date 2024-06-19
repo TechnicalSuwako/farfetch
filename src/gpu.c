@@ -44,6 +44,9 @@ const char *display_gpu() {
 #if defined(__OpenBSD__)
   return run_gpu_command("dmesg | grep -i graphics | sed 's/^.* \"//' | "
                          "sed 's/\".*$//'");
+#elif defined(__NetBSD__)
+  return run_gpu_command("dmesg | grep -i graphics | sed 's/^.*: //' | "
+                         "sed 's/ (.*$//'");
 #elif defined(__FreeBSD__) || defined(__DragonFly__)
   return run_gpu_command("pciconf -lv | grep -B 4 -F \"VGA\" | "
                          "grep -F \"device\" | sed 's/^.* device//' | "
