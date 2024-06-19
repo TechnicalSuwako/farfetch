@@ -63,9 +63,13 @@ const char *run_host_command(const char *command) {
 
 void display_host_model() {
 #if defined(__OpenBSD__)
-  printf("%s", run_host_command("sysctl -n hw.vendor && echo \" \" && "
-              "sysctl -n hw.version && echo \" \" &&"
-              "sysctl -n hw.product"));
+  const char *cmd = run_host_command("sysctl -n hw.vendor && echo \" \" && "
+              "if [ \"$(sysctl -n hw.version 2>&1)\" != "
+              "\"sysctl: hw.version: value is not available\" ]; then "
+              "sysctl -n hw.version && echo \" \"; fi && "
+              "sysctl -n hw.product");
+  printf("%s", cmd);
+  free((void *)cmd);
 #elif defined(__FreeBSD__)
   const char *family = run_host_command("kenv | grep smbios.system.family | "
         "sed 's/\"//g' | sed 's/smbios.system.family=//'");
