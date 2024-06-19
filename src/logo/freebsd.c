@@ -41,7 +41,7 @@ void getOS() {
   LOGO_SMALL[4] = RED " ;         ;   " RESET;
   LOGO_SMALL[5] = RED "  '-_____-'    " RESET;
   for (int i = 6; i < 23; i++) {
-    LOGO_SMALL[i]  = RED "                 " RESET;
+    LOGO_SMALL[i]  = RED "               " RESET;
   }
 }
 #endif

@@ -42,7 +42,7 @@ void getOS() {
   LOGO_SMALL[5] = "     \\\\               " RESET;
   LOGO_SMALL[6] = "      \\\\              " RESET;
   for (int i = 7; i < 23; i++) {
-    LOGO_SMALL[i]  = MAGENTA "                 " RESET;
+    LOGO_SMALL[i]  = MAGENTA "                      " RESET;
   }
 }
 #endif
