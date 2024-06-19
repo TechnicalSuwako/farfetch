@@ -2,6 +2,7 @@
 #ifndef LOGO_OPENINDIANA_H
 #define LOGO_OPENINDIANA_H
 
+#include <stdio.h>
 #include "colors.h"
 
 extern char *LOGO[23];

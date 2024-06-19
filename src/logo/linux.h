@@ -2,6 +2,7 @@
 #ifndef LOGO_LINUX_H
 #define LOGO_LINUX_H
 
+#include <stdio.h>
 #include "../distro.h"
 #include "colors.h"
 

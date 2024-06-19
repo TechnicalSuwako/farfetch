@@ -2,6 +2,7 @@
 #ifndef LOGO_OPENBSD_H
 #define LOGO_OPENBSD_H
 
+#include <stdio.h>
 #include "colors.h"
 
 extern char *LOGO[23];

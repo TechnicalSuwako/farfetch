@@ -2,6 +2,7 @@
 #ifndef LOGO_FREEBSD_H
 #define LOGO_FREEBSD_H
 
+#include <stdio.h>
 #include "colors.h"
 
 extern char *LOGO[23];
