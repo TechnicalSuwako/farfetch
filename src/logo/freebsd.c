@@ -7,6 +7,7 @@ char *LOGO[23];
 char *LOGO_SMALL[23];
 const char *color;
 const char *titlecolor;
+size_t logosize = 16;
 
 void getOS() {
   color = RED;

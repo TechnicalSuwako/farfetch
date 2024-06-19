@@ -39,6 +39,9 @@ int main(int argc, char *argv[]) {
 #include "src/logo/linux.h"
   getDistro(distroname);
 #else
+const char *color = MAGENTA;
+const char *titlecolor = MAGENTA;
+size_t logosize = 11;
 #define COLOR "\e[1;30m"
 #define RESET "\e[0m"
   char *LOGO[] = {
@@ -69,7 +72,7 @@ int main(int argc, char *argv[]) {
   };
 #endif
 
-  size_t ls = sizeof(LOGO) / sizeof(LOGO[0]);
+  size_t ls = logosize <= MIN_SIZE ? MIN_SIZE : logosize;
   if (issmall) {
     size_t ne = sizeof(LOGO_SMALL) / sizeof(LOGO_SMALL[0]);
     for (size_t i = 0; i < ne; i++) {
