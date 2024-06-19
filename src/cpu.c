@@ -1,6 +1,11 @@
 #include "cpu.h"
 #include "common.h"
 
+#if defined(__linux__)
+#include <stdio.h>
+#include <stdlib.h>
+#endif
+
 const char *display_cpu() {
 #if defined(__NetBSD__)
   return run_command_s("sysctl -n machdep.cpu_brand | sed 's/(R)//' | "
@@ -28,7 +33,7 @@ const char *display_cpu() {
 
   if (fp == NULL) {
     perror("失敗");
-    return;
+    return NULL;
   }
 
   if (fgets(buf, sizeof(buf), fp) != NULL) {
@@ -38,7 +43,7 @@ const char *display_cpu() {
   } else {
     perror("失敗");
     fclose(fp);
-    return;
+    return NULL;
   }
 
   fclose(fp);

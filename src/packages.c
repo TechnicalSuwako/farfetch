@@ -18,5 +18,7 @@ const char *display_packages() {
   } else if (access("/usr/bin/dpkg-query", F_OK) != -1) {
     return run_command_s("dpkg-query -f '.\n' -W | wc -l | sed \"s/ //g\"");
   }
+
+  return NULL;
 #endif
 }
