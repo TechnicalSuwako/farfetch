@@ -92,11 +92,10 @@ int main(int argc, char *argv[]) {
   const char *host = display_user_host();
   if (name || host) {
     printf("%s ", LOGO[lc]);
-    printf(
-        "%s%s%s@%s%s%s\n",
-        titlecolor, name, reset,
-        titlecolor, host, reset
-    );
+    if (name) printf("%s%s%s",titlecolor, name, reset);
+    if (name && host) printf("@");
+    if (host) printf("%s%s%s", titlecolor, host, reset);
+    printf("\n");
     if (name) free((void *)name);
     if (host) free((void *)host);
     lc++;
