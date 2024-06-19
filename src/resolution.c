@@ -7,6 +7,9 @@
 #include <stdlib.h>
 
 const char *display_resolution() {
+  const char *display = run_command_s("echo $DISPLAY");
+  if (display == NULL || strlen(display) == 0) return NULL;
+
   const char *isexist = run_command_s("which xrandr");
   if (
       isexist == NULL ||
@@ -17,9 +20,6 @@ const char *display_resolution() {
     return NULL;
   }
   free((void *)isexist);
-
-  const char *display = run_command_s("echo $DISPLAY");
-  if (display == NULL || strlen(display) == 0) return NULL;
 
   return run_command_s("xrandr --nograb --current | "
                        "awk -F 'connected |\\\\+|\\\\(' '/ "
