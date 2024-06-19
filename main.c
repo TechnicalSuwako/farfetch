@@ -5,7 +5,6 @@
 #include "src/os.h"
 #if defined(__linux__)
 #include "src/distro.h"
-#include "src/logo/linux_def.h"
 #endif
 #include "src/host.h"
 #include "src/uptime.h"
@@ -28,13 +27,16 @@ int main(int argc, char *argv[]) {
   }
 #if defined(__OpenBSD__)
 #include "src/logo/openbsd.h"
+  getOS();
 #elif defined(__NetBSD__)
 #include "src/logo/netbsd.h"
+  getOS();
 #elif defined(__FreeBSD__)
 #include "src/logo/freebsd.h"
+  getOS();
 #elif defined(__linux__)
-  getDistro(distroname);
 #include "src/logo/linux.h"
+  getDistro(distroname);
 #else
 #define COLOR "\e[1;30m"
 #define RESET "\e[0m"
@@ -76,11 +78,11 @@ int main(int argc, char *argv[]) {
   }
 
   printf("%s ", LOGO[lc]);
-  printf(COLOR);
+  printf("%s", titlecolor);
   display_user_name();
   printf(RESET);
   printf("@");
-  printf(COLOR);
+  printf("%s", titlecolor);
   display_user_host();
   printf(RESET);
   lc++;
@@ -89,7 +91,7 @@ int main(int argc, char *argv[]) {
   lc++;
 
   printf("%s ", LOGO[lc]);
-  printf(COLOR"%s%s"RESET, "OS", ": ");
+  printf("%s%s%s"RESET, color, "OS", ": ");
   display_os_name();
   printf(" ");
   display_os_vers();
@@ -107,13 +109,13 @@ int main(int argc, char *argv[]) {
 #endif
 
   printf("%s ", LOGO[lc]);
-  printf(COLOR"%s%s"RESET, "Host", ": ");
+  printf("%s%s%s"RESET, color, "Host", ": ");
   display_host_model();
   printf("\n");
   lc++;
 
   printf("%s ", LOGO[lc]);
-  printf(COLOR"%s%s"RESET, "Uptime", ": ");
+  printf("%s%s%s"RESET, color, "Uptime", ": ");
   display_days();
   printf(", ");
   display_time();
@@ -122,7 +124,7 @@ int main(int argc, char *argv[]) {
 
 #if defined(__OpenBSD__)
   printf("%s ", LOGO[lc]);
-  printf(COLOR"%s%s"RESET, "Recording", ": ");
+  printf("%s%s%s"RESET, color, "Recording", ": ");
   printf("audio = ");
   display_recording_audio();
   printf(", video = ");
@@ -132,26 +134,26 @@ int main(int argc, char *argv[]) {
 #endif
 
   printf("%s ", LOGO[lc]);
-  printf(COLOR"%s%s"RESET, "Packages", ": ");
+  printf("%s%s%s"RESET, color, "Packages", ": ");
   display_packages();
   printf("\n");
   lc++;
 
   printf("%s ", LOGO[lc]);
-  printf(COLOR"%s%s"RESET, "CPU", ": ");
+  printf("%s%s%s"RESET, color, "CPU", ": ");
   display_cpu();
   printf("\n");
   lc++;
 
   if (display_gpu()) {
     printf("%s ", LOGO[lc]);
-    printf(COLOR"%s%s"RESET, "GPU", ": ");
+    printf("%s%s%s"RESET, color, "GPU", ": ");
     printf("%s\n", display_gpu());
     lc++;
   }
 
   printf("%s ", LOGO[lc]);
-  printf(COLOR"%s%s"RESET, "Memory", ": ");
+  printf("%s%s%s"RESET, color, "Memory", ": ");
   display_memory();
   printf("\n");
   lc++;
@@ -169,5 +171,6 @@ int main(int argc, char *argv[]) {
   // * 端末
   // * GPU
   // * ストレージ
+
   return 0;
 }

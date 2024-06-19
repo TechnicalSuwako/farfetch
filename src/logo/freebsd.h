@@ -1,41 +1,15 @@
+#if defined(__FreeBSD__)
 #ifndef LOGO_FREEBSD_H
 #define LOGO_FREEBSD_H
 
-#define RED    "\e[1;31m"
-#define WHITE  "\e[1;37m"
-#define RESET   "\e[0m"
+#include "colors.h"
 
-#define COLOR RED
-#define TITLECOLOR RED
+extern char *LOGO[23];
+extern char *LOGO_SMALL[23];
+extern const char *color;
+extern const char *titlecolor;
 
-char *LOGO[] = {
-WHITE "```                        " RED "`       " RESET,
-WHITE "  ` `.....---..." RED "....--.```   -/    " RESET,
-WHITE "  +o   .--`         " RED "/y:`      +.   " RESET,
-WHITE "   yo`:.            " RED ":o      `+-    " RESET,
-WHITE "    y/               " RED "-/`   -o/     " RESET,
-WHITE "   .-                  " RED "::/sy+:.    " RESET,
-WHITE "   /                     " RED "`--  /    " RESET,
-WHITE "  `:                          " RED ":`   " RESET,
-WHITE "  `:                          " RED ":`   " RESET,
-WHITE "   /                          " RED "/    " RESET,
-WHITE "   .-                        " RED "-.    " RESET,
-WHITE "    --                      " RED "-.     " RESET,
-WHITE "     `:`                  " RED "`:`      " RESET,
-RED   "       .--             `--.        " RESET,
-RED   "          .---.....----.           " RESET,
-RED   "                                   " RESET,
-RED   "                                   " RESET,
-RED   "                                   " RESET
-};
+void getOS();
 
-char *LOGO_SMALL[] = {
-RED "/\\,-'''''-,/\\  " RESET,
-RED "\\_)       (_/  " RESET,
-RED "|           |  " RESET,
-RED "|           |  " RESET,
-RED " ;         ;   " RESET,
-RED "  '-_____-'    " RESET
-};
-
+#endif
 #endif
