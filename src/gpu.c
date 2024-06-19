@@ -7,11 +7,11 @@
 
 const char *run_gpu_command(const char *command) {
   if (
-      access("/bin/glxinfo", F_OK) == -1 ||
-      access("/usr/bin/glxinfo", F_OK) == -1 ||
-      access("/usr/local/bin/glxinfo", F_OK) == -1 ||
-      access("/usr/X11R6/bin/glxinfo", F_OK) == -1 ||
-      access("/usr/X11R7/bin/glxinfo", F_OK) == -1 ||
+      access("/bin/glxinfo", F_OK) == -1 &&
+      access("/usr/bin/glxinfo", F_OK) == -1 &&
+      access("/usr/local/bin/glxinfo", F_OK) == -1 &&
+      access("/usr/X11R6/bin/glxinfo", F_OK) == -1 &&
+      access("/usr/X11R7/bin/glxinfo", F_OK) == -1 &&
       access("/usr/pkg/bin/glxinfo", F_OK) == -1
   ) return NULL;
   char buf[128];

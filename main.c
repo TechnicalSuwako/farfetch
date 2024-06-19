@@ -145,7 +145,8 @@ int main(int argc, char *argv[]) {
 
   if (display_gpu()) {
     printf("%s ", LOGO[lc]);
-    printf(COLOR"%s%s%s\n"RESET, "GPU", ": ", display_gpu());
+    printf(COLOR"%s%s"RESET, "GPU", ": ");
+    printf("%s\n", display_gpu());
     lc++;
   }
 
