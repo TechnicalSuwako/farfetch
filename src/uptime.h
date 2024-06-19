@@ -1,7 +1,7 @@
 #ifndef UPTIME_H
 #define UPTIME_H
 
-void display_days();
-void display_time();
+const char *display_days();
+const char *display_time();
 
 #endif

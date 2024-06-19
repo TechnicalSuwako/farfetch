@@ -40,11 +40,9 @@ int main(int argc, char *argv[]) {
 #include "src/logo/linux.h"
   getDistro(distroname);
 #else
-const char *color = MAGENTA;
-const char *titlecolor = MAGENTA;
-size_t logosize = 11;
-#define COLOR "\e[1;30m"
-#define RESET "\e[0m"
+  const char *color = MAGENTA;
+  const char *titlecolor = MAGENTA;
+  size_t logosize = 11;
   char *LOGO[] = {
 "    ⢀⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⣠⠾⠛⠶⣄⢀⣠⣤⠴⢦⡀⠀⠀⠀⠀",
 "⠀⠀⠀⢠⡿⠉⠉⠉⠛⠶⠶⠖⠒⠒⣾⠋⠀⢀⣀⣙⣯⡁⠀⠀⠀⣿⠀⠀⠀⠀",
@@ -83,8 +81,8 @@ size_t logosize = 11;
     ls = ne >= MIN_SIZE ? MIN_SIZE : ne;
   }
 
-  printf("%s ", LOGO[lc]);
   if (display_user_name() || display_user_host()) {
+    printf("%s ", LOGO[lc]);
     printf(
         "%s%s%s@%s%s%s\n",
         titlecolor, display_user_name(), reset,
@@ -97,15 +95,15 @@ size_t logosize = 11;
   printf("------------------\n");
   lc++;
 
-  printf("%s ", LOGO[lc]);
   if (display_os()) {
+    printf("%s ", LOGO[lc]);
     printf("%sOS%s: %s\n", color, reset, display_os());
     lc++;
   }
 
 #if defined(__linux__)
-  printf("%s ", LOGO[lc]);
   if (display_distro()) {
+    printf("%s ", LOGO[lc]);
     printf("%sDistro%s: %s\n", color, reset, display_distro());
     lc++;
   }
@@ -117,17 +115,23 @@ size_t logosize = 11;
   printf("\n");
   lc++;
 
-  printf("%s ", LOGO[lc]);
-  printf("%s%s%s%s", color, "Uptime", reset, ": ");
-  display_days();
-  printf(", ");
-  display_time();
-  printf("\n");
-  lc++;
+  if (display_days() || display_time()) {
+    printf("%s ", LOGO[lc]);
+    printf("%s%s%s%s", color, "Uptime", reset, ": ");
+    if (display_days()) {
+      printf("%s", display_days());
+      if (display_time()) printf(" ");
+    }
+    if (display_time()) {
+      printf("%s", display_time());
+    }
+    printf("\n");
+    lc++;
+  }
 
 #if defined(__OpenBSD__)
-  printf("%s ", LOGO[lc]);
   if (display_recording_audio() || display_recording_video()) {
+    printf("%s ", LOGO[lc]);
     printf("%sRecording%s: ", color, reset);
     if (display_recording_audio()) {
       printf("audio = %s", display_recording_audio());
@@ -141,26 +145,26 @@ size_t logosize = 11;
   }
 #endif
 
-  printf("%s ", LOGO[lc]);
   if (display_packages()) {
+    printf("%s ", LOGO[lc]);
     printf("%sPackages%s: %s\n", color, reset, display_packages());
     lc++;
   }
 
-  printf("%s ", LOGO[lc]);
   if (display_resolution()) {
+    printf("%s ", LOGO[lc]);
     printf("%sResolution%s: %s\n", color, reset, display_resolution());
     lc++;
   }
 
-  printf("%s ", LOGO[lc]);
   if (display_cpu()) {
+    printf("%s ", LOGO[lc]);
     printf("%sCPU%s: %s\n", color, reset, display_cpu());
     lc++;
   }
 
-  printf("%s ", LOGO[lc]);
   if (display_gpu()) {
+    printf("%s ", LOGO[lc]);
     printf("%sGPU%s: %s\n", color, reset, display_gpu());
     lc++;
   }
