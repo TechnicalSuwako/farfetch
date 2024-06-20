@@ -1,5 +1,7 @@
 # farfetch
 
+![](https://this.is.very.dangerous.software/2024-06-20-114921_1920x1080_scrot.png)
+
 ## インストールする方法 | Installation
 ### CRUX
 ```sh
