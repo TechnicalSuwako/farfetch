@@ -98,7 +98,7 @@ void display_host_model() {
                     "awk -F':' '/banner-name/ {printf $2}'");
   if (!cmd) return;
   printf("%s", cmd);
-  free((void *)cm(void *)cmd);
+  free((void *)cmd);
 #elif defined(__linux__)
   const char *cmd1 = NULL;
   const char *cmd2 = NULL;

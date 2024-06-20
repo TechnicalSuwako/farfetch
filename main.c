@@ -41,6 +41,7 @@ int main(int argc, char *argv[]) {
 #include "src/logo/linux.h"
   getDistro(distroname);
 #else
+#include "src/logo/colors.h"
   const char *color = MAGENTA;
   const char *titlecolor = MAGENTA;
   size_t logosize = 11;

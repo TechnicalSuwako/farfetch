@@ -5,6 +5,8 @@
 #include <unistd.h>
 
 #include "distro.h"
+#elif defined(__sun)
+#include <stdio.h>
 #endif
 
 const char *display_packages() {
@@ -23,6 +25,8 @@ const char *display_packages() {
                          "echo \" (dpkg-query)\"");
   }
 
+  return NULL;
+#elif defined(__sun)
   return NULL;
 #endif
 }

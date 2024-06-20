@@ -4,6 +4,8 @@
 #if defined(__linux__)
 #include <stdio.h>
 #include <stdlib.h>
+#elif defined(__sun)
+#include <stdio.h>
 #endif
 
 const char *display_cpu() {
@@ -48,5 +50,7 @@ const char *display_cpu() {
 
   fclose(fp);
   return run_command_s("echo \"GHz (\" && nproc && echo \" core)\"");
+#elif defined(__sun)
+  return NULL;
 #endif
 }
