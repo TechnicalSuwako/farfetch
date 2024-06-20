@@ -1,5 +1,5 @@
 #if defined(__sun)
-#include "openindiana.h"
+#include "sunos.h"
 #include "../resolution.h"
 
 #include <string.h>
@@ -12,7 +12,7 @@ const char *titlecolor;
 size_t logosize = 17;
 int minsize = MIN_SIZE;
 
-void getOS() {
+void getDistro() {
   color = BLUE;
   titlecolor = BLUE;
   const char *res = display_resolution();

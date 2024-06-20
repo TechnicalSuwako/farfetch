@@ -1,6 +1,6 @@
 #if defined(__sun)
-#ifndef LOGO_OPENINDIANA_H
-#define LOGO_OPENINDIANA_H
+#ifndef LOGO_SUNOS_H
+#define LOGO_SUNOS_H
 
 #include <stdio.h>
 #include "colors.h"
@@ -11,7 +11,7 @@ extern const char *color;
 extern const char *titlecolor;
 extern size_t logosize;
 
-void getOS();
+void getDistro();
 
 #endif
 #endif
