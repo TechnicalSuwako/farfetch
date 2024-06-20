@@ -11,12 +11,13 @@
 const char *display_cpu() {
 #if defined(__NetBSD__)
   return run_command_s("sysctl -n machdep.cpu_brand | sed 's/(R)//' | "
-                  "sed 's/(TM)//' | sed 's/CPU //' | sed 's/Processor//'");
-  return run_command_s("echo \" (\" && sysctl -n hw.ncpu && echo \" core)\"");
+                  "sed 's/(TM)//' | sed 's/CPU //' | sed 's/Processor//' && "
+                  "echo \" (\" && sysctl -n hw.ncpu && echo \" core)\"");
+  return run_command_s("");
 #elif defined(__FreeBSD__) || defined(__OpenBSD__)
   return run_command_s("sysctl -n hw.model | sed 's/(R)//' | "
-                  "sed 's/(TM)//' | sed 's/CPU //' | sed 's/Processor//'");
-  return run_command_s("echo \" (\" && sysctl -n hw.ncpu && echo \" core)\"");
+                  "sed 's/(TM)//' | sed 's/CPU //' | sed 's/Processor//' && "
+                  "echo \" (\" && sysctl -n hw.ncpu && echo \" core)\"");
 #elif defined(__linux__)
   return run_command_s("cat /proc/cpuinfo | awk -F '\\\\s*: | @' "
       "'/model name|Hardware|Processor|^cpu model|chip type|^cpu type/ { "
