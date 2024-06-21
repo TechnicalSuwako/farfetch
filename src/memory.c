@@ -25,6 +25,13 @@ void display_memory() {
   memused = run_command_lld("top | grep \"Memory:\" | awk '{print $2}' | "
       "sed 's/M//'");
   memtotal = run_command_lld("sysctl -n hw.physmem64") / 1024LL / 1024LL;
+#elif defined(__sun)
+  // Memory: 3993M phys mem, 504M free mem,
+  memused = run_command_lld("top | grep \"Memory:\" | awk '{print $5}' | "
+      "sed 's/M//'");
+  memtotal = run_command_lld("top | grep \"Memory:\" | awk '{print $2}' | "
+      "sed 's/M//'");
+  /* memtotal = run_command_lld("sysctl -n hw.physmem64") / 1024LL / 1024LL; */
 #elif defined(__minix)
   memtotal = run_command_lld("sysctl -n hw.physmem") / 1024LL / 1024LL;
 #elif defined(__linux__)
