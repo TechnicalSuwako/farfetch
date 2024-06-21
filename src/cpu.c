@@ -16,9 +16,9 @@ const char *display_cpu() {
                   "sed 's/(TM)//' | sed 's/CPU //' | sed 's/Processor//' && "
                   "echo \" (\" && sysctl -n hw.ncpu && echo \" core)\"");
 #elif defined(__sun)
-  return run_command_s("psrinfo -pv | tail -1 | sed 's/(r)//g' | "
-                       "sed 's/ CPU//' | sed 's/^ *//' && "
-                       "echo \" (\" && psrinfo -p && echo \" core)\"");
+  return run_command_s("psrinfo -pv | tail -1 | "
+      "sed 's/(r)//g; s/ CPU//; s/^ *//; s/ $//' | awk '{$1=$1};1' && "
+      "echo \" (\" && psrinfo -p && echo \" core)\"");
 #elif defined(__linux__)
   char buf[20];
   long int val;

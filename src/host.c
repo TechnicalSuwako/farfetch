@@ -95,7 +95,7 @@ void display_host_model() {
   free((void *)cmd);
 #elif defined(__sun)
   const char *cmd = run_host_command("smbios | grep \"Product\" | "
-      "sed 's/ Product: //' | head -1");
+      "sed 's/ Product: //' | awk '{$1=$1};1' | head -1");
   if (!cmd) return;
   printf("%s", cmd);
   free((void *)cmd);
