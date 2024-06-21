@@ -20,7 +20,7 @@ void getDistro(const char *distroname) {
 
   if (strncmp((char *)distroname, "omnios", strlen("omnios")) == 0) {
     color = YELLOW;
-    titlecolor = YELLOW;
+    titlecolor = GREY;
     logosize = 12;
 
     LOGO[0]  = GREY   "      ######             " RESET;
