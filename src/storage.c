@@ -11,6 +11,11 @@ const char *display_storage() {
         "sh: command not found: zpool",
         strlen("sh: command not found: zpool")
       ) == 0 ||
+      strncmp(
+        iszfs,
+        "internal error: failed to initialize ZFS library",
+        strlen("internal error: failed to initialize ZFS library")
+      ) == 0 ||
       strncmp(iszfs, "sh: zpool: not found", strlen("sh: zpool: not found")
     ) == 0) {
         return run_command_s("df -h | "

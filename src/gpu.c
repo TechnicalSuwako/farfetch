@@ -42,8 +42,10 @@ const char *display_gpu() {
       "elif [ \"$(dmesg | grep \"viadrmums.* at drm.*\")\" ]; "
         "then grep -i \"viadrmums.* at drm.*\"; "
       "else grep -i \"graphics\"; fi | "
+      "sed 's/^.*: //' | "
       "sed 's/^.* \"//' | "
       "sed 's/\".*$//' | head -1");
+  // [     1.018778] i915drmkms0 at pci0 dev 2 function 0: Intel HD Graphics 5500 (rev. 0x09)
 #elif defined(__FreeBSD__) || defined(__DragonFly__)
   return run_command_s("pciconf -lv | grep -B 4 -F \"VGA\" | "
                          "grep -F \"device\" | sed 's/^.* device//' | "
