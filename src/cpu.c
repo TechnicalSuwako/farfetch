@@ -20,36 +20,18 @@ const char *display_cpu() {
       "sed 's/(r)//g; s/ CPU//; s/^ *//; s/ $//' | awk '{$1=$1};1' && "
       "echo \" (\" && psrinfo -p && echo \" core)\"");
 #elif defined(__linux__)
-  char buf[20];
-  long int val;
-  double fmt;
-  FILE *fp = fopen("/sys/devices/system/cpu/cpu0/cpufreq/bios_limit", "r");
-  if (fp == NULL) {
-    fp = fopen("/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq", "r");
-  }
-
-  if (fp == NULL) {
-    perror("失敗");
-    return NULL;
-  }
-
-  if (fgets(buf, sizeof(buf), fp) != NULL) {
-    val = strtol(buf, NULL, 10);
-    fmt = val / 1000000.0;
-    printf("%.2f", fmt);
-  } else {
-    perror("失敗");
-    fclose(fp);
-    return NULL;
-  }
-
-  fclose(fp);
-  
   return run_command_s("cat /proc/cpuinfo | awk -F '\\\\s*: | @' "
       "'/model name|Hardware|Processor|^cpu model|chip type|^cpu type/ { "
       "cpu=$2; if ($1 == \"Hardware\") exit } END { print cpu }' | "
       "sed 's/(R)//' | sed 's/(TM)//' | sed 's/CPU //' | sed 's/ Processor//' | "
       "sed 's/ [0-9]-Core//' && echo \" @ \" && "
+      "if [ \"$(LC_ALL=C cat /sys/devices/system/cpu/cpu0/cpufreq/bios_limit 2>&1)\""
+      " != \"cat: /sys/devices/system/cpu/cpu0/cpufreq/bios_limit: "
+      "No such file or directory\" ]; then "
+        "cat /sys/devices/system/cpu/cpu0/cpufreq/bios_limit | "
+        "awk '{printf \"%.2f\", $1/1000000}'; else "
+        "cat /sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq | "
+        "awk '{printf \"%.2f\", $1/1000000}'; fi && "
       "echo \"GHz (\" && nproc && echo \" core)\"");
 #endif
   return NULL;
