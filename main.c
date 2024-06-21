@@ -20,6 +20,7 @@
 #include "src/cpu.h"
 #include "src/gpu.h"
 #include "src/memory.h"
+#include "src/storage.h"
 
 const char *sofname = "farfetch";
 const char *version = "0.0.1";
@@ -239,13 +240,20 @@ int main(int argc, char *argv[]) {
   printf("\n");
   lc++;
 
+  const char *storage = display_storage();
+  if (storage) {
+    printf("%s ", LOGO[lc]);
+    printf("%sStorage%s: %s\n", color, reset, storage);
+    lc++;
+    free((void *)storage);
+  }
+
   for (size_t i = lc; i < ls; i++) {
     printf("%s\n", LOGO[i]);
   }
 
   // TODO:
   // * 端末
-  // * ストレージ
 
   return 0;
 }
