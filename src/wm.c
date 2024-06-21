@@ -13,6 +13,16 @@ const char *display_wm() {
   if (display == NULL || strlen(display) == 0) return NULL;
   else free((void *)display);
 
+  const char *xproptest = run_command_s("xprop -root -notype _NET_SUPPORTING_WM_CHECK");
+  if (
+      strncmp(
+        xproptest,
+        "xprop: error: Invalid window id format: -notype.",
+        strlen("xprop: error: Invalid window id format: -notype.")
+      )
+    ) return NULL;
+  else free((void *)xproptest);
+
   char cmd[512];
   const char *id = run_command_s("xprop -root -notype _NET_SUPPORTING_WM_CHECK | "
       "awk '{print $5}'");
