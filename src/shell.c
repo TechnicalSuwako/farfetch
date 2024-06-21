@@ -11,7 +11,7 @@ const char *display_shell() {
     return NULL;
   }
 
-  const char *ver;
+  const char *ver = NULL;
   const char *name = run_command_s("echo ${SHELL##*/}");
 
   if (strncmp(name, "bash", strlen("bash")) == 0) {
@@ -30,9 +30,9 @@ const char *display_shell() {
   }
 
   if (ver != NULL) {
-    snprintf(shell, sizeof(shell), "%s %s", name, ver);
+    snprintf(shell, 64, "%s %s", name, ver);
   } else {
-    snprintf(shell, sizeof(shell), "%s", name);
+    snprintf(shell, 64, "%s", name);
   }
 
   free((void *)name);

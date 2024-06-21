@@ -7,7 +7,7 @@
 
 const char *display_libc() {
 #if defined(__linux__)
-  const char *musl = run_command_s("ldd $(which ls) | grep libc | grep musl)";
+  const char *musl = run_command_s("ldd $(which ls) | grep libc | grep musl");
   if (musl != NULL && strlen(musl) != 0) {
     free((void *)musl);
     return "musl";
