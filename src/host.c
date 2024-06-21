@@ -94,8 +94,8 @@ void display_host_model() {
   printf("%s", cmd);
   free((void *)cmd);
 #elif defined(__sun)
-  const char *cmd = run_host_command("prtconf -b | "
-                    "awk -F':' '/banner-name/ {printf $2}'");
+  const char *cmd = run_host_command("smbios | grep \"Product\" | "
+      "sed 's/ Product: //' | head -1");
   if (!cmd) return;
   printf("%s", cmd);
   free((void *)cmd);
