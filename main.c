@@ -103,10 +103,7 @@ int main(int argc, char *argv[]) {
   if (!winman) minsize--;
   else free((void *)winman);
   const char *clang = display_libc();
-  if (clang) {
-    minsize++;
-    free((void *)clang);
-  }
+  if (clang) minsize++;
 
   const char *reset = RESET;
   size_t ls = logosize <= (size_t)minsize ? (size_t)minsize : logosize;

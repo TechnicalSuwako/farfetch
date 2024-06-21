@@ -16,8 +16,9 @@ const char *display_storage() {
         "internal error: failed to initialize ZFS library",
         strlen("internal error: failed to initialize ZFS library")
       ) == 0 ||
-      strncmp(iszfs, "sh: zpool: not found", strlen("sh: zpool: not found")
-    ) == 0) {
+      strncmp(iszfs, "sh: zpool: not found", strlen("sh: zpool: not found")) == 0 ||
+      strncmp(iszfs, "sh: 1: zpool: not found", strlen("sh: 1: zpool: not found")) == 0
+    ) {
         return run_command_s("df -h | "
             "awk '/^\\/dev\\// {printf \"%s: %s / %s, \", $1, $3, $2}' | "
             "awk '{sub(/, $/, \"\"); print}'");
