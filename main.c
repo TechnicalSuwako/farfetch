@@ -267,8 +267,5 @@ int main(int argc, char *argv[]) {
     printf("%s\n", LOGO[i]);
   }
 
-  // TODO:
-  // * 端末
-
   return 0;
 }
