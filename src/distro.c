@@ -1,4 +1,4 @@
-#if defined(__linux__)
+#if defined(__linux__) || defined(__sun)
 #include "distro.h"
 
 #include <stdio.h>
@@ -85,6 +85,7 @@ void get_distro() {
   else if (strstr(buf, "Arch Linux") != NULL) distroname = "arch";
   else if (strstr(buf, "Artix Linux") != NULL) distroname = "artix";
   else if (strstr(buf, "CRUX") != NULL) distroname = "crux";
+  else if (strstr(buf, "OmniOS") != NULL) distroname = "omnios";
   else distroname = "linux";
 }
 #endif

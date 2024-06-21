@@ -3,6 +3,7 @@
 #define LOGO_SUNOS_H
 
 #include <stdio.h>
+#include "../distro.h"
 #include "colors.h"
 
 extern char *LOGO[23];
@@ -11,7 +12,7 @@ extern const char *color;
 extern const char *titlecolor;
 extern size_t logosize;
 
-void getDistro();
+void getDistro(const char *distroname);
 
 #endif
 #endif

@@ -4,7 +4,7 @@
 
 #include "src/user.h"
 #include "src/os.h"
-#if defined(__linux__)
+#if defined(__linux__) || defined(__sun)
 #include "src/distro.h"
 #endif
 #include "src/host.h"
@@ -39,6 +39,10 @@ int main(int argc, char *argv[]) {
 #elif defined(__linux__)
   get_distro();
 #include "src/logo/linux.h"
+  getDistro(distroname);
+#elif defined(__sun)
+  get_distro();
+#include "src/logo/sunos.h"
   getDistro(distroname);
 #else
 #include "src/logo/colors.h"
@@ -114,7 +118,7 @@ int main(int argc, char *argv[]) {
     lc++;
   }
 
-#if defined(__linux__)
+#if defined(__linux__) || defined(__sun)
   const char *distroo = display_distro();
   if (distroo) {
     printf("%s ", LOGO[lc]);

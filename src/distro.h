@@ -1,4 +1,4 @@
-#if defined(__linux__)
+#if defined(__linux__) || defined(__sun)
 #ifndef DISTRO_H
 #define DISTRO_H
 
