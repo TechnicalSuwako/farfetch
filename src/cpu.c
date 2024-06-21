@@ -28,7 +28,8 @@ const char *display_cpu() {
       "if [ \"$(LC_ALL=C cat /sys/devices/system/cpu/cpu0/cpufreq/bios_limit 2>&1)\""
       " != \"cat: /sys/devices/system/cpu/cpu0/cpufreq/bios_limit: "
       "No such file or directory\" ]; then "
-        "cat /sys/devices/system/cpu/cpu0/cpufreq/bios_limit; else "
+        "cat /sys/devices/system/cpu/cpu0/cpufreq/bios_limit | "
+        "awk '{printf \"%.2f\", $1/1000000}'; else "
         "cat /sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq | "
         "awk '{printf \"%.2f\", $1/1000000}'; fi && "
       "echo \"GHz (\" && nproc && echo \" core)\"");
