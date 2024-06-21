@@ -23,13 +23,26 @@
 #include "src/storage.h"
 
 const char *sofname = "farfetch";
-const char *version = "0.0.1";
+const char *version = "0.1.0";
+const char *avalopt = "s";
+
+void usage() {
+  printf("%s-%s\nusage: %s [-%s]\n", sofname, version, sofname, avalopt);
+}
 
 int main(int argc, char *argv[]) {
   int lc = 0;
   int issmall = 0;
-  if (argc == 2 && strncmp(argv[1], "-s", strlen("-s")) == 0) {
-    issmall = 1;
+  if (argc == 2) {
+    if (strncmp(argv[1], "-s", 2) == 0) {
+      issmall = 1;
+    } else {
+      usage();
+      return 1;
+    }
+  } else if (argc > 2) {
+    usage();
+    return 1;
   }
 #if defined(__OpenBSD__)
 #include "src/logo/openbsd.h"
