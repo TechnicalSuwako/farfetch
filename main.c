@@ -16,6 +16,7 @@
 #include "src/resolution.h"
 #include "src/wm.h"
 #include "src/shell.h"
+#include "src/libc.h"
 #include "src/cpu.h"
 #include "src/gpu.h"
 #include "src/memory.h"
@@ -209,6 +210,13 @@ int main(int argc, char *argv[]) {
     lc++;
   }
 
+  const char *libc = display_libc();
+  if (libc) {
+    printf("%s ", LOGO[lc]);
+    printf("%slibc%s: %s\n", color, reset, libc);
+    lc++;
+  }
+
   const char *cpu = display_cpu();
   if (cpu) {
     printf("%s ", LOGO[lc]);
@@ -236,7 +244,6 @@ int main(int argc, char *argv[]) {
   }
 
   // TODO:
-  // * libc
   // * 端末
   // * ストレージ
 
