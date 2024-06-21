@@ -15,6 +15,7 @@
 #include "src/packages.h"
 #include "src/resolution.h"
 #include "src/wm.h"
+#include "src/shell.h"
 #include "src/cpu.h"
 #include "src/gpu.h"
 #include "src/memory.h"
@@ -200,6 +201,14 @@ int main(int argc, char *argv[]) {
     lc++;
   }
 
+  const char *shell = display_shell();
+  if (shell) {
+    printf("%s ", LOGO[lc]);
+    printf("%sShell%s: %s\n", color, reset, shell);
+    free((void *)shell);
+    lc++;
+  }
+
   const char *cpu = display_cpu();
   if (cpu) {
     printf("%s ", LOGO[lc]);
@@ -228,7 +237,6 @@ int main(int argc, char *argv[]) {
 
   // TODO:
   // * libc
-  // * シェル
   // * 端末
   // * ストレージ
 
