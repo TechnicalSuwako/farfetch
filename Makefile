@@ -49,7 +49,7 @@ clean:
 dist:
 	mkdir -p ${NAME}-${VERSION} release/src
 	cp -R LICENSE.txt Makefile README.md CHANGELOG.md\
-		${NAME}-completion.zsh ${NAME}.1 main.c src ${NAME}-${VERSION}
+		${NAME}.conf ${NAME}.1 main.c src ${NAME}-${VERSION}
 	tar zcfv release/src/${NAME}-${VERSION}.tar.gz ${NAME}-${VERSION}
 	rm -rf ${NAME}-${VERSION}
 
