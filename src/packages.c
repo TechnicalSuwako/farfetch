@@ -16,6 +16,8 @@ const char *display_packages() {
 #elif defined(__FreeBSD__) || defined(__DragonFly__)
   return run_command_s("pkg info -a | wc -l | sed \"s/ //g\" && "
                        "echo \" (pkg info)\"");
+#elif defined(__sun)
+  return run_command_s("pkg list | wc -l | sed 's/ *//' && echo \" (pkg list)\"");
 #elif defined(__linux__)
   if (access("/bin/xbps-query", F_OK) != -1) {
     return run_command_s("xbps-query -l | wc -l | sed \"s/ //g\" "
