@@ -7,12 +7,43 @@
 #endif
 
 const char *display_gpu() {
-#if defined(__OpenBSD__)
-  return run_command_s("dmesg | grep -i graphics | sed 's/^.* \"//' | "
-                         "sed 's/\".*$//' | head -1");
-#elif defined(__NetBSD__)
-  return run_command_s("dmesg | grep -i graphics | sed 's/^.*: //' | "
-                         "sed 's/ (.*$//' | head  -1");
+#if defined(__OpenBSD__) || defined(__NetBSD__)
+  return run_command_s("dmesg | "
+      "if [ \"$(dmesg | grep \"radeondrm.* at pci.*\")\" ]; "
+        "then grep -i \"radeondrm.* at pci.*\"; "
+      "elif [ \"$(dmesg | grep \"inteldrm.* at pci.*\")\" ]; "
+        "then grep -i \"inteldrm.* at pci.*\"; "
+      "elif [ \"$(dmesg | grep \"amdgpu.* at pci.*\")\" ]; "
+        "then grep -i \"amdgpu.* at pci.*\"; "
+      "elif [ \"$(dmesg | grep \"agp.* at intagp.*\")\" ]; "
+        "then grep -i \"agp.* at intagp.*\"; "
+      "elif [ \"$(dmesg | grep \"intagp.* at inteldrm.*\")\" ]; "
+        "then grep -i \"intagp.* at inteldrm.*\"; "
+      "elif [ \"$(dmesg | grep \"drm.* at inteldrm.*\")\" ]; "
+        "then grep -i \"drm.* at inteldrm.*\"; "
+      "elif [ \"$(dmesg | grep \"drm.* at radeondrm.*\")\" ]; "
+        "then grep -i \"drm.* at radeondrm.*\"; "
+      "elif [ \"$(dmesg | grep \"drm.* at amdgpu.*\")\" ]; "
+        "then grep -i \"drm.* at amdgpu.*\"; "
+      "elif [ \"$(dmesg | grep \"wsdisplay.* at amdgpu.*\")\" ]; "
+        "then grep -i \"wsdisplay.* at amdgpu.*\"; "
+      "elif [ \"$(dmesg | grep \"i915drmkms.* at pci.*\")\" ]; "
+        "then grep -i \"i915drmkms.* at pci.*\"; "
+      "elif [ \"$(dmesg | grep \"nouveau.* at pci.*\")\" ]; "
+        "then grep -i \"nouveau.* at pci.*\"; "
+      "elif [ \"$(dmesg | grep \"radeon.* at pci.*\")\" ]; "
+        "then grep -i \"radeon.* at pci.*\"; "
+      "elif [ \"$(dmesg | grep \"rkdrm.* at fdt.*\")\" ]; "
+        "then grep -i \"rkdrm.* at fdt.*\"; "
+      "elif [ \"$(dmesg | grep \"sunxidrm.* at fdt.*\")\" ]; "
+        "then grep -i \"sunxidrm.* at fdt.*\"; "
+      "elif [ \"$(dmesg | grep \"tegradrm.* at fdt.*\")\" ]; "
+        "then grep -i \"tegradrm.* at fdt.*\"; "
+      "elif [ \"$(dmesg | grep \"viadrmums.* at drm.*\")\" ]; "
+        "then grep -i \"viadrmums.* at drm.*\"; "
+      "else grep -i \"graphics\"; fi | "
+      "sed 's/^.* \"//' | "
+      "sed 's/\".*$//' | head -1");
 #elif defined(__FreeBSD__) || defined(__DragonFly__)
   return run_command_s("pciconf -lv | grep -B 4 -F \"VGA\" | "
                          "grep -F \"device\" | sed 's/^.* device//' | "
