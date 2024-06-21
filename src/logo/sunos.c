@@ -1,6 +1,7 @@
 #if defined(__sun)
 #include "sunos.h"
 #include "../resolution.h"
+#include "../wm.h"
 
 #include <string.h>
 #include <string.h>
@@ -17,6 +18,9 @@ void getDistro(const char *distroname) {
   const char *res = display_resolution();
   if (!res) minsize--;
   else free((void *)res);
+  const char *wm = display_wm();
+  if (!wm) minsize--;
+  else free((void *)wm);
 
   if (strncmp((char *)distroname, "omnios", strlen("omnios")) == 0) {
     color = YELLOW;

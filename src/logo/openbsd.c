@@ -1,6 +1,7 @@
 #if defined(__OpenBSD__)
 #include "openbsd.h"
 #include "../resolution.h"
+#include "../wm.h"
 
 #include <string.h>
 #include <stdlib.h>
@@ -18,6 +19,9 @@ void getOS() {
   const char *res = display_resolution();
   if (!res) minsize--;
   else free((void *)res);
+  const char *wm = display_wm();
+  if (!wm) minsize--;
+  else free((void *)wm);
 
   for (int i = 0; i < LOGO_SIZE; i++) {
     LOGO[i] = NULL;

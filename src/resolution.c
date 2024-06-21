@@ -9,6 +9,7 @@
 const char *display_resolution() {
   const char *display = run_command_s("echo $DISPLAY");
   if (display == NULL || strlen(display) == 0) return NULL;
+  else free((void *)display);
 
   const char *isexist = run_command_s("which xrandr");
   if (

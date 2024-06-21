@@ -14,6 +14,7 @@
 #endif
 #include "src/packages.h"
 #include "src/resolution.h"
+#include "src/wm.h"
 #include "src/cpu.h"
 #include "src/gpu.h"
 #include "src/memory.h"
@@ -82,6 +83,9 @@ int main(int argc, char *argv[]) {
   const char *res = display_resolution();
   if (!res) minsize--;
   else free((void *)res);
+  const char *winman = display_wm();
+  if (!winman) minsize--;
+  else free((void *)winman);
 
   const char *reset = RESET;
   size_t ls = logosize <= (size_t)minsize ? (size_t)minsize : logosize;
@@ -186,6 +190,14 @@ int main(int argc, char *argv[]) {
     printf("%sResolution%s: %s\n", color, reset, resolution);
     lc++;
     free((void *)resolution);
+  }
+
+  const char *wm = display_wm();
+  if (wm) {
+    printf("%s ", LOGO[lc]);
+    printf("%sWM%s: %s\n", color, reset, wm);
+    free((void *)wm);
+    lc++;
   }
 
   const char *cpu = display_cpu();
