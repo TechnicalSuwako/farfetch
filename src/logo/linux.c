@@ -2,6 +2,7 @@
 #include "linux.h"
 #include "../resolution.h"
 #include "../wm.h"
+#include "../libc.h"
 
 #include <stdio.h>
 #include <string.h>
@@ -21,6 +22,8 @@ void getDistro(const char *distroname) {
   const char *wm = display_wm();
   if (!wm) minsize--;
   else free((void *)wm);
+  const char *clang = display_libc();
+  if (clang) minsize++;
 
   if (strncmp((char *)distroname, "alpine", strlen("alpine")) == 0) {
     color = MAGENTA;
