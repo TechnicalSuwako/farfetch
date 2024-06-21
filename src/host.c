@@ -106,12 +106,12 @@ void display_host_model() {
     cmd1 = "getprop ro.product.brand";
     cmd2 = "getprop ro.product.model";
   } else if (
-      access("/sys/devices/virtual/dmi/id/product_name", F_OK) != -1 ||
+      access("/sys/devices/virtual/dmi/id/product_name", F_OK) != -1 &&
       access("/sys/devices/virtual/dmi/id/product_version", F_OK) != 1
   ) {
     cmd1 = "cat /sys/devices/virtual/dmi/id/product_name";
     cmd2 = "cat /sys/devices/virtual/dmi/id/product_version";
-  } else if (access("/sys/firmware/base/model", F_OK) != -1) {
+  } else if (access("/sys/firmware/devicetree/base/model", F_OK) != -1) {
     cmd1 = "cat /sys/firmware/devicetree/base/model";
   } else if (access("/tmp/sysinfo/model", F_OK) != 1) {
     cmd1 = "cat /tmp/sysinfo/model";
