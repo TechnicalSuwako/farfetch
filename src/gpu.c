@@ -49,6 +49,12 @@ const char *display_gpu() {
                          "grep -F \"device\" | sed 's/^.* device//' | "
                          "sed \"s/^.* '//\" | sed \"s/'//\" | tail -1 | "
                          "sed 's/ Core Processor Integrated Graphics Controller//'");
+#elif defined(__sun)
+  return run_command_s("prtconf -v | grep -A 30 \"value='display'\" | "
+      "grep -A 1 vendor-name | tail -1 | sed 's/^.*value=//' | sed \"s/'//g\" | "
+      "sed 's/ Corporation//' && echo \" \" && prtconf -v | "
+      "grep -A 30 \"value='display'\" | grep -A 1 device-name | tail -1 | "
+      "sed 's/^.*value=//' | sed \"s/'//g\"");
 #elif defined(__linux__)
   return run_command_s("lspci | grep VGA | sed 's/^.*: //' | "
                          "sed 's/Corporation //' | sed 's/ (.*$//' | "
