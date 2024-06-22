@@ -1,7 +1,7 @@
 #ifndef LOGO_COLORS_H
 #define LOGO_COLORS_H
 
-#if defined(__OpenBSD__) || defined(__linux__)
+#if defined(__OpenBSD__) || defined(__linux__) || defined(__sun)
 #define MIN_SIZE 15
 #else
 #define MIN_SIZE 14
