@@ -84,6 +84,11 @@ void get_distro() {
   else if (strstr(buf, "Debian") != NULL) distroname = "debian";
   else if (strstr(buf, "Arch Linux") != NULL) distroname = "arch";
   else if (strstr(buf, "Artix Linux") != NULL) distroname = "artix";
+  else if (strstr(buf, "Alpine") != NULL) distroname = "alpine";
+  else if (strstr(buf, "Manjaro") != NULL) distroname = "manjaro";
+  else if (strstr(buf, "Gentoo") != NULL) distroname = "gentoo";
+  else if (strstr(buf, "postmarketOS") != NULL) distroname = "postmarketos";
+  else if (strstr(buf, "opensuse") != NULL) distroname = "opensuse";
   else if (strstr(buf, "CRUX") != NULL) distroname = "crux";
   else if (strstr(buf, "OmniOS") != NULL) distroname = "omnios";
   else distroname = "linux";

@@ -292,6 +292,37 @@ void getDistro(const char *distroname) {
     LOGO_SMALL[4] = GREEN "|||| |||| |||| " RESET;
     LOGO_SMALL[5] = GREEN "|||| |||| |||| " RESET;
     LOGO_SMALL[6] = GREEN "|||| |||| |||| " RESET;
+  } else if (strncmp(char *)distroname, "opensuse", strlen("opensuse")) == 0) {
+    color = GREEN;
+    titlecolor = GREEN;
+    logosize = 18;
+
+    LOGO[0]  = WHITE "           .;ldkO0000Okdl;.            " RESET;
+    LOGO[1]  = WHITE "       .;d00xl:^''''''^:ok00d;.        " RESET;
+    LOGO[2]  = WHITE "     .d00l'                'o00d.      " RESET;
+    LOGO[3]  = WHITE "   .d0Kd'  " GREEN "Okxol:;,." WHITE "          :O0d.    " RESET;
+    LOGO[4]  = WHITE "  .OK" GREEN "KKK0kOKKKKKKKKKKOxo:," WHITE "      lKO.   " RESET;
+    LOGO[5]  = WHITE " ,0K" GREEN "KKKKKKKKKKKKKKK0P^,,,^dx:" WHITE "    ;00,  " RESET;
+    LOGO[6]  = WHITE ".OK" GREEN "KKKKKKKKKKKKKKKk'.oOPPb.'0k." WHITE "   cKO. " RESET;
+    LOGO[7]  = WHITE ":KK" GREEN "KKKKKKKKKKKKKKK: kKx..dd lKd" WHITE "   'OK: " RESET;
+    LOGO[8]  = WHITE "dKK" GREEN "KKKKKKKKKOx0KKKd ^0KKKO' kKKc" WHITE "   dKd " RESET;
+    LOGO[9]  = WHITE "dKK" GREEN "KKKKKKKKKK;.;oOKx,..^..;kKKK0." WHITE "  dKd " RESET;
+    LOGO[10] = WHITE ":KK" GREEN "KKKKKKKKKK0o;...^cdxxOK0O/^^'" WHITE "  .0K: " RESET;
+    LOGO[11] = WHITE " kKK" GREEN "KKKKKKKKKKKKK0x;,,......,;od" WHITE "  lKk  " RESET;
+    LOGO[12] = WHITE " '0K" GREEN "KKKKKKKKKKKKKKKKKKKK00KKOo^" WHITE "  c00'  " RESET;
+    LOGO[13] = WHITE "  'kK" GREEN "KKOxddxkOO00000Okxoc;''" WHITE "   .dKk'   " RESET;
+    LOGO[14] = WHITE "    l0Ko.                    .c00l'    " RESET;
+    LOGO[15] = WHITE "     'l0Kk:.              .;xK0l'      " RESET;
+    LOGO[16] = WHITE "        'lkK0xl:;,,,,;:ldO0kl'         " RESET;
+    LOGO[17] = WHITE "            '^:ldxkkkkxdl:^'           " RESET;
+
+    LOGO_SMALL[0] = GREEN "  _______   " RESET;
+    LOGO_SMALL[1] = GREEN "__|   __ \  " RESET;
+    LOGO_SMALL[2] = GREEN "     / .\ \ " RESET;
+    LOGO_SMALL[3] = GREEN "     \__/ | " RESET;
+    LOGO_SMALL[4] = GREEN "   _______| " RESET;
+    LOGO_SMALL[5] = GREEN "   \_______ " RESET;
+    LOGO_SMALL[6] = GREEN "__________/ " RESET;
   } else if (
       strncmp((char *)distroname,
         "postmarketos",
