@@ -265,6 +265,38 @@ void getDistro(const char *distroname) {
     for (int i = 7; i < minsize; i++) {
       LOGO_SMALL[i]  = MAGENTA "             " RESET;
     }
+  } else if (strncmp(char *)distroname, "linuxmint", strlen("linuxmint")) == 0) {
+    color = GREEN;
+    titlecolor = GREEN;
+    logosize = 19;
+
+    LOGO[0]  = WHITE "             ...-:::::-...               " RESET;
+    LOGO[1]  = WHITE "          .-MMMMMMMMMMMMMMM-.            " RESET;
+    LOGO[2]  = WHITE "      .-MMMM" GREEN "`..-:::::::-..`" WHITE "MMMM-.        " RESET;
+    LOGO[3]  = WHITE "    .:MMMM" GREEN ".:MMMMMMMMMMMMMMM:." WHITE "MMMM:.      " RESET;
+    LOGO[4]  = WHITE "   -MMM" GREEN "-M---MMMMMMMMMMMMMMMMMMM." WHITE "MMM-     " RESET;
+    LOGO[5]  = WHITE " `:MMM" GREEN ":MM`  :MMMM:....::-...-MMMM:" WHITE "MMM:`  " RESET;
+    LOGO[6]  = WHITE " :MMM" GREEN ":MMM`  :MM:`  ``    ``  `:MMM:" WHITE "MMM:  " RESET;
+    LOGO[7]  = WHITE ".MMM" GREEN ".MMMM`  :MM.  -MM.  .MM-  `MMMM." WHITE "MMM. " RESET;
+    LOGO[8]  = WHITE ":MMM" GREEN ":MMMM`  :MM.  -MM-  .MM:  `MMMM-" WHITE "MMM: " RESET;
+    LOGO[9]  = WHITE ":MMM" GREEN ":MMMM`  :MM.  -MM-  .MM:  `MMMM:" WHITE "MMM: " RESET;
+    LOGO[10] = WHITE ":MMM" GREEN ":MMMM`  :MM.  -MM-  .MM:  `MMMM-" WHITE "MMM: " RESET;
+    LOGO[11] = WHITE ".MMM" GREEN ".MMMM`  :MM:--:MM:--:MM:  `MMMM." WHITE "MMM. " RESET;
+    LOGO[12] = WHITE " :MMM" GREEN ":MMM-  `-MMMMMMMMMMMM-`  -MMM-" WHITE "MMM:  " RESET;
+    LOGO[13] = WHITE "  :MMM" GREEN ":MMM:`                `:MMM:" WHITE "MMM:   " RESET;
+    LOGO[14] = WHITE "   .MMM" GREEN ".MMMM:--------------:MMMM." WHITE "MMM.    " RESET;
+    LOGO[15] = WHITE "     '-MMMM" GREEN ".-MMMMMMMMMMMMMMM-." WHITE "MMMM-'     " RESET;
+    LOGO[16] = WHITE "       '.-MMMM" GREEN "``--:::::--``" WHITE "MMMM-.'       " RESET;
+    LOGO[17] = WHITE "            '-MMMMMMMMMMMMM-'            " RESET;
+    LOGO[18] = WHITE "               ``-:::::-``               " RESET;
+
+    LOGO_SMALL[0] = GREEN " ___________  " RESET;
+    LOGO_SMALL[1] = GREEN "|_          \ " RESET;
+    LOGO_SMALL[2] = GREEN "  | " WHITE "| _____ " GREEN "| " RESET;
+    LOGO_SMALL[3] = GREEN "  | " WHITE "| | | | " GREEN "| " RESET;
+    LOGO_SMALL[4] = GREEN "  | " WHITE "| | | | " GREEN "| " RESET;
+    LOGO_SMALL[5] = GREEN "  | " WHITE "\_____/ " GREEN "| " RESET;
+    LOGO_SMALL[6] = GREEN "  \_________/ " RESET;
   } else if (strncmp((char *)distroname, "manjaro", strlen("manjaro")) == 0) {
     color = GREEN;
     titlecolor = GREEN;
