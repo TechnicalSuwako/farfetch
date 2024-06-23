@@ -265,6 +265,33 @@ void getDistro(const char *distroname) {
     for (int i = 7; i < minsize; i++) {
       LOGO_SMALL[i]  = MAGENTA "             " RESET;
     }
+  } else if (strncmp((char *)distroname, "manjaro", strlen("manjaro")) == 0) {
+    color = GREEN;
+    titlecolor = GREEN;
+    logosize = 14;
+
+    LOGO[0]  = GREEN "██████████████████  ████████  " RESET;
+    LOGO[1]  = GREEN "██████████████████  ████████  " RESET;
+    LOGO[2]  = GREEN "██████████████████  ████████  " RESET;
+    LOGO[3]  = GREEN "██████████████████  ████████  " RESET;
+    LOGO[4]  = GREEN "████████            ████████  " RESET;
+    LOGO[5]  = GREEN "████████  ████████  ████████  " RESET;
+    LOGO[6]  = GREEN "████████  ████████  ████████  " RESET;
+    LOGO[7]  = GREEN "████████  ████████  ████████  " RESET;
+    LOGO[8]  = GREEN "████████  ████████  ████████  " RESET;
+    LOGO[9]  = GREEN "████████  ████████  ████████  " RESET;
+    LOGO[10] = GREEN "████████  ████████  ████████  " RESET;
+    LOGO[11] = GREEN "████████  ████████  ████████  " RESET;
+    LOGO[12] = GREEN "████████  ████████  ████████  " RESET;
+    LOGO[13] = GREEN "████████  ████████  ████████  " RESET;
+
+    LOGO_SMALL[0] = GREEN "||||||||| |||| " RESET;
+    LOGO_SMALL[1] = GREEN "||||||||| |||| " RESET;
+    LOGO_SMALL[2] = GREEN "||||      |||| " RESET;
+    LOGO_SMALL[3] = GREEN "|||| |||| |||| " RESET;
+    LOGO_SMALL[4] = GREEN "|||| |||| |||| " RESET;
+    LOGO_SMALL[5] = GREEN "|||| |||| |||| " RESET;
+    LOGO_SMALL[6] = GREEN "|||| |||| |||| " RESET;
   } else if (
       strncmp((char *)distroname,
         "postmarketos",
