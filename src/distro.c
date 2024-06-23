@@ -82,6 +82,7 @@ void get_distro() {
   if (strstr(buf, "Devuan") != NULL) distroname = "devuan";
   else if (strstr(buf, "Void Linux") != NULL) distroname = "void";
   else if (strstr(buf, "Debian") != NULL) distroname = "debian";
+  else if (strstr(buf, "Ubuntu") != NULL) distroname = "ubuntu";
   else if (strstr(buf, "Arch Linux") != NULL) distroname = "arch";
   else if (strstr(buf, "Artix Linux") != NULL) distroname = "artix";
   else if (strstr(buf, "Alpine") != NULL) distroname = "alpine";

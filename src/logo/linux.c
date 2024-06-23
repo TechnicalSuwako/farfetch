@@ -365,6 +365,38 @@ void getDistro(const char *distroname) {
     for (int i = 9; i < minsize; i++) {
       LOGO_SMALL[i]  = GREEN "                    " RESET;
     }
+  } else if (strncmp(char *)distroname, "opensuse", strlen("opensuse")) == 0) {
+    color = RED;
+    titlecolor = RED;
+    logosize = 20;
+
+    LOGO[0]  = RED "            .-/+oossssoo+/-.             " RESET;
+    LOGO[1]  = RED "        `:+ssssssssssssssssss+:`         " RESET;
+    LOGO[2]  = RED "      -+ssssssssssssssssssyyssss+-       " RESET;
+    LOGO[3]  = RED "    .ossssssssssssssssssdMMMNysssso.     " RESET;
+    LOGO[4]  = RED "   /ssssssssssshdmmNNmmyNMMMMhssssss/    " RESET;
+    LOGO[5]  = RED "  +ssssssssshmydMMMMMMMNddddyssssssss+   " RESET;
+    LOGO[6]  = RED " /sssssssshNMMMyhhyyyyhmNMMMNhssssssss/  " RESET;
+    LOGO[7]  = RED ".ssssssssdMMMNhsssssssssshNMMMdssssssss. " RESET;
+    LOGO[8]  = RED "+sssshhhyNMMNyssssssssssssyNMMMysssssss+ " RESET;
+    LOGO[9]  = RED "ossyNMMMNyMMhsssssssssssssshmmmhssssssso " RESET;
+    LOGO[10] = RED "ossyNMMMNyMMhsssssssssssssshmmmhssssssso " RESET;
+    LOGO[11] = RED "+sssshhhyNMMNyssssssssssssyNMMMysssssss+ " RESET;
+    LOGO[12] = RED ".ssssssssdMMMNhsssssssssshNMMMdssssssss. " RESET;
+    LOGO[13] = RED " /sssssssshNMMMyhhyyyyhdNMMMNhssssssss/  " RESET;
+    LOGO[14] = RED "  +sssssssssdmydMMMMMMMMddddyssssssss+   " RESET;
+    LOGO[15] = RED "   /ssssssssssshdmNNNNmyNMMMMhssssss/    " RESET;
+    LOGO[16] = RED "    .ossssssssssssssssssdMMMNysssso.     " RESET;
+    LOGO[17] = RED "      -+sssssssssssssssssyyyssss+-       " RESET;
+    LOGO[18] = RED "        `:+ssssssssssssssssss+:`         " RESET;
+    LOGO[19] = RED "            .-/+oossssoo+/-.             " RESET;
+
+    LOGO_SMALL[0] = RED "         _  " RESET;
+    LOGO_SMALL[1] = RED "     ---(_) " RESET;
+    LOGO_SMALL[2] = RED " _/  ---  \ " RESET;
+    LOGO_SMALL[3] = RED "(_) |   |   " RESET;
+    LOGO_SMALL[4] = RED "  \  --- _/ " RESET;
+    LOGO_SMALL[5] = RED "     ---(_) " RESET;
   } else if (strncmp((char *)distroname, "void", strlen("void")) == 0) {
     color = WHITE;
     titlecolor = GREEN;
