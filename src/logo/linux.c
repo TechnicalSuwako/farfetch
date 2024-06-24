@@ -265,7 +265,7 @@ void getDistro(const char *distroname) {
     for (int i = 7; i < minsize; i++) {
       LOGO_SMALL[i]  = MAGENTA "             " RESET;
     }
-  } else if (strncmp(char *)distroname, "linuxmint", strlen("linuxmint")) == 0) {
+  } else if (strncmp((char *)distroname, "linuxmint", strlen("linuxmint")) == 0) {
     color = GREEN;
     titlecolor = GREEN;
     logosize = 19;
@@ -291,12 +291,12 @@ void getDistro(const char *distroname) {
     LOGO[18] = WHITE "               ``-:::::-``               " RESET;
 
     LOGO_SMALL[0] = GREEN " ___________  " RESET;
-    LOGO_SMALL[1] = GREEN "|_          \ " RESET;
+    LOGO_SMALL[1] = GREEN "|_          \\ " RESET;
     LOGO_SMALL[2] = GREEN "  | " WHITE "| _____ " GREEN "| " RESET;
     LOGO_SMALL[3] = GREEN "  | " WHITE "| | | | " GREEN "| " RESET;
     LOGO_SMALL[4] = GREEN "  | " WHITE "| | | | " GREEN "| " RESET;
-    LOGO_SMALL[5] = GREEN "  | " WHITE "\_____/ " GREEN "| " RESET;
-    LOGO_SMALL[6] = GREEN "  \_________/ " RESET;
+    LOGO_SMALL[5] = GREEN "  | " WHITE "\\_____/ " GREEN "| " RESET;
+    LOGO_SMALL[6] = GREEN "  \\_________/ " RESET;
   } else if (strncmp((char *)distroname, "manjaro", strlen("manjaro")) == 0) {
     color = GREEN;
     titlecolor = GREEN;
@@ -324,7 +324,7 @@ void getDistro(const char *distroname) {
     LOGO_SMALL[4] = GREEN "|||| |||| |||| " RESET;
     LOGO_SMALL[5] = GREEN "|||| |||| |||| " RESET;
     LOGO_SMALL[6] = GREEN "|||| |||| |||| " RESET;
-  } else if (strncmp(char *)distroname, "opensuse", strlen("opensuse")) == 0) {
+  } else if (strncmp((char *)distroname, "opensuse", strlen("opensuse")) == 0) {
     color = GREEN;
     titlecolor = GREEN;
     logosize = 18;
@@ -349,11 +349,11 @@ void getDistro(const char *distroname) {
     LOGO[17] = WHITE "            '^:ldxkkkkxdl:^'           " RESET;
 
     LOGO_SMALL[0] = GREEN "  _______   " RESET;
-    LOGO_SMALL[1] = GREEN "__|   __ \  " RESET;
-    LOGO_SMALL[2] = GREEN "     / .\ \ " RESET;
-    LOGO_SMALL[3] = GREEN "     \__/ | " RESET;
+    LOGO_SMALL[1] = GREEN "__|   __ \\  " RESET;
+    LOGO_SMALL[2] = GREEN "     / .\\ \\ " RESET;
+    LOGO_SMALL[3] = GREEN "     \\__/ | " RESET;
     LOGO_SMALL[4] = GREEN "   _______| " RESET;
-    LOGO_SMALL[5] = GREEN "   \_______ " RESET;
+    LOGO_SMALL[5] = GREEN "   \\_______ " RESET;
     LOGO_SMALL[6] = GREEN "__________/ " RESET;
   } else if (
       strncmp((char *)distroname,
@@ -397,7 +397,7 @@ void getDistro(const char *distroname) {
     for (int i = 9; i < minsize; i++) {
       LOGO_SMALL[i]  = GREEN "                    " RESET;
     }
-  } else if (strncmp(char *)distroname, "opensuse", strlen("opensuse")) == 0) {
+  } else if (strncmp((char *)distroname, "opensuse", strlen("opensuse")) == 0) {
     color = RED;
     titlecolor = RED;
     logosize = 20;
@@ -425,9 +425,9 @@ void getDistro(const char *distroname) {
 
     LOGO_SMALL[0] = RED "         _  " RESET;
     LOGO_SMALL[1] = RED "     ---(_) " RESET;
-    LOGO_SMALL[2] = RED " _/  ---  \ " RESET;
+    LOGO_SMALL[2] = RED " _/  ---  \\ " RESET;
     LOGO_SMALL[3] = RED "(_) |   |   " RESET;
-    LOGO_SMALL[4] = RED "  \  --- _/ " RESET;
+    LOGO_SMALL[4] = RED "  \\  --- _/ " RESET;
     LOGO_SMALL[5] = RED "     ---(_) " RESET;
   } else if (strncmp((char *)distroname, "void", strlen("void")) == 0) {
     color = WHITE;

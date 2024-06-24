@@ -4,27 +4,26 @@
 #include <string.h>
 
 const char *display_storage() {
-  const char *iszfs = run_command_s("LC_ALL=C zpool list 2>&1");
-    if (
-      strncmp(
-        iszfs,
-        "sh: command not found: zpool",
-        strlen("sh: command not found: zpool")
-      ) == 0 ||
-      strncmp(
-        iszfs,
-        "internal error: failed to initialize ZFS library",
-        strlen("internal error: failed to initialize ZFS library")
-      ) == 0 ||
-      strncmp(iszfs, "sh: zpool: not found", strlen("sh: zpool: not found")) == 0 ||
-      strncmp(iszfs, "sh: 1: zpool: not found", strlen("sh: 1: zpool: not found")) == 0
-    ) {
-        return run_command_s("df -h | "
-            "awk '/^\\/dev\\// {printf \"%s: %s / %s, \", $1, $3, $2}' | "
-            "awk '{sub(/, $/, \"\"); print}'");
-    }
+    const char *excode = run_command_s("LC_ALL=C zpool list 2>/dev/null || echo $?");
 
-    return run_command_s("zpool list | "
-        "awk 'NR>1 {printf \"%s: %s / %s, \", $1, $3, $2}' | "
-        "awk '{sub(/, $/, \"\"); print}'");
+    if (excode != NULL && strcmp(excode, "127") == 0) {
+        return run_command_s("df -h | "
+                             "awk '/^\\/dev\\// {printf \"%s: %s / %s, \", $1, $3, $2}' | "
+                             "awk '{sub(/, $/, \"\"); print}'");
+    } else {
+        const char *iszfs = run_command_s("LC_ALL=C zpool list 2>&1");
+        if (
+            strncmp(iszfs, "sh: zpool: not found", strlen("sh: zpool: not found")) == 0 ||
+            strncmp(iszfs, "sh: 1: zpool: not found", strlen("sh: 1: zpool: not found")) == 0
+        ) {
+            return run_command_s("df -h | "
+                                 "awk '/^\\/dev\\// {printf \"%s: %s / %s, \", $1, $3, $2}' | "
+                                 "awk '{sub(/, $/, \"\"); print}'");
+        } else {
+            return run_command_s("zpool list | "
+                                 "awk 'NR>1 {printf \"%s: %s / %s, \", $1, $3, $2}' | "
+                                 "awk '{sub(/, $/, \"\"); print}'");
+        }
+    }
 }
+
