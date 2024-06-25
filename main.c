@@ -23,7 +23,7 @@
 #include "src/storage.h"
 
 const char *sofname = "farfetch";
-const char *version = "0.1.0";
+const char *version = "0.2.0";
 const char *avalopt = "s";
 
 void usage() {
