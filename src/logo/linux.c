@@ -61,7 +61,7 @@ void getDistro(const char *distroname) {
     for (int i = 6; i < minsize; i++) {
       LOGO_SMALL[i]  = BLUE "              " RESET;
     }
-  } else if (strncmp((char *)distroname, "artix", strlen("artix")) == 0) {
+  } else if (strncmp((char *)distroname, "arch", strlen("arch")) == 0) {
     color = CYAN;
     titlecolor = CYAN;
     logosize = 20;
@@ -97,7 +97,7 @@ void getDistro(const char *distroname) {
     for (int i = 7; i < minsize; i++) {
       LOGO_SMALL[i]  = CYAN "                " RESET;
     }
-  } else if (strncmp((char *)distroname, "arch", strlen("arch")) == 0) {
+  } else if (strncmp((char *)distroname, "artix", strlen("artix")) == 0) {
     color = CYAN;
     titlecolor = CYAN;
     logosize = 21;
