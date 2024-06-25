@@ -13,7 +13,7 @@ const char *display_cpu() {
                   "echo \" (\" && sysctl -n hw.ncpu && echo \" core)\"");
 #elif defined(__FreeBSD__) || defined(__OpenBSD__)
   return run_command_s("sysctl -n hw.model | sed 's/(R)//' | "
-                  "sed 's/(TM)//' | sed 's/CPU //' | sed 's/Processor//' && "
+                  "sed 's/(TM)//' | sed 's/CPU //' | sed 's/ Processor//' && "
                   "echo \" (\" && sysctl -n hw.ncpu && echo \" core)\"");
 #elif defined(__sun)
   return run_command_s("psrinfo -pv | tail -1 | "

@@ -104,6 +104,12 @@ int main(int argc, char *argv[]) {
   else free((void *)winman);
   const char *clang = display_libc();
   if (clang) minsize++;
+  const char *store = display_storage();
+  if (!store) minsize--;
+  else free((void *)store);
+  const char *graph = display_gpu();
+  if (!graph) minsize--;
+  else free((void *)graph);
 
   const char *reset = RESET;
   size_t ls = logosize <= (size_t)minsize ? (size_t)minsize : logosize;

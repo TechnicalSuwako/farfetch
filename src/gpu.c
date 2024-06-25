@@ -6,6 +6,11 @@
 #include <unistd.h>
 #endif
 
+#if defined(__FreeBSD__)
+#include <string.h>
+#include <stdlib.h>
+#endif
+
 const char *display_gpu() {
 #if defined(__OpenBSD__) || defined(__NetBSD__)
   return run_command_s("dmesg | "
@@ -45,8 +50,14 @@ const char *display_gpu() {
       "sed 's/^.*: //' | "
       "sed 's/^.* \"//' | "
       "sed 's/\".*$//' | head -1");
-  // [     1.018778] i915drmkms0 at pci0 dev 2 function 0: Intel HD Graphics 5500 (rev. 0x09)
 #elif defined(__FreeBSD__) || defined(__DragonFly__)
+  const char *test = run_command_s("pciconf -lv | grep -B 4 -F \"VGA\" | head -1");
+  if (!strstr(test, "vgapci")) {
+    free((void *)test);
+    return NULL;
+  }
+
+  free((void *)test);
   return run_command_s("pciconf -lv | grep -B 4 -F \"VGA\" | "
                          "grep -F \"device\" | sed 's/^.* device//' | "
                          "sed \"s/^.* '//\" | sed \"s/'//\" | tail -1 | "
