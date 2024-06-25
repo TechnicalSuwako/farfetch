@@ -77,4 +77,4 @@ install:
 uninstall:
 	rm -f ${DESTDIR}${PREFIX}/bin/${NAME}
 
-.PHONY: all clean dist install uninstall
+.PHONY: all clean dist man release install uninstall
