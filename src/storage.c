@@ -12,11 +12,10 @@ const char *display_storage() {
 		return run_command_s("df -h | "
 				"awk '/^\\/dev\\// {printf \"%s: %s / %s, \", $1, $3, $2}' | "
 				"awk '{sub(/, $/, \"\"); print}'");
-	} else {
+	} 
 
-		free((void *)excode);
-		return run_command_s("zpool list | "
-				"awk 'NR>1 {printf \"%s: %s / %s, \", $1, $3, $2}' | "
-				"awk '{sub(/, $/, \"\"); print}'");
-	}
+	free((void *)excode);
+	return run_command_s("zpool list | "
+			"awk 'NR>1 {printf \"%s: %s / %s, \", $1, $3, $2}' | "
+			"awk '{sub(/, $/, \"\"); print}'");
 }
