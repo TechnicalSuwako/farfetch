@@ -2,12 +2,12 @@
 #include "common.h"
 
 #if defined(__linux__)
-#include <unistd.h>
-
 #include "distro.h"
 #elif defined(__sun)
 #include <stdio.h>
 #endif
+
+#include <unistd.h>
 
 const char *display_packages() {
 #if defined(__OpenBSD__) || defined(__NetBSD__)
@@ -28,7 +28,6 @@ const char *display_packages() {
   }
 
   return NULL;
-#elif defined(__sun)
-  return NULL;
 #endif
+  return NULL;
 }

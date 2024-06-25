@@ -138,17 +138,11 @@ void display_host_model() {
   printf("%s", cmd);
   free((void *)cmd);
 
-  FILE *p = popen("kextstat | grep -F -e \"FakeSMC\" -e \"VirtualSMC\"", "r");
-  if (!p) {
-    fprintf(stderr, "ホストコマンドを実効に失敗");
-    return;
-  }
-
-  while (fgets(buf, sizeof(buf), p) != NULL) {
-    buf[strcspn(buf, "\n")] = '\0';
-    printf("%s", buf);
-  }
-
-  pclose(p);
+  // TODO: Hackingtoshユーザーさん、助けて〜！！
+  /* const char *kext = run_host_command("kextstat | grep -F -e \"FakeSMC\" " */
+  /*                                     "-e \"VirtualSMC\""); */
+  /* if (!kext) return; */
+  /* printf(", %s", kext); */
+  /* free((void *)kext); */
 #endif
 }

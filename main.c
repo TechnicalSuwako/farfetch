@@ -101,7 +101,9 @@ int main(int argc, char *argv[]) {
   else free((void *)res);
   const char *winman = display_wm();
   if (!winman) minsize--;
+#if !defined(__APPLE__)
   else free((void *)winman);
+#endif
   const char *clang = display_libc();
   if (clang) minsize++;
   const char *store = display_storage();
@@ -220,7 +222,9 @@ int main(int argc, char *argv[]) {
   if (wm) {
     printf("%s ", LOGO[lc]);
     printf("%sWM%s: %s\n", color, reset, wm);
+#if !defined(__APPLE__)
     free((void *)wm);
+#endif
     lc++;
   }
 
