@@ -15,7 +15,8 @@ const char *display_resolution() {
   if (
       isexist == NULL ||
       strlen(isexist) == 0 ||
-      strncmp(isexist, "xrandr not found", strlen("xrandr not found")) == 0
+      strncmp(isexist, "xrandr not found", strlen("xrandr not found")) == 0 ||
+      strstr(isexist, "which: no xrandr in")
   ) {
     if (isexist) free((void *)isexist);
     return NULL;
