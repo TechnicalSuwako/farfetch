@@ -397,7 +397,7 @@ void getDistro(const char *distroname) {
     for (int i = 9; i < minsize; i++) {
       LOGO_SMALL[i]  = GREEN "                    " RESET;
     }
-  } else if (strncmp((char *)distroname, "opensuse", strlen("opensuse")) == 0) {
+  } else if (strncmp((char *)distroname, "ubuntu", strlen("ubuntu")) == 0) {
     color = RED;
     titlecolor = RED;
     logosize = 20;
