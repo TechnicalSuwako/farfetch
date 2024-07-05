@@ -74,6 +74,9 @@ const char *display_gpu() {
                          "sed 's/Advanced Micro Devices//' | "
                          "sed 's/, Inc. //' | sed 's/Navi [0-9]* //' | "
                          "sed 's/\\[//g' | sed 's/\\]//g'");
+#elif defined(__APPLE__)
+  return run_command_s("system_profiler SPDisplaysDataType | "
+      "awk -F': ' '/^ *Chipset Model:/ {printf $2 \", \"}'");
 #else
   if (
       access("/bin/glxinfo", F_OK) == -1 &&

@@ -28,6 +28,13 @@ const char *display_packages() {
   }
 
   return NULL;
+#elif defined(__APPLE__)
+  const char *command = "";
+  // TODO: macportとpkgin対応
+  if (access("/usr/local/bin/brew", F_OK) != -1) {
+    command = "ls -l /usr/local/Cellar | wc -l | sed \"s/ //g\" && echo \" (brew)\"";
+  }
+  return run_command_s(command);
 #endif
   return NULL;
 }

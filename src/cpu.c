@@ -33,6 +33,10 @@ const char *display_cpu() {
         "cat /sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq | "
         "awk '{printf \"%.2f\", $1/1000000}'; fi && "
       "echo \"GHz (\" && nproc && echo \" core)\"");
+#elif defined(__APPLE__)
+  return run_command_s("sysctl -n machdep.cpu.brand_string | sed 's/(R)//' | "
+                  "sed 's/(TM)//' | sed 's/CPU //' | sed 's/ Processor//' && "
+                  "echo \" (\" && sysctl -n hw.logicalcpu_max && echo \" core)\"");
 #endif
   return NULL;
 }
