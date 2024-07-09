@@ -230,6 +230,40 @@ void getDistro(const char *distroname) {
     for (int i = 3; i < minsize; i++) {
       LOGO_SMALL[i]  = MAGENTA "     " RESET;
     }
+  } else if (strncmp((char *)distroname, "fedora", strlen("fedora")) == 0) {
+    color = BLUE;
+    titlecolor = BLUE;
+    logosize = 17;
+
+    LOGO[0]  = BLUE "          /:-------------:\\          " RESET;
+    LOGO[1]  = BLUE "       :-------------------::        " RESET;
+    LOGO[2]  = BLUE "     :-----------" WHITE "/shhOHbmp" BLUE "---:\\      " RESET;
+    LOGO[3]  = BLUE "   /-----------" WHITE "omMMMNNNMMD" BLUE "  ---:     " RESET;
+    LOGO[4]  = BLUE "  :-----------" WHITE "sMMMMNMNMP" BLUE ".    ---:    " RESET;
+    LOGO[5]  = BLUE " :-----------" WHITE ":MMMdP" BLUE "-------    ---\\   " RESET;
+    LOGO[6]  = BLUE ",------------" WHITE ":MMMd" BLUE "--------    ---:   " RESET;
+    LOGO[7]  = BLUE ":------------" WHITE ":MMMd" BLUE "-------    .---:   " RESET;
+    LOGO[8]  = BLUE ":----    " WHITE "oNMMMMMMMMMNho" BLUE "     .----:   " RESET;
+    LOGO[9]  = BLUE ":--     ." WHITE "+shhhMMMmhhy++" BLUE "   .------/   " RESET;
+    LOGO[10] = BLUE ":-    -------:" WHITE "MMMd" BLUE "--------------:    " RESET;
+    LOGO[11] = BLUE ":-   --------" WHITE "/MMMd" BLUE "-------------;     " RESET;
+    LOGO[12] = BLUE ":-    ------" WHITE "/hMMMy" BLUE "------------:      " RESET;
+    LOGO[13] = BLUE ":-- " WHITE ":dMNdhhdNMMNo" BLUE "------------;       " RESET;
+    LOGO[14] = BLUE ":---" WHITE ":sdNMMMMNds:" BLUE "------------:        " RESET;
+    LOGO[15] = BLUE ":------" WHITE ":://:" BLUE "-------------::          " RESET;
+    LOGO[16] = BLUE ":---------------------://            " RESET;
+
+    LOGO_SMALL[0] = WHITE "      _____      " RESET;
+    LOGO_SMALL[1] = WHITE "     /   __)" BLUE "\\    " RESET;
+    LOGO_SMALL[2] = WHITE "     |  /  " BLUE "\\ \\   " RESET;
+    LOGO_SMALL[3] = BLUE  "  __" WHITE "_|  |_" BLUE "_/ /   " RESET;
+    LOGO_SMALL[4] = BLUE  " / " WHITE "(_    _)" BLUE "_/    " RESET;
+    LOGO_SMALL[5] = BLUE  "/ /  " WHITE "|  |        " RESET;
+    LOGO_SMALL[6] = BLUE  "\\ \\" WHITE "__/  |        " RESET;
+    LOGO_SMALL[7] = BLUE  " \\" WHITE "(_____/        " RESET;
+    for (int i = 8; i < minsize; i++) {
+      LOGO_SMALL[i] = BLUE  "                 " RESET;
+    }
   } else if (strncmp((char *)distroname, "gentoo", strlen("gentoo")) == 0) {
     color = MAGENTA;
     titlecolor = MAGENTA;
