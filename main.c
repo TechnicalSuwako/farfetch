@@ -39,7 +39,7 @@ int iserr = 0;
 
 void usage() {
 #if defined(__linux__) || defined(__sun)
-  printf("%s-%s\nusage: %s [-s] [-s distro]\n", sofname, version, sofname);
+  printf("%s-%s\nusage: %s [-s] [-l distro]\n", sofname, version, sofname);
 #else
   printf("%s-%s\nusage: %s [-%s]\n", sofname, version, sofname, avalopt);
 #endif
