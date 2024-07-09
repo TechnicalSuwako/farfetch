@@ -64,11 +64,6 @@ void flags(int opt) {
 
 int main(int argc, char *argv[]) {
   int lc = 0;
-  if (argc < 2) {
-    usage();
-    return 1;
-  }
-
   while ((opt = getopt(argc, argv, avalopt)) != -1) {
     flags(opt);
   }
