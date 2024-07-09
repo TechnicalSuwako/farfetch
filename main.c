@@ -61,6 +61,9 @@ int main(int argc, char *argv[]) {
   get_distro();
 #include "src/logo/sunos.h"
   getDistro(distroname);
+#elif defined(__APPLE__)
+#include "src/logo/macos.h"
+  getOS();
 #else
 #include "src/logo/colors.h"
   const char *color = MAGENTA;

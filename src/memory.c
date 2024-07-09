@@ -42,6 +42,13 @@ void display_memory() {
   memused = memtotal - memaval;
   /* memused = run_command_lld("cat /proc/meminfo | grep MemFree | "
       "awk '{print $2}'") / 1024LL; */
+#elif defined(__APPLE__)
+  memtotal = run_command_lld("sysctl -n hw.memsize") / 1024LL / 1024LL;
+  long long int memwired = run_command_lld("vm_stat | awk '/ wired/ { print $4 }'");
+  long long int memactive = run_command_lld("vm_stat | awk '/ active/ { printf $3 }'");
+  long long int memcompressed = run_command_lld("vm_stat | "
+                                                "awk '/ occupied/ { printf $5 }'");
+  memused = (memwired + memactive + memcompressed) * 4LL / 1024LL;
 #endif
 
   printf("%lld MiB / %lld MiB", memused, memtotal);
