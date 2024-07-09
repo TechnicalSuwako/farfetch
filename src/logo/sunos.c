@@ -11,6 +11,7 @@ char *LOGO[23];
 char *LOGO_SMALL[23];
 const char *color;
 const char *titlecolor;
+const char *logoname;
 size_t logosize;
 int minsize = MIN_SIZE;
 
@@ -22,7 +23,17 @@ void getDistro(const char *distroname) {
   if (!wm) minsize--;
   else free((void *)wm);
 
-  if (strncmp((char *)distroname, "omnios", strlen("omnios")) == 0) {
+  if (logoname == NULL) distroname = logoname;
+  else {
+    for (size_t i = 0; i < logosize; i++) {
+      LOGO[i] = "";
+    }
+    for (int i = 0; i < minsize; i++) {
+      LOGO_SMALL[i] = "";
+    }
+  }
+
+  if (strncmp((char *)logoname, "omnios", strlen("omnios")) == 0) {
     color = YELLOW;
     titlecolor = GREY;
     logosize = 13;

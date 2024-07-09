@@ -12,6 +12,7 @@ char *LOGO[23];
 char *LOGO_SMALL[23];
 const char *color;
 const char *titlecolor;
+const char *logoname;
 size_t logosize;
 int minsize = MIN_SIZE;
 
@@ -25,7 +26,17 @@ void getDistro(const char *distroname) {
   const char *clang = display_libc();
   if (clang) minsize++;
 
-  if (strncmp((char *)distroname, "alpine", strlen("alpine")) == 0) {
+  if (logoname == NULL) logoname = distroname;
+  else {
+    for (size_t i = 0; i < logosize; i++) {
+      LOGO[i] = "";
+    }
+    for (int i = 0; i < minsize; i++) {
+      LOGO_SMALL[i] = "";
+    }
+  }
+
+  if (strncmp((char *)logoname, "alpine", strlen("alpine")) == 0) {
     color = MAGENTA;
     titlecolor = BLUE;
     logosize = 21;
@@ -61,7 +72,7 @@ void getDistro(const char *distroname) {
     for (int i = 6; i < minsize; i++) {
       LOGO_SMALL[i]  = BLUE "              " RESET;
     }
-  } else if (strncmp((char *)distroname, "arch", strlen("arch")) == 0) {
+  } else if (strncmp((char *)logoname, "arch", strlen("arch")) == 0) {
     color = CYAN;
     titlecolor = CYAN;
     logosize = 20;
@@ -97,7 +108,7 @@ void getDistro(const char *distroname) {
     for (int i = 7; i < minsize; i++) {
       LOGO_SMALL[i]  = CYAN "                " RESET;
     }
-  } else if (strncmp((char *)distroname, "artix", strlen("artix")) == 0) {
+  } else if (strncmp((char *)logoname, "artix", strlen("artix")) == 0) {
     color = CYAN;
     titlecolor = CYAN;
     logosize = 21;
@@ -134,7 +145,7 @@ void getDistro(const char *distroname) {
     for (int i = 7; i < minsize; i++) {
       LOGO_SMALL[i]  = CYAN "                " RESET;
     }
-  } else if (strncmp((char *)distroname, "crux", strlen("crux")) == 0) {
+  } else if (strncmp((char *)logoname, "crux", strlen("crux")) == 0) {
     color = MAGENTA;
     titlecolor = BLUE;
     logosize = 19;
@@ -167,9 +178,9 @@ void getDistro(const char *distroname) {
     LOGO_SMALL[5] = MAGENTA "_" BLUE "/\\ "WHITE "__)" BLUE "/" MAGENTA "_" BLUE ")  " RESET;
     LOGO_SMALL[6] = MAGENTA "\\/" BLUE "-____" MAGENTA "\\/   " RESET;
     for (int i = 7; i < minsize; i++) {
-      LOGO_SMALL[i]  = BLUE "                 " RESET;
+      LOGO_SMALL[i]  = BLUE "            " RESET;
     }
-  } else if (strncmp((char *)distroname, "debian", strlen("debian")) == 0) {
+  } else if (strncmp((char *)logoname, "debian", strlen("debian")) == 0) {
     color = RED;
     titlecolor = RED;
     logosize = 18;
@@ -202,7 +213,7 @@ void getDistro(const char *distroname) {
     for (int i = 6; i < minsize; i++) {
       LOGO_SMALL[i]  = RED "           " RESET;
     }
-  } else if (strncmp((char *)distroname, "devuan", strlen("devuan")) == 0) {
+  } else if (strncmp((char *)logoname, "devuan", strlen("devuan")) == 0) {
     color = MAGENTA;
     titlecolor = MAGENTA;
     logosize = 16;
@@ -230,7 +241,7 @@ void getDistro(const char *distroname) {
     for (int i = 3; i < minsize; i++) {
       LOGO_SMALL[i]  = MAGENTA "     " RESET;
     }
-  } else if (strncmp((char *)distroname, "fedora", strlen("fedora")) == 0) {
+  } else if (strncmp((char *)logoname, "fedora", strlen("fedora")) == 0) {
     color = BLUE;
     titlecolor = BLUE;
     logosize = 17;
@@ -264,7 +275,7 @@ void getDistro(const char *distroname) {
     for (int i = 8; i < minsize; i++) {
       LOGO_SMALL[i] = BLUE  "                 " RESET;
     }
-  } else if (strncmp((char *)distroname, "gentoo", strlen("gentoo")) == 0) {
+  } else if (strncmp((char *)logoname, "gentoo", strlen("gentoo")) == 0) {
     color = MAGENTA;
     titlecolor = MAGENTA;
     logosize = 19;
@@ -299,7 +310,7 @@ void getDistro(const char *distroname) {
     for (int i = 7; i < minsize; i++) {
       LOGO_SMALL[i]  = MAGENTA "             " RESET;
     }
-  } else if (strncmp((char *)distroname, "linuxmint", strlen("linuxmint")) == 0) {
+  } else if (strncmp((char *)logoname, "linuxmint", strlen("linuxmint")) == 0) {
     color = GREEN;
     titlecolor = GREEN;
     logosize = 19;
@@ -331,7 +342,10 @@ void getDistro(const char *distroname) {
     LOGO_SMALL[4] = GREEN "  | " WHITE "| | | | " GREEN "| " RESET;
     LOGO_SMALL[5] = GREEN "  | " WHITE "\\_____/ " GREEN "| " RESET;
     LOGO_SMALL[6] = GREEN "  \\_________/ " RESET;
-  } else if (strncmp((char *)distroname, "manjaro", strlen("manjaro")) == 0) {
+    for (int i = 7; i < minsize; i++) {
+      LOGO_SMALL[i]  = GREEN "              " RESET;
+    }
+  } else if (strncmp((char *)logoname, "manjaro", strlen("manjaro")) == 0) {
     color = GREEN;
     titlecolor = GREEN;
     logosize = 14;
@@ -358,7 +372,10 @@ void getDistro(const char *distroname) {
     LOGO_SMALL[4] = GREEN "|||| |||| |||| " RESET;
     LOGO_SMALL[5] = GREEN "|||| |||| |||| " RESET;
     LOGO_SMALL[6] = GREEN "|||| |||| |||| " RESET;
-  } else if (strncmp((char *)distroname, "opensuse", strlen("opensuse")) == 0) {
+    for (int i = 7; i < minsize; i++) {
+      LOGO_SMALL[i]  = GREEN "               " RESET;
+    }
+  } else if (strncmp((char *)logoname, "opensuse", strlen("opensuse")) == 0) {
     color = GREEN;
     titlecolor = GREEN;
     logosize = 18;
@@ -389,11 +406,11 @@ void getDistro(const char *distroname) {
     LOGO_SMALL[4] = GREEN "   _______| " RESET;
     LOGO_SMALL[5] = GREEN "   \\_______ " RESET;
     LOGO_SMALL[6] = GREEN "__________/ " RESET;
+    for (int i = 7; i < minsize; i++) {
+      LOGO_SMALL[i]  = GREEN "            " RESET;
+    }
   } else if (
-      strncmp((char *)distroname,
-        "postmarketos",
-        strlen("postmarketos")
-      ) == 0
+      strncmp((char *)logoname, "postmarketos", strlen("postmarketos")) == 0
     ) {
     color = GREEN;
     titlecolor = GREEN;
@@ -431,7 +448,7 @@ void getDistro(const char *distroname) {
     for (int i = 9; i < minsize; i++) {
       LOGO_SMALL[i]  = GREEN "                    " RESET;
     }
-  } else if (strncmp((char *)distroname, "ubuntu", strlen("ubuntu")) == 0) {
+  } else if (strncmp((char *)logoname, "ubuntu", strlen("ubuntu")) == 0) {
     color = RED;
     titlecolor = RED;
     logosize = 20;
@@ -443,12 +460,12 @@ void getDistro(const char *distroname) {
     LOGO[4]  = RED "   /sssssssssss" WHITE "hdmmNNmmyNMMMMh" RED "ssssss/    " RESET;
     LOGO[5]  = RED "  +sssssssss" WHITE "hm" RED "yd" WHITE "MMMMMMMNddddy" RED "ssssssss+   " RESET;
     LOGO[6]  = RED " /ssssssss" WHITE "hNMMM" RED "yh" WHITE "hyyyyhmNMMMNh" RED "ssssssss/  " RESET;
-    LOGO[7]  = RED ".ssssssss" WHITE "dMMMNh" RED "sssssssssshNMMMd" RED "ssssssss. " RESET;
-    LOGO[8]  = RED "+ssss" WHITE "hhhyNMMNy" RED "ssssssssssssyNMMMy" RED "sssssss+ " RESET;
-    LOGO[9]  = RED "oss" WHITE "yNMMMNyMMh" RED "sssssssssssssshmmmh" RED "ssssssso " RESET;
+    LOGO[7]  = RED ".ssssssss" WHITE "dMMMNh" RED "ssssssssss" WHITE "hNMMMd" RED "ssssssss. " RESET;
+    LOGO[8]  = RED "+ssss" WHITE "hhhyNMMNy" RED "ssssssssssss" WHITE "yNMMMy" RED "sssssss+ " RESET;
+    LOGO[9]  = RED "oss" WHITE "yNMMMNyMMh" RED "ssssssssssssss" WHITE "hmmmh" RED "ssssssso " RESET;
     LOGO[10] = RED "oss" WHITE "yNMMMNyMMh" RED "sssssssssssssshmmmhssssssso " RESET;
-    LOGO[11] = RED "+ssss" WHITE "hhhyNMMNy" RED "ssssssssssssyNMMMy" RED "sssssss+ " RESET;
-    LOGO[12] = RED ".ssssssss" WHITE "dMMMNh" RED "sssssssssshNMMMd" RED "ssssssss. " RESET;
+    LOGO[11] = RED "+ssss" WHITE "hhhyNMMNy" RED "ssssssssssss" WHITE "yNMMMy" RED "sssssss+ " RESET;
+    LOGO[12] = RED ".ssssssss" WHITE "dMMMNh" RED "ssssssssss" WHITE "hNMMMd" RED "ssssssss. " RESET;
     LOGO[13] = RED " /ssssssss" WHITE "hNMMM" RED "yh" WHITE "hyyyyhdNMMMNh" RED "ssssssss/  " RESET;
     LOGO[14] = RED "  +sssssssss" WHITE "dm" RED "yd" WHITE "MMMMMMMMddddy" RED "ssssssss+   " RESET;
     LOGO[15] = RED "   /sssssssssss" WHITE "hdmNNNNmyNMMMMh" RED "ssssss/    " RESET;
@@ -463,7 +480,10 @@ void getDistro(const char *distroname) {
     LOGO_SMALL[3] = RED "(_) |   |   " RESET;
     LOGO_SMALL[4] = RED "  \\  --- _/ " RESET;
     LOGO_SMALL[5] = RED "     ---(_) " RESET;
-  } else if (strncmp((char *)distroname, "void", strlen("void")) == 0) {
+    for (int i = 6; i < minsize; i++) {
+      LOGO_SMALL[i]  = RED "            " RESET;
+    }
+  } else if (strncmp((char *)logoname, "void", strlen("void")) == 0) {
     color = WHITE;
     titlecolor = GREEN;
     logosize = 19;

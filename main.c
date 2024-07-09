@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 #include "src/user.h"
 #include "src/os.h"
@@ -24,26 +24,59 @@
 
 const char *sofname = "farfetch";
 const char *version = "0.2.0";
+#if defined(__linux__) || defined(__sun)
+const char *avalopt = "ls";
+#else
 const char *avalopt = "s";
+#endif
+
+int opt;
+#if defined(__linux__) || defined(__sun)
+int islogo = 0;
+#endif
+int issmall = 0;
+int iserr = 0;
 
 void usage() {
+#if defined(__linux__) || defined(__sun)
+  printf("%s-%s\nusage: %s [-s] [-s distro]\n", sofname, version, sofname);
+#else
   printf("%s-%s\nusage: %s [-%s]\n", sofname, version, sofname, avalopt);
+#endif
+}
+
+void flags(int opt) {
+  switch (opt) {
+#if defined(__linux__) || defined(__sunos)
+    case 'l':
+      islogo = 1;
+      break;
+#endif
+    case 's':
+      issmall = 1;
+      break;
+    default:
+      iserr = 1;
+      usage();
+      break;
+  }
 }
 
 int main(int argc, char *argv[]) {
   int lc = 0;
-  int issmall = 0;
-  if (argc == 2) {
-    if (strncmp(argv[1], "-s", 2) == 0) {
-      issmall = 1;
-    } else {
-      usage();
-      return 1;
-    }
-  } else if (argc > 2) {
+  if (argc < 2) {
     usage();
     return 1;
   }
+
+  while ((opt = getopt(argc, argv, avalopt)) != -1) {
+    flags(opt);
+  }
+
+  if (iserr == 1) {
+    return 1;
+  }
+
 #if defined(__OpenBSD__)
 #include "src/logo/openbsd.h"
   getOS();
@@ -118,6 +151,13 @@ int main(int argc, char *argv[]) {
 
   const char *reset = RESET;
   size_t ls = logosize <= (size_t)minsize ? (size_t)minsize : logosize;
+#if defined(__linux__) || defined(__sun)
+  if (islogo) {
+    logoname = argv[2];
+    getDistro(logoname);
+  }
+#endif
+
   if (issmall) {
     size_t ne = sizeof(LOGO_SMALL) / sizeof(LOGO_SMALL[0]);
     for (size_t i = 0; i < ne; i++) {
