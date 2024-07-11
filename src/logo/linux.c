@@ -448,6 +448,37 @@ void getDistro(const char *distroname) {
     for (int i = 9; i < minsize; i++) {
       LOGO_SMALL[i]  = GREEN "                    " RESET;
     }
+  } else if (strncmp((char *)logoname, "rocky", strlen("rocky")) == 0) {
+    color = GREEN;
+    titlecolor = GREEN;
+    logosize = 17;
+
+    LOGO[0]  = GREEN "            .-/+oossssoo+/-.               " RESET;
+    LOGO[1]  = GREEN "        `:+ssssssssssssssssss+:`           " RESET;
+    LOGO[2]  = GREEN "      -+ssssssssssssssssssyyssss+-         " RESET;
+    LOGO[3]  = GREEN "    .osssssssssssssssssssssssssssso.       " RESET;
+    LOGO[4]  = GREEN "   /ssssssssssssssssssssssssssssssss/      " RESET;
+    LOGO[5]  = GREEN "  +ssssssssssssssssssssssssssssssssss+     " RESET;
+    LOGO[6]  = GREEN " /ssssssssssssssssssssssssssssssssssss/    " RESET;
+    LOGO[7]  = GREEN ".ssssssssssssssssssssssssssssssssssssss.   " RESET;
+    LOGO[8]  = GREEN "+ssssssssssssssssssssssssssssssssssssss+   " RESET;
+    LOGO[9]  = GREEN ".sssssssssssssssssssss  sssssssssssssss.   " RESET;
+    LOGO[10] = GREEN " /sssssssssssssssss  ssss  sssssssssss/    " RESET;
+    LOGO[11] = GREEN "  +ssssssssssssss  ssssssss  ssssssss+     " RESET;
+    LOGO[12] = GREEN "   /sssssssssss  sssssssssssss  ssss/      " RESET;
+    LOGO[13] = GREEN "    .osssssss  sssssssssssssssss  o.       " RESET;
+    LOGO[14] = GREEN "      -+sss  sssssssssssssssssss+-         " RESET;
+    LOGO[15] = GREEN "        `  ssssssssssssssssss+:`           " RESET;
+    LOGO[16] = GREEN "            .-/+oossssoo+/-.               " RESET;
+
+    LOGO_SMALL[0] = GREEN "  _____ " RESET;
+    LOGO_SMALL[1] = GREEN " /     \\ " RESET;
+    LOGO_SMALL[2] = GREEN " |  /\\ | " RESET;
+    LOGO_SMALL[3] = GREEN " | /  \\| " RESET;
+    LOGO_SMALL[4] = GREEN " \\/____/ " RESET;
+    for (int i = 5; i < minsize; i++) {
+      LOGO_SMALL[i]  = GREEN "         " RESET;
+    }
   } else if (strncmp((char *)logoname, "ubuntu", strlen("ubuntu")) == 0) {
     color = RED;
     titlecolor = RED;

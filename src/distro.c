@@ -88,6 +88,10 @@ void get_distro() {
   else if (strstr(buf, "Alpine") != NULL) distroname = "alpine";
   else if (strstr(buf, "Manjaro") != NULL) distroname = "manjaro";
   else if (strstr(buf, "Gentoo") != NULL) distroname = "gentoo";
+  else if (strstr(buf, "Fedora") != NULL) distroname = "fedora";
+  else if (strstr(buf, "Rocky") != NULL) distroname = "rocky";
+  else if (strstr(buf, "CentOS") != NULL) distroname = "centos";
+  else if (strstr(buf, "Red Hat") != NULL) distroname = "redhat";
   else if (strstr(buf, "postmarketOS") != NULL) distroname = "postmarketos";
   else if (strstr(buf, "Linux Mint") != NULL) distroname = "linuxmint";
   else if (strstr(buf, "opensuse") != NULL) distroname = "opensuse";
