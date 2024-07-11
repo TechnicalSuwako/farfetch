@@ -145,6 +145,38 @@ void getDistro(const char *distroname) {
     for (int i = 7; i < minsize; i++) {
       LOGO_SMALL[i]  = CYAN "                " RESET;
     }
+  } else if (strncmp((char *)logoname, "centos", strlen("centos")) == 0) {
+    color = GREEN;
+    titlecolor = YELLOW;
+    logosize = 18;
+
+    LOGO[0]  = YELLOW  "                 ..                    " RESET;
+    LOGO[1]  = YELLOW  "               .PLTJ.                  " RESET;
+    LOGO[2]  = YELLOW  "              <><><><>                 " RESET;
+    LOGO[3]  = GREEN   "     KKSSV' 4KKK " YELLOW "LJ" MAGENTA " KKKL.'VSSKK        " RESET;
+    LOGO[4]  = GREEN   "     KKV' 4KKKKK " YELLOW "LJ" MAGENTA " KKKKAL 'VKK        " RESET;
+    LOGO[5]  = GREEN   "     V' ' 'VKKKK " YELLOW "LJ" MAGENTA " KKKKV' ' 'V        " RESET;
+    LOGO[6]  = GREEN   "     .4MA.' 'VKK " YELLOW "LJ" MAGENTA " KKV' '.4Mb.        " RESET;
+    LOGO[7]  = GREEN   "   . KKKKKA.' 'V " YELLOW "LJ" MAGENTA " V' '.4KKKKK .      " RESET;
+    LOGO[8]  = GREEN   " .4D KKKKKKKA.'' " YELLOW "LJ" MAGENTA " ''.4KKKKKKK FA.    " RESET;
+    LOGO[9]  = MAGENTA "<QDD ++++++++++++  " BLUE "++++++++++++ GFD>   " RESET;
+    LOGO[10] = GREEN   " 'VD KKKKKKKK'.. " GREEN "LJ " YELLOW "..'KKKKKKKK FV     " RESET;
+    LOGO[11] = BLUE    "   ' VKKKKK'. .4 " GREEN "LJ " YELLOW "K. .'KKKKKV '      " RESET;
+    LOGO[12] = BLUE    "      'VK'. .4KK " GREEN "LJ " YELLOW "KKA. .'KV'         " RESET;
+    LOGO[13] = BLUE    "     A. . .4KKKK " GREEN "LJ " YELLOW "KKKKA. . .4        " RESET;
+    LOGO[14] = BLUE    "     KKA. 'KKKKK " GREEN "LJ " YELLOW "KKKKK' .4KK        " RESET;
+    LOGO[15] = BLUE    "     KKSSA. VKKK " GREEN "LJ " YELLOW "KKKV .4SSKK        " RESET;
+    LOGO[16] = GREEN   "              <><><><>                 " RESET;
+    LOGO[17] = GREEN   "               'MKKM'                  " RESET;
+    LOGO[18] = GREEN   "                 ''                    " RESET;
+
+    LOGO_SMALL[0] = GREEN   " ____" YELLOW "^" MAGENTA "____    " RESET;
+    LOGO_SMALL[1] = GREEN   " |\  " YELLOW "|" MAGENTA "  /|    " RESET;
+    LOGO_SMALL[2] = GREEN   " | \ " YELLOW "|" MAGENTA " / |    " RESET;
+    LOGO_SMALL[3] = MAGENTA "<---- " BLUE "---->   " RESET;
+    LOGO_SMALL[4] = BLUE    " | / " GREEN "|" YELLOW " \ |    " RESET;
+    LOGO_SMALL[5] = BLUE    " |/__" GREEN "|" YELLOW "__\|    " RESET;
+    LOGO_SMALL[6] = GREEN   "     v        " RESET;
   } else if (strncmp((char *)logoname, "crux", strlen("crux")) == 0) {
     color = MAGENTA;
     titlecolor = BLUE;
