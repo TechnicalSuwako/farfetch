@@ -480,6 +480,41 @@ void getDistro(const char *distroname) {
     for (int i = 9; i < minsize; i++) {
       LOGO_SMALL[i]  = GREEN "                    " RESET;
     }
+  } else if (strncmp((char *)logoname, "redhat", strlen("redhat")) == 0) {
+    color = RED;
+    titlecolor = RED;
+    logosize = 18;
+
+    LOGO[0]  = RED "           .MMM..:MMMMMMM                  " RESET;
+    LOGO[1]  = RED "          MMMMMMMMMMMMMMMMMM               " RESET;
+    LOGO[2]  = RED "          MMMMMMMMMMMMMMMMMMMM.            " RESET;
+    LOGO[3]  = RED "         MMMMMMMMMMMMMMMMMMMMMM            " RESET;
+    LOGO[4]  = RED "        ,MMMMMMMMMMMMMMMMMMMMMM:           " RESET;
+    LOGO[5]  = RED "        MMMMMMMMMMMMMMMMMMMMMMMM           " RESET;
+    LOGO[6]  = RED "  .MMMM'  MMMMMMMMMMMMMMMMMMMMMM           " RESET;
+    LOGO[7]  = RED " MMMMMM    `MMMMMMMMMMMMMMMMMMMM.          " RESET;
+    LOGO[8]  = RED "MMMMMMMM      MMMMMMMMMMMMMMMMMM .         " RESET;
+    LOGO[9]  = RED "MMMMMMMMM.       `MMMMMMMMMMMMM' MM.       " RESET;
+    LOGO[10] = RED "MMMMMMMMMMM.                     MMMM      " RESET;
+    LOGO[11] = RED "`MMMMMMMMMMMMM.                 ,MMMMM.    " RESET;
+    LOGO[12] = RED " `MMMMMMMMMMMMMMMMM.          ,MMMMMMMM.   " RESET;
+    LOGO[13] = RED "    MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM   " RESET;
+    LOGO[14] = RED "      MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM:   " RESET;
+    LOGO[15] = RED "         MMMMMMMMMMMMMMMMMMMMMMMMMMMMMM    " RESET;
+    LOGO[16] = RED "            `MMMMMMMMMMMMMMMMMMMMMMMM:     " RESET;
+    LOGO[17] = RED "                ``MMMMMMMMMMMMMMMMM'       " RESET;
+
+    LOGO[0] = RED "   /=======\\    " RESET;
+    LOGO[1] = RED "   |       |    " RESET;
+    LOGO[2] = RED "   |       |    " RESET;
+    LOGO[3] = RED "  / \\      \\    " RESET;
+    LOGO[4] = RED " =   ======+\\   " RESET;
+    LOGO[5] = RED "/ \\________/ \\  " RESET;
+    LOGO[6] = RED "\\             | " RESET;
+    LOGO[7] = RED " \\___________/  " RESET;
+    for (int i = 8; i < minsize; i++) {
+      LOGO_SMALL[i]  = RED "                " RESET;
+    }
   } else if (strncmp((char *)logoname, "rocky", strlen("rocky")) == 0) {
     color = GREEN;
     titlecolor = GREEN;
