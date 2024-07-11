@@ -171,12 +171,15 @@ void getDistro(const char *distroname) {
     LOGO[18] = GREEN   "                 ''                    " RESET;
 
     LOGO_SMALL[0] = GREEN   " ____" YELLOW "^" MAGENTA "____    " RESET;
-    LOGO_SMALL[1] = GREEN   " |\  " YELLOW "|" MAGENTA "  /|    " RESET;
-    LOGO_SMALL[2] = GREEN   " | \ " YELLOW "|" MAGENTA " / |    " RESET;
+    LOGO_SMALL[1] = GREEN   " |\\  " YELLOW "|" MAGENTA "  /|    " RESET;
+    LOGO_SMALL[2] = GREEN   " | \\ " YELLOW "|" MAGENTA " / |    " RESET;
     LOGO_SMALL[3] = MAGENTA "<---- " BLUE "---->   " RESET;
-    LOGO_SMALL[4] = BLUE    " | / " GREEN "|" YELLOW " \ |    " RESET;
-    LOGO_SMALL[5] = BLUE    " |/__" GREEN "|" YELLOW "__\|    " RESET;
+    LOGO_SMALL[4] = BLUE    " | / " GREEN "|" YELLOW " \\ |    " RESET;
+    LOGO_SMALL[5] = BLUE    " |/__" GREEN "|" YELLOW "__\\|    " RESET;
     LOGO_SMALL[6] = GREEN   "     v        " RESET;
+    for (int i = 7; i < minsize; i++) {
+      LOGO_SMALL[i]  = BLUE "              " RESET;
+    }
   } else if (strncmp((char *)logoname, "crux", strlen("crux")) == 0) {
     color = MAGENTA;
     titlecolor = BLUE;
@@ -504,14 +507,14 @@ void getDistro(const char *distroname) {
     LOGO[16] = RED "            `MMMMMMMMMMMMMMMMMMMMMMMM:     " RESET;
     LOGO[17] = RED "                ``MMMMMMMMMMMMMMMMM'       " RESET;
 
-    LOGO[0] = RED "   /=======\\    " RESET;
-    LOGO[1] = RED "   |       |    " RESET;
-    LOGO[2] = RED "   |       |    " RESET;
-    LOGO[3] = RED "  / \\      \\    " RESET;
-    LOGO[4] = RED " =   ======+\\   " RESET;
-    LOGO[5] = RED "/ \\________/ \\  " RESET;
-    LOGO[6] = RED "\\             | " RESET;
-    LOGO[7] = RED " \\___________/  " RESET;
+    LOGO_SMALL[0] = RED "   /=======\\    " RESET;
+    LOGO_SMALL[1] = RED "   |       |    " RESET;
+    LOGO_SMALL[2] = RED "   |       |    " RESET;
+    LOGO_SMALL[3] = RED "  / \\      \\    " RESET;
+    LOGO_SMALL[4] = RED " =   ======+\\   " RESET;
+    LOGO_SMALL[5] = RED "/ \\________/ \\  " RESET;
+    LOGO_SMALL[6] = RED "\\             | " RESET;
+    LOGO_SMALL[7] = RED " \\___________/  " RESET;
     for (int i = 8; i < minsize; i++) {
       LOGO_SMALL[i]  = RED "                " RESET;
     }
