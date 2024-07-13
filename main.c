@@ -22,6 +22,8 @@
 #include "src/memory.h"
 #include "src/storage.h"
 
+#include "src/config.h"
+
 const char *sofname = "farfetch";
 const char *version = "0.2.0";
 #if defined(__linux__) || defined(__sun)
@@ -71,6 +73,8 @@ int main(int argc, char *argv[]) {
   if (iserr == 1) {
     return 1;
   }
+
+  getconf();
 
 #if defined(__OpenBSD__)
 #include "src/logo/openbsd.h"
@@ -127,22 +131,32 @@ int main(int argc, char *argv[]) {
 
   int minsize = MIN_SIZE;
 
-  const char *res = display_resolution();
-  if (!res) minsize--;
-  else free((void *)res);
+  if (isresolution) {
+    const char *res = display_resolution();
+    if (!res) minsize--;
+    else free((void *)res);
+  } else minsize--;
+  if (iswm) {
   const char *winman = display_wm();
   if (!winman) minsize--;
 #if !defined(__APPLE__)
   else free((void *)winman);
 #endif
-  const char *clang = display_libc();
-  if (clang) minsize++;
-  const char *store = display_storage();
-  if (!store) minsize--;
-  else free((void *)store);
-  const char *graph = display_gpu();
-  if (!graph) minsize--;
-  else free((void *)graph);
+  } else minsize--;
+  if (islibc) {
+    const char *clang = display_libc();
+    if (clang) minsize++;
+  }
+  if (isstorage) {
+    const char *store = display_storage();
+    if (!store) minsize--;
+    else free((void *)store);
+  } else minsize--;
+  if (isgpu) {
+    const char *graph = display_gpu();
+    if (!graph) minsize--;
+    else free((void *)graph);
+  } else minsize--;
 
   const char *reset = RESET;
   size_t ls = logosize <= (size_t)minsize ? (size_t)minsize : logosize;
@@ -178,137 +192,165 @@ int main(int argc, char *argv[]) {
   printf("------------------\n");
   lc++;
 
-  const char *os = display_os();
-  if (os) {
-    printf("%s ", LOGO[lc]);
-    printf("%sOS%s: %s\n", color, reset, os);
-    free((void *)os);
-    lc++;
-  }
+  if (isos) {
+    const char *os = display_os();
+    if (os) {
+      printf("%s ", LOGO[lc]);
+      printf("%sOS%s: %s\n", color, reset, os);
+      free((void *)os);
+      lc++;
+    }
+  } else minsize--;
 
 #if defined(__linux__) || defined(__sun)
-  const char *distroo = display_distro();
-  if (distroo) {
-    printf("%s ", LOGO[lc]);
-    printf("%sDistro%s: %s\n", color, reset, distroo);
-    lc++;
-    free((void *)distroo);
-  }
+  if (isdistro) {
+    const char *distroo = display_distro();
+    if (distroo) {
+      printf("%s ", LOGO[lc]);
+      printf("%sDistro%s: %s\n", color, reset, distroo);
+      lc++;
+      free((void *)distroo);
+    }
+  } else minsize--;
 #endif
 
-  printf("%s ", LOGO[lc]);
-  printf("%s%s%s%s", color, "Host", reset, ": ");
-  display_host_model();
-  printf("\n");
-  lc++;
-
-  const char *days = display_days();
-  const char *time = display_time();
-  if (days || time) {
+  if (ishost) {
     printf("%s ", LOGO[lc]);
-    printf("%s%s%s%s", color, "Uptime", reset, ": ");
-    if (days) {
-      printf("%s", days);
-      if (time) printf(" ");
-    }
-    if (time) {
-      printf("%s", time);
-    }
+    printf("%s%s%s%s", color, "Host", reset, ": ");
+    display_host_model();
     printf("\n");
-    if (days) free((void *)days);
-    if (time) free((void *)time);
     lc++;
-  }
+  } else minsize--;
+
+  if (isuptime) {
+    const char *days = display_days();
+    const char *time = display_time();
+    if (days || time) {
+      printf("%s ", LOGO[lc]);
+      printf("%s%s%s%s", color, "Uptime", reset, ": ");
+      if (days) {
+        printf("%s", days);
+        if (time) printf(" ");
+      }
+      if (time) {
+        printf("%s", time);
+      }
+      printf("\n");
+      if (days) free((void *)days);
+      if (time) free((void *)time);
+      lc++;
+    }
+  } else minsize--;
 
 #if defined(__OpenBSD__)
-  const char *audio = display_recording_audio();
-  const char *video = display_recording_video();
-  if (audio || video) {
-    printf("%s ", LOGO[lc]);
-    printf("%sRecording%s: ", color, reset);
-    if (audio) {
-      printf("audio = %s", audio);
-      if (video) printf(", ");
+  if (isrecording) {
+    const char *audio = display_recording_audio();
+    const char *video = display_recording_video();
+    if (audio || video) {
+      printf("%s ", LOGO[lc]);
+      printf("%sRecording%s: ", color, reset);
+      if (audio) {
+        printf("audio = %s", audio);
+        if (video) printf(", ");
+      }
+      if (video) {
+        printf("video = %s", video);
+      }
+      printf("\n");
+      if (audio) free((void *)audio);
+      if (video) free((void *)video);
+      lc++;
     }
-    if (video) {
-      printf("video = %s", video);
-    }
-    printf("\n");
-    if (audio) free((void *)audio);
-    if (video) free((void *)video);
-    lc++;
-  }
+  } else minsize--;
 #endif
 
-  const char *packages = display_packages();
-  if (packages) {
-    printf("%s ", LOGO[lc]);
-    printf("%sPackages%s: %s\n", color, reset, packages);
-    lc++;
-    free((void *)packages);
+  if (ispackages) {
+    const char *packages = display_packages();
+    if (packages) {
+      printf("%s ", LOGO[lc]);
+      printf("%sPackages%s: %s\n", color, reset, packages);
+      lc++;
+      free((void *)packages);
+    }
+  } else minsize--;
+
+  if (isresolution) {
+    const char *resolution = display_resolution();
+    if (resolution) {
+      printf("%s ", LOGO[lc]);
+      printf("%sResolution%s: %s\n", color, reset, resolution);
+      lc++;
+      free((void *)resolution);
+    }
   }
 
-  const char *resolution = display_resolution();
-  if (resolution) {
-    printf("%s ", LOGO[lc]);
-    printf("%sResolution%s: %s\n", color, reset, resolution);
-    lc++;
-    free((void *)resolution);
-  }
-
-  const char *wm = display_wm();
-  if (wm) {
-    printf("%s ", LOGO[lc]);
-    printf("%sWM%s: %s\n", color, reset, wm);
+  if (iswm) {
+    const char *wm = display_wm();
+    if (wm) {
+      printf("%s ", LOGO[lc]);
+      printf("%sWM%s: %s\n", color, reset, wm);
 #if !defined(__APPLE__)
-    free((void *)wm);
+      free((void *)wm);
 #endif
-    lc++;
+      lc++;
+    }
   }
 
-  const char *shell = display_shell();
-  if (shell) {
-    printf("%s ", LOGO[lc]);
-    printf("%sShell%s: %s\n", color, reset, shell);
-    free((void *)shell);
-    lc++;
+  if (isshell) {
+    const char *shell = display_shell();
+    if (shell) {
+      printf("%s ", LOGO[lc]);
+      printf("%sShell%s: %s\n", color, reset, shell);
+      free((void *)shell);
+      lc++;
+    }
+  } else minsize--;
+
+  if (islibc) {
+    const char *libc = display_libc();
+    if (libc) {
+      printf("%s ", LOGO[lc]);
+      printf("%slibc%s: %s\n", color, reset, libc);
+      lc++;
+    }
   }
 
-  const char *libc = display_libc();
-  if (libc) {
-    printf("%s ", LOGO[lc]);
-    printf("%slibc%s: %s\n", color, reset, libc);
-    lc++;
-  }
-
+  if (iscpu) {
   const char *cpu = display_cpu();
-  if (cpu) {
-    printf("%s ", LOGO[lc]);
-    printf("%sCPU%s: %s\n", color, reset, cpu);
-    lc++;
-    free((void *)cpu);
+    if (cpu) {
+      printf("%s ", LOGO[lc]);
+      printf("%sCPU%s: %s\n", color, reset, cpu);
+      lc++;
+      free((void *)cpu);
+    }
+  } else minsize--;
+
+  if (isgpu) {
+    const char *gpu = display_gpu();
+    if (gpu) {
+      printf("%s ", LOGO[lc]);
+      printf("%sGPU%s: %s\n", color, reset, gpu);
+      lc++;
+      free((void *)gpu);
+    }
   }
 
-  const char *gpu = display_gpu();
-  if (gpu) {
+  if (ismemory) {
     printf("%s ", LOGO[lc]);
-    printf("%sGPU%s: %s\n", color, reset, gpu);
+    printf("%s%s%s%s", color, "Memory", reset, ": ");
+    display_memory();
+    printf("\n");
     lc++;
-    free((void *)gpu);
-  }
+  } else minsize--;
 
-  printf("%s ", LOGO[lc]);
-  printf("%s%s%s%s", color, "Memory", reset, ": ");
-  display_memory();
-  printf("\n");
-  lc++;
-
-  const char *storage = display_storage();
-  if (storage) {
-    printf("%s ", LOGO[lc]);
-    printf("%sStorage%s: %s\n", color, reset, storage);
-    lc++;
-    free((void *)storage);
+  if (isstorage) {
+    const char *storage = display_storage();
+    if (storage) {
+      printf("%s ", LOGO[lc]);
+      printf("%sStorage%s: %s\n", color, reset, storage);
+      lc++;
+      free((void *)storage);
+    }
   }
 
   for (size_t i = lc; i < ls; i++) {
