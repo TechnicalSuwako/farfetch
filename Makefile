@@ -20,15 +20,26 @@ NAME != cat main.c | grep "const char \*sofname" | awk '{print $$5}' |\
 	sed "s/\"//g" | sed "s/;//"
 VERSION != cat main.c | grep "const char \*version" | awk '{print $$5}' |\
 	sed "s/\"//g" | sed "s/;//"
+
 PREFIX = /usr/local
 .if ${UNAME_S} == "Linux"
 PREFIX = /usr
+.elif ${UNAME_S} == "Haiku"
+PREFIX = /boot/home/config/non-packaged
 .endif
 
 MANPREFIX = ${PREFIX}/share/man
-
 .if ${UNAME_S} == "OpenBSD"
 MANPREFIX = ${PREFIX}/man
+.elif ${UNAME_S} == "Haiku"
+MANPREFIX = ${PREFIX}/documentation/man
+.endif
+
+CNFPREFIX = /etc
+.if ${UNAME_S} == "FreeBSD" || ${UNAME_S} == "NetBSD" || ${UNAME_S} == "Dragonfly"
+CNFPREFIX = ${PREFIX}/etc
+.elif ${UNAME_S} == "Haiku"
+CNFPREFIX = /boot/home/config/settings
 .endif
 
 CC = cc
@@ -49,13 +60,14 @@ clean:
 dist:
 	mkdir -p ${NAME}-${VERSION} release/src
 	cp -R LICENSE.txt Makefile README.md CHANGELOG.md\
-		${NAME}.conf ${NAME}.1 main.c src ${NAME}-${VERSION}
+		${NAME}.conf ${NAME}.1 ${NAME}.conf.5 main.c src ${NAME}-${VERSION}
 	tar zcfv release/src/${NAME}-${VERSION}.tar.gz ${NAME}-${VERSION}
 	rm -rf ${NAME}-${VERSION}
 
 man:
 	mkdir -p release/man
-	cp ${NAME}.1 release/man/${NAME}-${VERSION}.1
+	sed "s/VERSION/${VERSION}/g" < ${NAME}.1 > release/man/${NAME}-${VERSION}.1
+	sed "s/VERSION/${VERSION}/g" < ${NAME}.conf.5 > release/man/${NAME}.conf-${VERSION}.5
 
 depend:
 	${DEPS}
@@ -67,14 +79,20 @@ release:
 	strip release/bin/${NAME}-${VERSION}-${OS}-${UNAME_M}
 
 install:
-	mkdir -p ${DESTDIR}${PREFIX}/bin
+	mkdir -p ${DESTDIR}${PREFIX}/bin ${DESTDIR}${MANPREFIX}/man1\
+		${DESTDIR}${MANPREFIX}/man5
 	cp -f ${NAME} ${DESTDIR}${PREFIX}/bin
+	cp -f ${NAME}.conf ${DESTDIR}${CNFPREFIX}
 	chmod 755 ${DESTDIR}${PREFIX}/bin/${NAME}
-	mkdir -p ${DESTDIR}${MANPREFIX}/man1
 	sed "s/VERSION/${VERSION}/g" < ${NAME}.1 > ${DESTDIR}${MANPREFIX}/man1/${NAME}.1
 	chmod 644 ${DESTDIR}${MANPREFIX}/man1/${NAME}.1
+	sed "s/VERSION/${VERSION}/g" < ${NAME}.conf.5 >\
+		${DESTDIR}${MANPREFIX}/man5/${NAME}.conf.5
+	chmod 644 ${DESTDIR}${MANPREFIX}/man5/${NAME}.conf.5
 
 uninstall:
 	rm -f ${DESTDIR}${PREFIX}/bin/${NAME}
+	rm -rf ${DESTDIR}${PREFIX}/man/man1/${NAME}.1
+	rm -rf ${DESTDIR}${PREFIX}/man/man5/${NAME}.conf.5
 
 .PHONY: all clean dist man release install uninstall
