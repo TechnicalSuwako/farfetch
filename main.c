@@ -140,10 +140,10 @@ int main(int argc, char *argv[]) {
     else free((void *)res);
   } else minsize--;
   if (iswm) {
-  const char *winman = display_wm();
-  if (!winman) minsize--;
-#if !defined(__APPLE__)
-  else free((void *)winman);
+    const char *winman = display_wm();
+    if (!winman) minsize--;
+#if !defined(__APPLE__) && !defined(__HAIKU__)
+    else free((void *)winman);
 #endif
   } else minsize--;
   if (islibc) {
@@ -292,7 +292,7 @@ int main(int argc, char *argv[]) {
     if (wm) {
       printf("%s ", LOGO[lc]);
       printf("%sWM%s: %s\n", color, reset, wm);
-#if !defined(__APPLE__)
+#if !defined(__APPLE__) && !defined(__HAIKU__)
       free((void *)wm);
 #endif
       lc++;

@@ -1,7 +1,6 @@
 #if defined(__HAIKU__)
 #include "haiku.h"
 #include "../resolution.h"
-#include "../wm.h"
 
 #include <string.h>
 #include <stdlib.h>
@@ -19,9 +18,6 @@ void getOS() {
   const char *res = display_resolution();
   if (!res) minsize--;
   else free((void *)res);
-  const char *wm = display_wm();
-  if (!wm) minsize--;
-  else free((void *)wm);
 
   LOGO[0]   = YELLOW "     /      " RESET;
   LOGO[1]   = YELLOW "    //      " RESET;
