@@ -2,7 +2,7 @@
 #include "common.h"
 
 #include <stdio.h>
-#if defined(__linux__)
+#if defined(__linux__) || defined(__HAIKU__)
 #include <stdlib.h>
 #endif
 
@@ -33,6 +33,22 @@ const char *display_cpu() {
         "cat /sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq | "
         "awk '{printf \"%.2f\", $1/1000000}'; fi && "
       "echo \"GHz (\" && nproc && echo \" core)\"");
+#elif defined(__HAIKU__)
+  const char *cpuname = run_command_s("sysinfo | grep \"CPU #0:\" | "
+      "sed 's/CPU #0: \"'// | sed 's/\"//' | sed 's/(R)//' | sed 's/(TM)//' | "
+      "sed 's/^.* Gen //' | sed 's/CPU //' | sed 's/ Processor//'");
+  const char *freq = run_command_s("sysinfo | grep -A1 \"CPU #0\" | tail -1 | "
+      "sed 's/^.*: //' | awk '{ printf \"%.2f\", $1 / 1000 }'");
+  long long int proc = run_command_lld("nproc");
+
+  char *cmd = (char *)malloc(128 * sizeof(char));
+  if (!cmd) {
+    return NULL;
+  }
+
+  snprintf(cmd, 128, "%s @ %sGHz (%lld core)", cpuname, freq, proc);
+
+  return cmd;
 #elif defined(__APPLE__)
   return run_command_s("sysctl -n machdep.cpu.brand_string | sed 's/(R)//' | "
                   "sed 's/(TM)//' | sed 's/CPU //' | sed 's/ Processor//' && "
