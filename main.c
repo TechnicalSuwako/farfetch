@@ -7,7 +7,9 @@
 #if defined(__linux__) || defined(__sun)
 #include "src/distro.h"
 #endif
+#if !defined(__HAIKU__)
 #include "src/host.h"
+#endif
 #include "src/uptime.h"
 #if defined(__OpenBSD__)
 #include "src/recording.h"
@@ -217,6 +219,7 @@ int main(int argc, char *argv[]) {
   } else minsize--;
 #endif
 
+#if !defined(__HAIKU__)
   if (ishost) {
     printf("%s ", LOGO[lc]);
     printf("%s%s%s%s", color, "Host", reset, ": ");
@@ -224,6 +227,7 @@ int main(int argc, char *argv[]) {
     printf("\n");
     lc++;
   } else minsize--;
+#endif
 
   if (isuptime) {
     const char *days = display_days();
