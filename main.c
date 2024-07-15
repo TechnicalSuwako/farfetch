@@ -96,6 +96,9 @@ int main(int argc, char *argv[]) {
 #elif defined(__APPLE__)
 #include "src/logo/macos.h"
   getOS();
+#elif defined(__HAIKU__)
+#include "src/logo/haiku.h"
+  getOS();
 #else
 #include "src/logo/colors.h"
   const char *color = MAGENTA;
