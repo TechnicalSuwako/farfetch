@@ -7,6 +7,10 @@
 #include <stdlib.h>
 
 const char *display_resolution() {
+#if defined(__HAIKU__)
+  return run_command_s("screenmode | sed 's/Resolution: //' | sed 's/,.*$//' | "
+                       "sed 's/ /x/'");
+#else
   const char *display = run_command_s("echo $DISPLAY");
   if (display == NULL || strlen(display) == 0) return NULL;
   else free((void *)display);
@@ -28,4 +32,5 @@ const char *display_resolution() {
                        "connected.*[0-9]+x[0-9]+\\+/ && $2 {printf $2 "
                        "\", \"}' | sed 's/primary //' | "
                        "sed 's/,\\([^,]*\\)$/\\1/'");
+#endif
 }
