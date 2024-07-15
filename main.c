@@ -7,7 +7,9 @@
 #if defined(__linux__) || defined(__sun)
 #include "src/distro.h"
 #endif
+#if !defined(__HAIKU__)
 #include "src/host.h"
+#endif
 #include "src/uptime.h"
 #if defined(__OpenBSD__)
 #include "src/recording.h"
@@ -96,6 +98,9 @@ int main(int argc, char *argv[]) {
 #elif defined(__APPLE__)
 #include "src/logo/macos.h"
   getOS();
+#elif defined(__HAIKU__)
+#include "src/logo/haiku.h"
+  getOS();
 #else
 #include "src/logo/colors.h"
   const char *color = MAGENTA;
@@ -137,10 +142,10 @@ int main(int argc, char *argv[]) {
     else free((void *)res);
   } else minsize--;
   if (iswm) {
-  const char *winman = display_wm();
-  if (!winman) minsize--;
-#if !defined(__APPLE__)
-  else free((void *)winman);
+    const char *winman = display_wm();
+    if (!winman) minsize--;
+#if !defined(__APPLE__) && !defined(__HAIKU__)
+    else free((void *)winman);
 #endif
   } else minsize--;
   if (islibc) {
@@ -214,6 +219,7 @@ int main(int argc, char *argv[]) {
   } else minsize--;
 #endif
 
+#if !defined(__HAIKU__)
   if (ishost) {
     printf("%s ", LOGO[lc]);
     printf("%s%s%s%s", color, "Host", reset, ": ");
@@ -221,6 +227,7 @@ int main(int argc, char *argv[]) {
     printf("\n");
     lc++;
   } else minsize--;
+#endif
 
   if (isuptime) {
     const char *days = display_days();
@@ -289,7 +296,7 @@ int main(int argc, char *argv[]) {
     if (wm) {
       printf("%s ", LOGO[lc]);
       printf("%sWM%s: %s\n", color, reset, wm);
-#if !defined(__APPLE__)
+#if !defined(__APPLE__) && !defined(__HAIKU__)
       free((void *)wm);
 #endif
       lc++;

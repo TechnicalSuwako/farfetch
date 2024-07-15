@@ -1,12 +1,17 @@
 #include "gpu.h"
 #include "common.h"
 
+#if defined(__HAIKU__)
+#include <stdio.h>
+#endif
+
 #if !defined(__OpenBSD__) && !defined(__NetBSD__) && !defined(__FreeBSD__) &&\
-    !defined(__linux__) && !defined(__DragonFly__)
+    !defined(__linux__) && !defined(__DragonFly__) && !defined(__APPLE__) &&\
+    !defined(__HAIKU__)
 #include <unistd.h>
 #endif
 
-#if defined(__FreeBSD__)
+#if defined(__FreeBSD__) || defined(__Dragonfly__) || defined(__HAIKU__)
 #include <string.h>
 #include <stdlib.h>
 #endif
@@ -77,6 +82,21 @@ const char *display_gpu() {
 #elif defined(__APPLE__)
   return run_command_s("system_profiler SPDisplaysDataType | "
       "awk -F': ' '/^ *Chipset Model:/ {printf $2 \", \"}'");
+#elif defined(__HAIKU__)
+  const char *vendor = run_command_s("listdev | grep -A1 \"device Display\" | "
+        "tail -1 | sed 's/^.*: //' | sed 's/ Corporation//'");
+  const char *device = run_command_s("listdev | grep -A2 \"device Display\" | "
+        "tail -1 | sed 's/^.*: //'");
+
+  char *cmd = (char *)malloc(128 * sizeof(char));
+  if (!cmd) return NULL;
+
+  if (strncmp(vendor, device, strlen(device)) == 0)
+    snprintf(cmd, 128, "%s", device);
+  else
+    snprintf(cmd, 128, "%s %s", device, vendor);
+
+  return cmd;
 #else
   if (
       access("/bin/glxinfo", F_OK) == -1 &&

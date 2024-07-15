@@ -49,6 +49,10 @@ void display_memory() {
   long long int memcompressed = run_command_lld("vm_stat | "
                                                 "awk '/ occupied/ { printf $5 }'");
   memused = (memwired + memactive + memcompressed) * 4LL / 1024LL;
+#elif defined(__HAIKU__)
+  memtotal = run_command_lld("vmstat | awk '/max memory:/ {max=$3} END {print max/1024/1024}'");
+  long long int memfree = run_command_lld("vmstat | awk '/free memory:/ {free=$3} END {print free/1024/1024}'");
+  memused = memtotal - memfree;
 #endif
 
   printf("%lld MiB / %lld MiB", memused, memtotal);

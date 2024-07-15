@@ -2,7 +2,6 @@
 #include "macos.h"
 #include "../resolution.h"
 #include "../packages.h"
-#include "../wm.h"
 
 #include <string.h>
 #include <stdlib.h>
