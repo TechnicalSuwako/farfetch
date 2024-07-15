@@ -35,6 +35,9 @@ const char *display_packages() {
     command = "ls -l /usr/local/Cellar | wc -l | sed \"s/ //g\" && echo \" (brew)\"";
   }
   return run_command_s(command);
+#elif defined(__HAIKU__)
+  return run_command_s("find /boot/system/packages -type f -name \"*.hpkg\" | "
+                       "wc -l && echo \" (pkgman)\"");
 #endif
   return NULL;
 }
