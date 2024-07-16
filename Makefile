@@ -66,7 +66,7 @@ dist:
 
 man:
 	mkdir -p release/man/${VERSION}
-	sed "s/VERSION/${VERSION}/g" < ${NAME}.1 > release/man/${VERSION/}${NAME}.1
+	sed "s/VERSION/${VERSION}/g" < ${NAME}.1 > release/man/${VERSION}/${NAME}.1
 	sed "s/VERSION/${VERSION}/g" < ${NAME}.conf.5 > release/man/${VERSION}/${NAME}.conf.5
 
 depend:
