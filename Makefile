@@ -65,18 +65,18 @@ dist:
 	rm -rf ${NAME}-${VERSION}
 
 man:
-	mkdir -p release/man
-	sed "s/VERSION/${VERSION}/g" < ${NAME}.1 > release/man/${NAME}-${VERSION}.1
-	sed "s/VERSION/${VERSION}/g" < ${NAME}.conf.5 > release/man/${NAME}.conf-${VERSION}.5
+	mkdir -p release/man/${VERSION}
+	sed "s/VERSION/${VERSION}/g" < ${NAME}.1 > release/man/${VERSION/}${NAME}.1
+	sed "s/VERSION/${VERSION}/g" < ${NAME}.conf.5 > release/man/${VERSION}/${NAME}.conf.5
 
 depend:
 	${DEPS}
 
 release:
-	mkdir -p release/bin
-	${CC} ${CFLAGS} -o release/bin/${NAME}-${VERSION}-${OS}-${UNAME_M} ${FILES}\
+	mkdir -p release/bin/${VERSION}/${OS}/${UNAME_M}
+	${CC} ${CFLAGS} -o release/bin/${VERSION}/${OS}/${UNAME_M}/${NAME} ${FILES}\
 		-static ${LDFLAGS}
-	strip release/bin/${NAME}-${VERSION}-${OS}-${UNAME_M}
+	strip release/bin/${VERSION}/${OS}/${UNAME_M}/${NAME}
 
 install:
 	mkdir -p ${DESTDIR}${PREFIX}/bin ${DESTDIR}${MANPREFIX}/man1\
