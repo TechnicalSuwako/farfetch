@@ -10,6 +10,9 @@ const char *display_resolution() {
 #if defined(__HAIKU__)
   return run_command_s("screenmode | sed 's/Resolution: //' | sed 's/,.*$//' | "
                        "sed 's/ /x/'");
+#elif defined(__APPLE__)
+  return run_command_s("system_profiler SPDisplaysDataType | grep Resolution | "
+                       "sed 's/^.*: //' | sed 's/ Retina//' | sed 's/ //g'");
 #else
   const char *display = run_command_s("echo $DISPLAY");
   if (display == NULL || strlen(display) == 0) return NULL;

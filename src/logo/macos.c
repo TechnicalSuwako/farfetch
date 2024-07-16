@@ -1,6 +1,5 @@
 #if defined(__APPLE__)
 #include "macos.h"
-#include "../resolution.h"
 #include "../packages.h"
 
 #include <string.h>
@@ -16,9 +15,6 @@ int minsize = MIN_SIZE;
 void getOS() {
   color = YELLOW;
   titlecolor = GREEN;
-  const char *res = display_resolution();
-  if (!res) minsize--;
-  else free((void *)res);
   const char *pac = display_packages();
   if (!pac) minsize--;
   else free((void *)pac);
