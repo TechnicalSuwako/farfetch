@@ -27,7 +27,7 @@
 #include "src/config.h"
 
 const char *sofname = "farfetch";
-const char *version = "0.2.0";
+const char *version = "0.3.0";
 #if defined(__linux__) || defined(__sun)
 const char *avalopt = "ls";
 #else

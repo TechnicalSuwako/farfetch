@@ -1,3 +1,6 @@
+# 0.3.0
+* macOSでOS情報の修正
+
 # 0.2.0
 * Manjaroのロゴの追加
 * OpenSUSEのロゴの追加
