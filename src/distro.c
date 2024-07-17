@@ -85,7 +85,7 @@ void get_distro() {
 
   if (strstr(buf, "Alpine") != NULL) distroname = "alpine";
   else if (strstr(buf, "Arch Linux") != NULL) distroname = "arch";
-  else if (strstr(buf, "Arco Linux") != NULL) distroname = "arco";
+  else if (strstr(buf, "ArcoLinux") != NULL) distroname = "arco";
   else if (strstr(buf, "Artix Linux") != NULL) distroname = "artix";
   else if (strstr(buf, "CentOS") != NULL) distroname = "centos";
   else if (strstr(buf, "CRUX") != NULL) distroname = "crux";
