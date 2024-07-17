@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
+#include <stdbool.h>
+#include <ctype.h>
 
 #include "config.h"
 
@@ -23,6 +25,21 @@ bool iscpu = true;
 bool isgpu = true;
 bool ismemory = true;
 bool isstorage = true;
+
+bool containvocab(const char *line, const char *word) {
+  const char *p = line;
+  size_t len = strlen(word);
+  while ((p = strstr(p, word)) != NULL) {
+    if (
+      (p == line || !isalnum((unsigned char)p[-1])) &&
+      !isalnum((unsigned char)p[len])
+    ) return true;
+
+    p += len;
+  }
+
+  return false;
+}
 
 void getconf() {
   char *homedir = getenv("HOME");
@@ -61,24 +78,24 @@ void getconf() {
   while (fgets(line, sizeof(line), file)) {
     if (line[0] == '#' || line[0] == '\n') continue;
     if (strstr(line, "hide ") != NULL) {
-      if (strstr(line, "os") != NULL) isos = false;
-      if (strstr(line, "host") != NULL) ishost = false;
+      if (containvocab(line, "os")) isos = false;
+      if (containvocab(line, "host")) ishost = false;
 #if defined(__linux__) || defined(__sunos)
-      if (strstr(line, "distro") != NULL) isdistro = false;
+      if (containvocab(line, "distro")) isdistro = false;
 #endif
-      if (strstr(line, "uptime") != NULL) isuptime = false;
+      if (containvocab(line, "uptime")) isuptime = false;
 #if defined (__OpenBSD__)
-      if (strstr(line, "recording") != NULL) isrecording = false;
+      if (containvocab(line, "recording")) isrecording = false;
 #endif
-      if (strstr(line, "packages") != NULL) ispackages = false;
-      if (strstr(line, "libc") != NULL) islibc = false;
-      if (strstr(line, "resolution") != NULL) isresolution = false;
-      if (strstr(line, "wm") != NULL) iswm = false;
-      if (strstr(line, "shell") != NULL) isshell = false;
-      if (strstr(line, "cpu") != NULL) iscpu = false;
-      if (strstr(line, "gpu") != NULL) isgpu = false;
-      if (strstr(line, "memory") != NULL) ismemory = false;
-      if (strstr(line, "storage") != NULL) isstorage = false;
+      if (containvocab(line, "packages")) ispackages = false;
+      if (containvocab(line, "libc")) islibc = false;
+      if (containvocab(line, "resolution")) isresolution = false;
+      if (containvocab(line, "wm")) iswm = false;
+      if (containvocab(line, "shell")) isshell = false;
+      if (containvocab(line, "cpu")) iscpu = false;
+      if (containvocab(line, "gpu")) isgpu = false;
+      if (containvocab(line, "memory")) ismemory = false;
+      if (containvocab(line, "storage")) isstorage = false;
     }
   }
 
