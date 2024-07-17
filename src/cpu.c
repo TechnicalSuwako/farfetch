@@ -25,13 +25,8 @@ const char *display_cpu() {
       "cpu=$2; if ($1 == \"Hardware\") exit } END { print cpu }' | "
       "sed 's/(R)//' | sed 's/(TM)//' | sed 's/CPU //' | sed 's/ Processor//' | "
       "sed 's/ [0-9]-Core//' && echo \" @ \" && "
-      "if [ \"$(LC_ALL=C cat /sys/devices/system/cpu/cpu0/cpufreq/bios_limit 2>&1)\""
-      " != \"cat: /sys/devices/system/cpu/cpu0/cpufreq/bios_limit: "
-      "No such file or directory\" ]; then "
-        "cat /sys/devices/system/cpu/cpu0/cpufreq/bios_limit | "
-        "awk '{printf \"%.2f\", $1/1000000}'; else "
-        "cat /sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq | "
-        "awk '{printf \"%.2f\", $1/1000000}'; fi && "
+      "cat /proc/cpuinfo | grep \"cpu MHz\" | sort -nr | head -1 | sed 's/^.*: //' | "
+      "awk '{printf \"%.2f\", $1/1000}' && "
       "echo \"GHz (\" && nproc && echo \" core)\"");
 #elif defined(__HAIKU__)
   const char *cpuname = run_command_s("sysinfo | grep \"CPU #0:\" | "
