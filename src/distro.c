@@ -32,8 +32,11 @@ const char *display_distro() {
     cmd = "echo \"GoboLinux\" && cat /etc/GoboLinuxVersion | "
           "grep '^PRETTY_NAME' | cut -d '=' -f2 | tr -d '\"'";
   } else if (access("/etc/os-release", F_OK) != -1) {
-    cmd = "cat /etc/os-release | "
-          "grep '^PRETTY_NAME' | cut -d '=' -f2 | tr -d '\"'";
+    cmd = "if grep -q \"^PRETTY_NAME=\" /etc/os-release; then "
+          "grep '^PRETTY_NAME=' /etc/os-release | cut -d \"=\" -f2 | tr -d '\"'; "
+          "else "
+          "grep '^NAME=' /etc/os-release | cut -d \"=\" -f2 | tr -d '\"'; "
+          "fi";
   } else if (access("/usr/lib/os-release", F_OK) != -1) {
     cmd = "cat /usr/lib/os-release | "
           "grep '^PRETTY_NAME' | cut -d '=' -f2 | tr -d '\"'";
