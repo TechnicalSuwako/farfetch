@@ -345,6 +345,41 @@ void getDistro(const char *distroname) {
     for (int i = 7; i < minsize; i++) {
       LOGO_SMALL[i]  = MAGENTA "             " RESET;
     }
+  } else if (strncmp((char *)logoname, "kubuntu", strlen("kubuntu")) == 0) {
+    color = BLUE;
+    titlecolor = BLUE;
+    logosize = 20;
+
+    LOGO[0]  = BLUE "           `.:/ossyyyysso/:.               " RESET;
+    LOGO[1]  = BLUE "        .:oyyyyyyyyyyyyyyyyyyo:`           " RESET;
+    LOGO[2]  = BLUE "      -oyyyyyyyo" WHITE "dMMy" BLUE "yyyyyyysyyyyo-         " RESET;
+    LOGO[3]  = BLUE "    -syyyyyyyyyy" WHITE "dMMy" BLUE "oyyyy" WHITE "dmMMy" BLUE "yyyys-       " RESET;
+    LOGO[4]  = BLUE "   oyyys" WHITE "dMy" BLUE "syyyy" WHITE "dMMMMMMMMMMMMMy" BLUE "yyyyyyo     " RESET;
+    LOGO[5]  = BLUE " `oyyyy" WHITE "dMMMMy" BLUE "syysoooooo" WHITE "dMMMMy" BLUE "yyyyyyyyo`    " RESET;
+    LOGO[6]  = BLUE " oyyyyyy" WHITE "dMMMMy" BLUE "yyyyyyyyyyy" WHITE "sdMMy" BLUE "sssssyyyo    " RESET;
+    LOGO[7]  = BLUE "-yyyyyyyy" WHITE "dMy" BLUE "syyyyyyyyyyyyyys" WHITE "dMMMMMy" BLUE "syyy-   " RESET;
+    LOGO[8]  = BLUE "oyyyysoo" WHITE "dMy" BLUE "yyyyyyyyyyyyyyyyyy" WHITE "dMMMMy" BLUE "syyyo   " RESET;
+    LOGO[9]  = BLUE "yyys" WHITE "dMMMMMy" BLUE "yyyyyyyyyyyyyyyyyysosyyyyyyyy   " RESET;
+    LOGO[10] = BLUE "yyys" WHITE "dMMMMMy" BLUE "yyyyyyyyyyyyyyyyyyyyyyyyyyyyy   " RESET;
+    LOGO[11] = BLUE "oyyyyysos" WHITE "dy" BLUE "yyyyyyyyyyyyyyyyyy" WHITE "dMMMMy" BLUE "syyyo   " RESET;
+    LOGO[12] = BLUE "-yyyyyyyy" WHITE "dMy" BLUE "syyyyyyyyyyyyyys" WHITE "dMMMMMy" BLUE "syyy-   " RESET;
+    LOGO[13] = BLUE " oyyyyyy" WHITE "dMMMy" BLUE "syyyyyyyyyyys" WHITE "dMMy" BLUE "oyyyoyyyo    " RESET;
+    LOGO[14] = BLUE " `oyyyy" WHITE "dMMMy" BLUE "syyyoooooo" WHITE "dMMMMy" BLUE "oyyyyyyyyo     " RESET; 
+    LOGO[15] = BLUE "   oyyysyyoyyyys" WHITE "dMMMMMMMMMMMy" BLUE "yyyyyyyo      " RESET;
+    LOGO[16] = BLUE "    -syyyyyyyyy" WHITE "dMMMy" BLUE "syyy" WHITE "dMMMy" BLUE "syyyys-       " RESET;
+    LOGO[17] = BLUE "      -oyyyyyyy" WHITE "dMMy" BLUE "yyyyyysosyyyyo-         " RESET;
+    LOGO[18] = BLUE "        ./oyyyyyyyyyyyyyyyyyyo/.           " RESET;
+    LOGO[19] = BLUE "           `.:/oosyyyysso/:.`              " RESET;
+
+    LOGO_SMALL[0] = BLUE "     |      " RESET;
+    LOGO_SMALL[1] = BLUE "  \\  ---\\/  " RESET;
+    LOGO_SMALL[2] = BLUE "  /  ---  \\ " RESET;
+    LOGO_SMALL[3] = BLUE " -| |   |  =" RESET;
+    LOGO_SMALL[4] = BLUE "  \\  --- _/ " RESET;
+    LOGO_SMALL[5] = BLUE " /   ---/ \\ " RESET;
+    for (int i = 6; i < minsize; i++) {
+      LOGO_SMALL[i]  = BLUE "            " RESET;
+    }
   } else if (strncmp((char *)logoname, "linuxmint", strlen("linuxmint")) == 0) {
     color = GREEN;
     titlecolor = GREEN;
@@ -379,6 +414,41 @@ void getDistro(const char *distroname) {
     LOGO_SMALL[6] = GREEN "  \\_________/ " RESET;
     for (int i = 7; i < minsize; i++) {
       LOGO_SMALL[i]  = GREEN "              " RESET;
+    }
+  } else if (strncmp((char *)logoname, "lubuntu", strlen("lubuntu")) == 0) {
+    color = BLUE;
+    titlecolor = BLUE;
+    logosize = 20;
+
+    LOGO[0]  = BLUE "           `-mddhhhhhhhhhddmss`             " RESET;
+    LOGO[1]  = BLUE "        ./mdhhhhhhhhhhhhhhhhhhhhhh.         " RESET;
+    LOGO[2]  = BLUE "     :mdhhhhhhhhhhhhhhhhhhhhhhhhhhhm`       " RESET;
+    LOGO[3]  = BLUE "   :ymhhhhhhhhhhhhhhhyyyyyyhhhhhhhhhy:      " RESET;
+    LOGO[4]  = BLUE "  `odhyyyhhhhhhhhhy+-````./syhhhhhhhho`     " RESET;
+    LOGO[5]  = BLUE " `hhy..:oyhhhhhhhy-`:osso/..:/++oosyyyh`    " RESET;
+    LOGO[6]  = BLUE " dhhs   .-/syhhhhs`shhhhhhyyyyyyyyyyyyhs    " RESET;
+    LOGO[7]  = BLUE ":hhhy`  yso/:+syhy/yhhhhhshhhhhhhhhhhhhh:   " RESET;
+    LOGO[8]  = BLUE "hhhhho. +hhhys++oyyyhhhhh-yhhhhhhhhhhhhhs   " RESET;
+    LOGO[9]  = BLUE "hhhhhhs-`/syhhhhyssyyhhhh:-yhhhhhhhhhhhhh   " RESET;
+    LOGO[10] = BLUE "hhhhhhs  `:/+ossyyhyyhhhhs -yhhhhhhhhhhhh   " RESET;
+    LOGO[11] = BLUE "hhhhhhy/ `syyyssyyyyhhhhhh: :yhhhhhhhhhhs   " RESET;
+    LOGO[12] = BLUE ":hhhhhhyo:-/osyhhhhhhhhhhho  ohhhhhhhhhh:   " RESET;
+    LOGO[13] = BLUE " sdhhhhhhhyyssyyhhhhhhhhhhh+  +hhhhhhhhs    " RESET;
+    LOGO[14] = BLUE " `shhhhhhhhhhhhhhhhhhhhhhy+` .yhhhhhhhh`    " RESET;
+    LOGO[15] = BLUE "  +sdhhhhhhhhhhhhhhhhhyo/. `/yhhhhhhhd`     " RESET;
+    LOGO[16] = BLUE "   `:shhhhhhhhhh+---..``.:+yyhhhhhhh:       " RESET;
+    LOGO[17] = BLUE "     `:mdhhhhhh/.syssyyyyhhhhhhhd:`         " RESET;
+    LOGO[18] = BLUE "        `+smdhhh+shhhhhhhhhhhhdm`           " RESET;
+    LOGO[19] = BLUE "           `sNmdddhhhhhhhddm-`              " RESET;
+
+    LOGO_SMALL[0] = BLUE "    _____   " RESET;
+    LOGO_SMALL[1] = BLUE "   /   _ \\  " RESET;
+    LOGO_SMALL[2] = BLUE "  /\\\\_|_\\ \\ " RESET;
+    LOGO_SMALL[3] = BLUE " | |   \\   |" RESET;
+    LOGO_SMALL[4] = BLUE "  \\  __/  / " RESET;
+    LOGO_SMALL[5] = BLUE "   \\_____/  " RESET;
+    for (int i = 6; i < minsize; i++) {
+      LOGO_SMALL[i]  = BLUE "            " RESET;
     }
   } else if (strncmp((char *)logoname, "manjaro", strlen("manjaro")) == 0) {
     color = GREEN;
@@ -618,6 +688,41 @@ void getDistro(const char *distroname) {
     LOGO_SMALL[6] = GREEN " -_______\\     " RESET;
     for (int i = 7; i < minsize; i++) {
       LOGO_SMALL[i]  = GREEN "               " RESET;
+    }
+  } else if (strncmp((char *)logoname, "xubuntu", strlen("xubuntu")) == 0) {
+    color = BLUE;
+    titlecolor = BLUE;
+    logosize = 20;
+
+    LOGO[0]  = BLUE "           `-/osyhddddhyso/-`              " RESET;
+    LOGO[1]  = BLUE "        .+yddddddddddddddddddy+.           " RESET;
+    LOGO[2]  = BLUE "      :yddddddddddddddddddddddddy:         " RESET;
+    LOGO[3]  = BLUE "    -yddddddddddddddddddddhdddddddy-       " RESET;
+    LOGO[4]  = BLUE "   odddddddddddyshdddddddh`dddd+ydddo      " RESET;
+    LOGO[5]  = BLUE " `yddddddhshdd-   ydddddd+`ddh.:dddddy`    " RESET;
+    LOGO[6]  = BLUE " sddddddy   /d.   :dddddd-:dy`-ddddddds    " RESET;
+    LOGO[7]  = BLUE ":ddddddds    /+   .dddddd`yy`:ddddddddd:   " RESET;
+    LOGO[8]  = BLUE "sdddddddd`    .    .-:/+ssdyodddddddddds   " RESET;
+    LOGO[9]  = BLUE "ddddddddy                  `:ohddddddddd   " RESET;
+    LOGO[10] = BLUE "dddddddd.                      +dddddddd   " RESET;
+    LOGO[11] = BLUE "sddddddy                        ydddddds   " RESET;
+    LOGO[12] = BLUE ":dddddd+                      .oddddddd:   " RESET;
+    LOGO[13] = BLUE " sdddddo                   ./ydddddddds    " RESET;
+    LOGO[14] = BLUE " `yddddd.              `:ohddddddddddy`    " RESET;
+    LOGO[15] = BLUE "   oddddh/`      `.:+shdddddddddddddo      " RESET;
+    LOGO[16] = BLUE "    -ydddddhyssyhdddddddddddddddddy-       " RESET;
+    LOGO[17] = BLUE "      :yddddddddddddddddddddddddy:         " RESET;
+    LOGO[18] = BLUE "        .+yddddddddddddddddddy+.           " RESET;
+    LOGO[19] = BLUE "           `-/osyhddddhyso/-`              " RESET;
+
+    LOGO_SMALL[0] = BLUE "    _____   " RESET;
+    LOGO_SMALL[1] = BLUE "   /     \\  " RESET;
+    LOGO_SMALL[2] = BLUE "  / ||_ / \\ " RESET;
+    LOGO_SMALL[3] = BLUE " | |   \\   |" RESET;
+    LOGO_SMALL[4] = BLUE "  \\ \\__/  / " RESET;
+    LOGO_SMALL[5] = BLUE "   \\_____/  " RESET;
+    for (int i = 6; i < minsize; i++) {
+      LOGO_SMALL[i]  = BLUE "            " RESET;
     }
   } else {
     color = WHITE;

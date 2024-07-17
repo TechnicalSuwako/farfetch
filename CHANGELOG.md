@@ -4,6 +4,7 @@
 * コンフィグのエラーの修正（osとhostのコンフリクト）
 * Linux: 全てのケースに解像度を受け取る様に
 * Linux: 「/proc/cpuinfo」で使ってCPU速さの受け取る様に
+* Kubuntu、Xubuntu、Lubuntuロゴの追加
 
 # 0.2.0
 * Manjaroのロゴの追加

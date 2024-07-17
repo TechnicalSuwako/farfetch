@@ -1,5 +1,6 @@
 #if defined(__linux__) || defined(__sun)
 #include "distro.h"
+#include "common.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -98,5 +99,13 @@ void get_distro() {
   else if (strstr(buf, "CRUX") != NULL) distroname = "crux";
   else if (strstr(buf, "OmniOS") != NULL) distroname = "omnios";
   else distroname = "linux";
+
+  if (strncmp(distroname, "ubuntu", strlen("ubuntu")) == 0) {
+    const char *desktop = run_command_s("echo $XDG_CURRENT_DESKTOP");
+    if (strncmp(desktop, "KDE", strlen("KDE")) == 0) distroname = "kubuntu";
+    else if (strncmp(desktop, "XFCE", strlen("XFCE")) == 0) distroname = "xubuntu";
+    else if (strncmp(desktop, "LXQt", strlen("LXQt")) == 0) distroname = "lubuntu";
+    // TODO: Ubuntu Budgie, Ubuntu Cinnamon, Ubuntu Kylin, Ubuntu MATE, Ubuntu Unity
+  }
 }
 #endif
