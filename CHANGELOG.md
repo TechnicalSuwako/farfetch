@@ -6,6 +6,7 @@
 * Linux: 「/proc/cpuinfo」で使ってCPU速さの受け取る様に
 * Kubuntu、Xubuntu、Lubuntuロゴの追加
 * Arcoロゴの追加
+* Linux: 「hostname」コマンドがなければ、「cat /etc/hostname」を実効する様に
 
 # 0.2.0
 * Manjaroのロゴの追加
