@@ -50,3 +50,10 @@ sudo apt install -y build-essential bmake git pciutils
 bmake
 sudo bmake install
 ```
+
+### Fedora | Red Hat | CentOS | Rocky Linux
+```sh
+sudo dnf install bmake clang
+bmake
+sudo bmake install
+```

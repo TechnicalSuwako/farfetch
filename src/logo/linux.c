@@ -108,6 +108,46 @@ void getDistro(const char *distroname) {
     for (int i = 7; i < minsize; i++) {
       LOGO_SMALL[i]  = CYAN "                " RESET;
     }
+  } else if (strncmp((char *)logoname, "arco", strlen("arch")) == 0) {
+    color = BLUE;
+    titlecolor = WHITE;
+    logosize = 20;
+
+    LOGO[0]  = BLUE "                    /-                      " RESET;
+    LOGO[1]  = BLUE "                   ooo:                     " RESET;
+    LOGO[2]  = BLUE "                  yoooo/                    " RESET;
+    LOGO[3]  = BLUE "                 yooooooo                   " RESET;
+    LOGO[4]  = BLUE "                yooooooooo                  " RESET;
+    LOGO[5]  = BLUE "               yooooooooooo                 " RESET;
+    LOGO[6]  = BLUE "             .yooooooooooooo                " RESET;
+    LOGO[7]  = BLUE "            .oooooooooooooooo               " RESET;
+    LOGO[8]  = BLUE "           .oooooooarcoooooooo              " RESET;
+    LOGO[9]  = BLUE "          .ooooooooo-oooooooooo             " RESET;
+    LOGO[10] = BLUE "         .ooooooooo-  oooooooooo            " RESET;
+    LOGO[11] = BLUE "        :ooooooooo.    :ooooooooo           " RESET;
+    LOGO[12] = BLUE "       :ooooooooo.      :ooooooooo          " RESET;
+    LOGO[13] = BLUE "      :oooarcooo         .oooarcooo         " RESET;
+    LOGO[14] = BLUE "     :ooooooooy           .ooooooooo        " RESET;
+    LOGO[15] = BLUE "    :ooooooooo   " WHITE "/ooooooooooooooooooo       " RESET;
+    LOGO[16] = BLUE "   :ooooooooo      " WHITE ".-ooooooooooooooooo.     " RESET;
+    LOGO[17] = BLUE "  ooooooooo-             " WHITE "-ooooooooooooo.    " RESET;
+    LOGO[18] = BLUE " ooooooooo-                 " WHITE ".-oooooooooo.   " RESET;
+    LOGO[19] = BLUE "ooooooooo.                     " WHITE "-ooooooooo   " RESET;
+
+    LOGO_SMALL[0]  = BLUE "          A             " RESET;
+    LOGO_SMALL[1]  = BLUE "         ooo            " RESET;
+    LOGO_SMALL[2]  = BLUE "        ooooo           " RESET;
+    LOGO_SMALL[3]  = BLUE "       ooooooo          " RESET;
+    LOGO_SMALL[4]  = BLUE "      ooooooooo         " RESET;
+    LOGO_SMALL[5]  = BLUE "     ooooo ooooo        " RESET;
+    LOGO_SMALL[6]  = BLUE "    ooooo   ooooo       " RESET;
+    LOGO_SMALL[7]  = BLUE "   ooooo     ooooo      " RESET;
+    LOGO_SMALL[8]  = BLUE "  ooooo  " WHITE "<oooooooo>     " RESET;
+    LOGO_SMALL[9]  = BLUE " ooooo      " WHITE "<oooooo>    " RESET;
+    LOGO_SMALL[10] = BLUE "ooooo          " WHITE "<oooo>   " RESET;
+    for (int i = 11; i < minsize; i++) {
+      LOGO_SMALL[i]  = BLUE "                        " RESET;
+    }
   } else if (strncmp((char *)logoname, "artix", strlen("artix")) == 0) {
     color = CYAN;
     titlecolor = CYAN;

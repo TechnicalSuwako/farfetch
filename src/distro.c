@@ -80,24 +80,25 @@ const char *display_distro() {
 void get_distro() {
   const char *buf = display_distro();
 
-  if (strstr(buf, "Devuan") != NULL) distroname = "devuan";
-  else if (strstr(buf, "Void Linux") != NULL) distroname = "void";
-  else if (strstr(buf, "Debian") != NULL) distroname = "debian";
-  else if (strstr(buf, "Ubuntu") != NULL) distroname = "ubuntu";
+  if (strstr(buf, "Alpine") != NULL) distroname = "alpine";
   else if (strstr(buf, "Arch Linux") != NULL) distroname = "arch";
+  else if (strstr(buf, "Arco Linux") != NULL) distroname = "arco";
   else if (strstr(buf, "Artix Linux") != NULL) distroname = "artix";
-  else if (strstr(buf, "Alpine") != NULL) distroname = "alpine";
-  else if (strstr(buf, "Manjaro") != NULL) distroname = "manjaro";
-  else if (strstr(buf, "Gentoo") != NULL) distroname = "gentoo";
-  else if (strstr(buf, "Fedora") != NULL) distroname = "fedora";
-  else if (strstr(buf, "Rocky") != NULL) distroname = "rocky";
   else if (strstr(buf, "CentOS") != NULL) distroname = "centos";
-  else if (strstr(buf, "Red Hat") != NULL) distroname = "redhat";
-  else if (strstr(buf, "postmarketOS") != NULL) distroname = "postmarketos";
-  else if (strstr(buf, "Linux Mint") != NULL) distroname = "linuxmint";
-  else if (strstr(buf, "opensuse") != NULL) distroname = "opensuse";
   else if (strstr(buf, "CRUX") != NULL) distroname = "crux";
+  else if (strstr(buf, "Debian") != NULL) distroname = "debian";
+  else if (strstr(buf, "Devuan") != NULL) distroname = "devuan";
+  else if (strstr(buf, "Fedora") != NULL) distroname = "fedora";
+  else if (strstr(buf, "Gentoo") != NULL) distroname = "gentoo";
+  else if (strstr(buf, "Linux Mint") != NULL) distroname = "linuxmint";
+  else if (strstr(buf, "Manjaro") != NULL) distroname = "manjaro";
+  else if (strstr(buf, "opensuse") != NULL) distroname = "opensuse";
   else if (strstr(buf, "OmniOS") != NULL) distroname = "omnios";
+  else if (strstr(buf, "postmarketOS") != NULL) distroname = "postmarketos";
+  else if (strstr(buf, "Red Hat") != NULL) distroname = "redhat";
+  else if (strstr(buf, "Rocky") != NULL) distroname = "rocky";
+  else if (strstr(buf, "Ubuntu") != NULL) distroname = "ubuntu";
+  else if (strstr(buf, "Void Linux") != NULL) distroname = "void";
   else distroname = "linux";
 
   if (strncmp(distroname, "ubuntu", strlen("ubuntu")) == 0) {
