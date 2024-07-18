@@ -4,7 +4,8 @@
 * コンフィグのエラーの修正（osとhostのコンフリクト）
 * Linux: 全てのケースに解像度を受け取る様に
 * Linux: 「/proc/cpuinfo」で使ってCPU速さの受け取る様に
-* Kubuntu、Xubuntu、Lubuntu、Arco、Hyperbola、Parabola、Pop OS、Ubuntu MATE、Ubuntu Budgie、とUbuntu Lomiriロゴの追加
+* Kubuntu、Xubuntu、Lubuntu、Arco、Hyperbola、Parabola、とPop OSロゴの追加
+* Ubuntu MATE、Ubuntu Budgie、Ubuntu Lomiri、Ubuntu Unity、とUbuntu Cinnamonロゴの追加
 * Linux: 「hostname」コマンドがなければ、「cat /etc/hostname」を実効する様に
 * Linux: pacman、rpm対応
 

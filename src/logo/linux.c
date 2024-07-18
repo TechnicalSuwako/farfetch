@@ -794,6 +794,46 @@ void getDistro(const char *distroname) {
     for (int i = 6; i < minsize; i++) {
       LOGO_SMALL[i]  = WHITE "            " RESET;
     }
+  } else if (strncmp(
+        (char *)logoname,
+        "ubuntucinnamon",
+        strlen("ubuntucinnamon")) == 0
+  ) {
+    color = RED;
+    titlecolor = RED;
+    logosize = 21;
+
+    LOGO[0] = RED "              +++++++++++++               " RESET; 
+    LOGO[1] = RED "         +++++++++++++++++++++            " RESET;
+    LOGO[2] = RED "       +++++++++++++++++++" WHITE "/|" RED "++++          " RESET;
+    LOGO[3] = RED "     ++++++++++++++++++++" WHITE "/x|" RED "++++++        " RESET;
+    LOGO[4] = RED "   +++++++++++++++++++++" WHITE "/xx|" RED "++++++++      " RESET;
+    LOGO[5] = RED "  +++++++++++++" WHITE "xxxxxxxxx" RED "-++:+++++++++     " RESET;
+    LOGO[6] = RED " +++++++++++" WHITE "xx" RED "++++++++++" WHITE "xxx" RED "+++++++++++    " RESET;
+    LOGO[7] = RED " ++++++++++" WHITE "xx" RED "+++++++++++++" WHITE "xx" RED "-+++++++++    " RESET;
+    LOGO[8] = RED "++++++++++" WHITE "xx" RED "+++++++++++++++" WHITE "xx" RED "=+++++++++   " RESET;
+    LOGO[9] = RED "+++++" WHITE "-/." RED "+." WHITE "x" RED "+++++++" WHITE "xxx" RED "++" WHITE "x" RED ":+++" WHITE "xx" RED "+++++++++   " RESET;
+    LOGO[10] = RED "+++" WHITE "<xxx" RED "-+" WHITE "xx" RED "+++++" WHITE "xxx" RED "-+=" WHITE "xxxx" RED "+++++++++++++   " RESET;
+    LOGO[11] = RED "+++++" WHITE "-\\." RED "+" WHITE "xx" RED "++++" WHITE "xx" RED ".++" WHITE "xxxxxxxxxx" RED "+++++++++   " RESET;
+    LOGO[12] = RED "++++++++++" WHITE "xx" RED "+" WHITE "xxx" RED "++." WHITE "xxxxxxxxxx" RED "++++++++++   " RESET;
+    LOGO[13] = RED " ++++++++++" WHITE "xxx" RED ":+=" WHITE "xxxxxxxxxxx" RED "++++++++++    " RESET;
+    LOGO[14] = RED " +++++++++++=++" WHITE "xxxxxxxxxxx" RED ".+++++++++++    " RESET;
+    LOGO[15] = RED "  +++++++++++++-" WHITE "xxxxxxx" RED "++++++++++++++     " RESET;
+    LOGO[16] = RED "   ++++++++++++++++++++=" WHITE "\\xx|" RED "++++++++      " RESET;
+    LOGO[17] = RED "     ++++++++++++++++++++" WHITE "\\_|" RED "++++++        " RESET;
+    LOGO[18] = RED "       +++++++++++++++++++++++++          " RESET;
+    LOGO[19] = RED "         +++++++++++++++++++++            " RESET;
+    LOGO[20] = RED "             +++++++++++++                " RESET;
+
+    LOGO_SMALL[0] = RED "    _____   " RESET;
+    LOGO_SMALL[1] = RED "   / ___/|  " RESET;
+    LOGO_SMALL[2] = RED "  / /   \\ \\ " RESET;
+    LOGO_SMALL[3] = RED "  <|/\\/\\| | " RESET;
+    LOGO_SMALL[4] = RED "  \\ \\___/ / " RESET;
+    LOGO_SMALL[5] = RED "   \\___\\|/  " RESET;
+    for (int i = 6; i < minsize; i++) {
+      LOGO_SMALL[i]  = RED "            " RESET;
+    }
   } else if (strncmp((char *)logoname, "ubuntulomiri", strlen("ubuntulomiri")) == 0) {
     color = RED;
     titlecolor = GREY;
@@ -866,6 +906,40 @@ void getDistro(const char *distroname) {
     LOGO_SMALL[5] = GREEN "   \\_____/  " RESET;
     for (int i = 6; i < minsize; i++) {
       LOGO_SMALL[i]  = GREEN "            " RESET;
+    }
+  } else if (strncmp((char *)logoname, "ubuntuunity", strlen("ubuntuunity")) == 0) {
+    color = RED;
+    titlecolor = BLUE;
+    logosize = 19;
+
+    LOGO[0]  = BLUE    "           SSSSSSSSSSSSS              " RESET;
+    LOGO[1]  = BLUE    "         SSSSSSSSSSSSSSSSS            " RESET;
+    LOGO[2]  = BLUE    "       SSSSSSS" WHITE "xxxx" BLUE "SS" WHITE "x" MAGENTA "EEEEEEEE         " RESET;
+    LOGO[3]  = BLUE    "     SSSSS" WHITE "xxx" BLUE "SSSSS" WHITE "xxxxxx" MAGENTA "EEEEEE        " RESET;
+    LOGO[4]  = BLUE    "    SSSS" WHITE "xx" BLUE "SSS" WHITE "xxxx" MAGENTA "E" WHITE "xxxxxx" MAGENTA "E" WHITE "xx" MAGENTA "EEEE       " RESET;
+    LOGO[5]  = BLUE    "   SSS" WHITE "xx" BLUE "SS" WHITE "xx" BLUE "SSS" WHITE "xxx" BLUE "S" WHITE "xxx" MAGENTA "EE" WHITE "x" MAGENTA "EE" WHITE "xx" MAGENTA "EEE      " RESET;
+    LOGO[6]  = BLUE    "  SSS" WHITE "xx" BLUE "SS" WHITE "x" BLUE "SS" WHITE "xx" MAGENTA "EEEEEEE" WHITE "xx" MAGENTA "EE" WHITE "x" MAGENTA "EE" WHITE "xx" MAGENTA "EEE     " RESET;
+    LOGO[7]  = BLUE    " SSS" WHITE "x" BLUE "SSS" WHITE "x" BLUE "S" WHITE "xx" MAGENTA "EEEEEEEEEEE" WHITE "x" RED "XX" WHITE "x" RED "XX" WHITE "x" RED "XXXX    " RESET;
+    LOGO[8]  = BLUE    "SSSSS" WHITE "xxx" MAGENTA "EEEEEEEEEEEEEEEE" WHITE "x" RED "X" WHITE "xx" RED "X" WHITE "x" RED "XXXXX   " RESET;
+    LOGO[9]  = BLUE    "SSSS" WHITE "xxxxxx" MAGENTA "EEEEEEEEEEEEEE" WHITE "x" RED "XX" WHITE "x" RED "XX" WHITE "x" RED "XXXX   " RESET;
+    LOGO[10] = BLUE    "SSSS" WHITE "xxxxxx" MAGENTA "EEEEEEEEEEEE" RED "XX" WHITE "x" RED "X" WHITE "xx" RED "XX" WHITE "x" RED "XXXX   " RESET;
+    LOGO[11] = MAGENTA "EEEEEE" WHITE "x" MAGENTA "EEEE" WHITE "x" MAGENTA "EEEEEEEE" RED "XXX" WHITE "x" RED "XX" WHITE "x" RED "XX" WHITE "xx" RED "XXXX   " RESET;
+    LOGO[12] = MAGENTA " EEEE" WHITE "xx" MAGENTA "E" WHITE "xx" MAGENTA "EE" WHITE "xx" MAGENTA "EEEE" RED "XXXX" WHITE "xxxxx" RED "X" WHITE "xx" RED "XXXX    " RESET;
+    LOGO[13] = MAGENTA "  EEEE" WHITE "xx" MAGENTA "EE" WHITE "xx" MAGENTA "EE" RED "X" WHITE "xxxx" RED "X" WHITE "xxxxxxx" RED "X" WHITE "x" RED "XXXX     " RESET;
+    LOGO[14] = MAGENTA "   EEEE" WHITE "xxx" MAGENTA "EE" WHITE "xxxxxxx" RED "X" WHITE "xxxxxxx" RED "XXXXX      " RESET;
+    LOGO[15] = MAGENTA "    EEEEE" WHITE "xxxx" RED "XXXXXXXX" WHITE "xxxxx" RED "XXXXX       " RESET;
+    LOGO[16] = MAGENTA "     EEEEEEE" WHITE "xxxxxxxxx+" RED "XXXXXXX         " RESET;
+    LOGO[17] = MAGENTA "       EEE" RED "XXXXXXXXXXXXXXXXX           " RESET;
+    LOGO[18] = RED     "         XXXXXXXXXXXXXXXX             " RESET;
+
+    LOGO_SMALL[0] = BLUE    "         _  " RESET;
+    LOGO_SMALL[1] = BLUE    "     ---<_> " RESET;
+    LOGO_SMALL[2] = MAGENTA " _/  ---  \\ " RESET;
+    LOGO_SMALL[3] = MAGENTA "<_> |   |   " RESET;
+    LOGO_SMALL[4] = RED     "  \\  --- _/ " RESET;
+    LOGO_SMALL[5] = RED     "     ---<_> " RESET;
+    for (int i = 6; i < minsize; i++) {
+      LOGO_SMALL[i]  = RED "            " RESET;
     }
   } else if (strncmp((char *)logoname, "ubuntu", strlen("ubuntu")) == 0) {
     color = RED;
