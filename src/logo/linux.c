@@ -385,6 +385,38 @@ void getDistro(const char *distroname) {
     for (int i = 7; i < minsize; i++) {
       LOGO_SMALL[i]  = MAGENTA "             " RESET;
     }
+  } else if (strncmp((char *)logoname, "hyperbola", strlen("hyperbola")) == 0) {
+    color = GREY;
+    titlecolor = WHITE;
+    logosize = 19;
+
+    LOGO[0]  = GREY "                     WW                  " RESET;
+    LOGO[1]  = GREY "                     KX              W   " RESET;
+    LOGO[2]  = GREY "                    WO0W          NX0O   " RESET;
+    LOGO[3]  = GREY "                    NOO0NW  WNXK0OOKW    " RESET;
+    LOGO[4]  = GREY "                    W0OOOOOOOOOOOOKN     " RESET;
+    LOGO[5]  = GREY "                     N0OOOOOOO0KXW       " RESET;
+    LOGO[6]  = GREY "                       WNXXXNW           " RESET;
+    LOGO[7]  = GREY "                 NXK00000KN              " RESET;
+    LOGO[8]  = GREY "             WNK0OOOOOOOOOO0W            " RESET;
+    LOGO[9]  = GREY "           NK0OOOOOOOOOOOOOO0W           " RESET;
+    LOGO[10] = GREY "         X0OOOOOOO00KK00OOOOOK           " RESET;
+    LOGO[11] = GREY "       X0OOOO0KNWW      WX0OO0W          " RESET;
+    LOGO[12] = GREY "     X0OO0XNW              KOOW          " RESET;
+    LOGO[13] = GREY "   N00KNW                   KOW          " RESET;
+    LOGO[14] = GREY " NKXN                       W0W          " RESET;
+    LOGO[15] = GREY "WW                           W           " RESET;
+
+    LOGO_SMALL[0] = GREY "    |`__.`/    " RESET;
+    LOGO_SMALL[1] = GREY "    \\____/     " RESET;
+    LOGO_SMALL[2] = GREY "    .--.       " RESET;
+    LOGO_SMALL[3] = GREY "   /    \\      " RESET;
+    LOGO_SMALL[4] = GREY "  /  ___ \\     " RESET;
+    LOGO_SMALL[5] = GREY " / .`   `.\\    " RESET;
+    LOGO_SMALL[6] = GREY "/.`      `.\\   " RESET;
+    for (int i = 7; i < minsize; i++) {
+      LOGO_SMALL[i]  = GREY "               " RESET;
+    }
   } else if (strncmp((char *)logoname, "kubuntu", strlen("kubuntu")) == 0) {
     color = BLUE;
     titlecolor = BLUE;
@@ -553,6 +585,37 @@ void getDistro(const char *distroname) {
     LOGO_SMALL[6] = GREEN "__________/ " RESET;
     for (int i = 7; i < minsize; i++) {
       LOGO_SMALL[i]  = GREEN "            " RESET;
+    }
+  } else if (strncmp((char *)logoname, "parabola", strlen("parabola")) == 0) {
+    color = MAGENTA;
+    titlecolor = MAGENTA;
+    logosize = 16;
+
+    LOGO[0]  = MAGENTA "                          `.-.    `.     " RESET;
+    LOGO[1]  = MAGENTA "                   `.`  `:++.   `-+o+.   " RESET;
+    LOGO[2]  = MAGENTA "             `` `:+/. `:+/.   `-+oooo+   " RESET;
+    LOGO[3]  = MAGENTA "        ``-::-.:+/. `:+/.   `-+oooooo+   " RESET;
+    LOGO[4]  = MAGENTA "    `.-:///-  ..`   .-.   `-+oooooooo-   " RESET;
+    LOGO[5]  = MAGENTA " `..-..`                 `+ooooooooo:    " RESET;
+    LOGO[6]  = MAGENTA "``                        :oooooooo/     " RESET;
+    LOGO[7]  = MAGENTA "                          `ooooooo:      " RESET;
+    LOGO[8]  = MAGENTA "                          `oooooo:       " RESET;
+    LOGO[9]  = MAGENTA "                          -oooo+.        " RESET;
+    LOGO[10] = MAGENTA "                          +ooo/`         " RESET;
+    LOGO[11] = MAGENTA "                         -ooo-           " RESET;
+    LOGO[12] = MAGENTA "                        `+o/.            " RESET;
+    LOGO[13] = MAGENTA "                        /+-              " RESET;
+    LOGO[14] = MAGENTA "                       //`               " RESET;
+    LOGO[15] = MAGENTA "                      -.                 " RESET;
+
+    LOGO_SMALL[0] = MAGENTA "  __ __ __  _     " RESET;
+    LOGO_SMALL[1] = MAGENTA ".`_//_//_/ / `.   " RESET;
+    LOGO_SMALL[2] = MAGENTA "          /  .`   " RESET;
+    LOGO_SMALL[3] = MAGENTA "         / .`     " RESET;
+    LOGO_SMALL[4] = MAGENTA "        /.`       " RESET;
+    LOGO_SMALL[5] = MAGENTA "       /`         " RESET;
+    for (int i = 6; i < minsize; i++) {
+      LOGO_SMALL[i]  = GREEN "                  " RESET;
     }
   } else if (
       strncmp((char *)logoname, "postmarketos", strlen("postmarketos")) == 0

@@ -93,10 +93,12 @@ void get_distro() {
   else if (strstr(buf, "Devuan") != NULL) distroname = "devuan";
   else if (strstr(buf, "Fedora") != NULL) distroname = "fedora";
   else if (strstr(buf, "Gentoo") != NULL) distroname = "gentoo";
+  else if (strstr(buf, "Hyperbola") != NULL) distroname = "hyperbola";
   else if (strstr(buf, "Linux Mint") != NULL) distroname = "linuxmint";
   else if (strstr(buf, "Manjaro") != NULL) distroname = "manjaro";
   else if (strstr(buf, "opensuse") != NULL) distroname = "opensuse";
   else if (strstr(buf, "OmniOS") != NULL) distroname = "omnios";
+  else if (strstr(buf, "Parabola") != NULL) distroname = "parabola";
   else if (strstr(buf, "postmarketOS") != NULL) distroname = "postmarketos";
   else if (strstr(buf, "Red Hat") != NULL) distroname = "redhat";
   else if (strstr(buf, "Rocky") != NULL) distroname = "rocky";
