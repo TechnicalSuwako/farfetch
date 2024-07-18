@@ -112,9 +112,19 @@ void get_distro() {
     if (strncmp(desktop, "KDE", strlen("KDE")) == 0) distroname = "kubuntu";
     else if (strncmp(desktop, "XFCE", strlen("XFCE")) == 0) distroname = "xubuntu";
     else if (strncmp(desktop, "LXQt", strlen("LXQt")) == 0) distroname = "lubuntu";
-    else if (strncmp(desktop, "Unity", strlen("Unity")) == 0)
+    else if (strncmp(desktop, "MATE", strlen("MATE")) == 0) distroname = "ubuntumate";
+    else if (strncmp(desktop, "X-Cinnamon", strlen("X-Cinnamon")) == 0)
+      distroname = "ubuntucinnamon";
+    else if (strncmp(desktop, "Budgie:GNOME", strlen("Budgie:GNOME")) == 0)
+      distroname = "ubuntubudgie";
+    else if (strncmp(desktop, "Lomiri", strlen("Lomiri")) == 0)
+      distroname = "ubuntulomiri";
+    else if (strncmp(
+          desktop,
+          "Unity:Unity7:ubuntu",
+          strlen("Unity:Unity7:ubuntu")
+    ) == 0)
       distroname = "ubuntuunity";
-    // TODO: Ubuntu Budgie, Ubuntu Cinnamon, Ubuntu MATE, Ubuntu Unity
   }
 }
 #endif
