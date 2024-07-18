@@ -28,6 +28,9 @@ const char *display_packages() {
   } else if (access("/usr/bin/pacman", F_OK) != -1) {
     return run_command_s("pacman -Qq | wc -l | sed \"s/ //g\" && "
                          "echo \" (pacman)\"");
+  } else if (access("/usr/bin/rpm", F_OK) != -1) {
+    return run_command_s("rpm -qa | wc -l | sed \"s/ //g\" && "
+                         "echo \" (rpm)\"");
   }
 
   return NULL;
