@@ -388,7 +388,7 @@ void getDistro(const char *distroname) {
   } else if (strncmp((char *)logoname, "hyperbola", strlen("hyperbola")) == 0) {
     color = GREY;
     titlecolor = WHITE;
-    logosize = 19;
+    logosize = 16;
 
     LOGO[0]  = GREY "                     WW                  " RESET;
     LOGO[1]  = GREY "                     KX              W   " RESET;
