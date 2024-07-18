@@ -6,6 +6,7 @@
 * Linux: 「/proc/cpuinfo」で使ってCPU速さの受け取る様に
 * Kubuntu、Xubuntu、Lubuntu、Arco、Hyperbola、Parabola、Pop OSロゴの追加
 * Linux: 「hostname」コマンドがなければ、「cat /etc/hostname」を実効する様に
+* Linux: pacman対応
 
 # 0.2.0
 * Manjaroのロゴの追加
