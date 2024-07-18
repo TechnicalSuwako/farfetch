@@ -615,7 +615,44 @@ void getDistro(const char *distroname) {
     LOGO_SMALL[4] = MAGENTA "        /.`       " RESET;
     LOGO_SMALL[5] = MAGENTA "       /`         " RESET;
     for (int i = 6; i < minsize; i++) {
-      LOGO_SMALL[i]  = GREEN "                  " RESET;
+      LOGO_SMALL[i]  = MAGENTA "                  " RESET;
+    }
+  } else if (strncmp((char *)logoname, "popos", strlen("popos")) == 0) {
+    color = CYAN;
+    titlecolor = CYAN;
+    logosize = 20;
+
+    LOGO[0]  = CYAN "             /////////////                " RESET;
+    LOGO[1]  = CYAN "         /////////////////////            " RESET;
+    LOGO[2]  = CYAN "      ///////" WHITE "*767" CYAN "////////////////         " RESET;
+    LOGO[3]  = CYAN "    //////" WHITE "7676767676*" CYAN "//////////////       " RESET;
+    LOGO[4]  = CYAN "   /////" WHITE "76767" CYAN "//" WHITE "7676767" CYAN "//////////////      " RESET;
+    LOGO[5]  = CYAN "  /////" WHITE "767676" CYAN "///" WHITE "*76767" CYAN "///////////////     " RESET;
+    LOGO[6]  = CYAN " ///////" WHITE "767676" CYAN "///" WHITE "76767" CYAN ".///" WHITE "7676*" CYAN "///////    " RESET;
+    LOGO[7]  = CYAN "/////////" WHITE "767676" CYAN "//" WHITE "76767" CYAN "///" WHITE "767676" CYAN "////////   " RESET;
+    LOGO[8]  = CYAN "//////////" WHITE "76767676767" CYAN "////" WHITE "76767" CYAN "/////////   " RESET;
+    LOGO[9]  = CYAN "///////////" WHITE "76767676" CYAN "//////" WHITE "7676" CYAN "//////////   " RESET;
+    LOGO[10] = CYAN "////////////," WHITE "7676" CYAN ",///////" WHITE "767" CYAN "///////////   " RESET;
+    LOGO[11] = CYAN "/////////////*" WHITE "7676" CYAN "///////" WHITE "76" CYAN "////////////   " RESET;
+    LOGO[12] = CYAN "///////////////" WHITE "7676" CYAN "////////////////////   " RESET;
+    LOGO[13] = CYAN " ///////////////" WHITE "7676" CYAN "///" WHITE "767" CYAN "////////////    " RESET;
+    LOGO[14] = CYAN "  //////////////////////" WHITE "'" CYAN "////////////     " RESET;
+    LOGO[15] = CYAN "   //////" WHITE ".7676767676767676767," CYAN "//////      " RESET;
+    LOGO[16] = CYAN "    /////" WHITE "767676767676767676767" CYAN "/////       " RESET;
+    LOGO[17] = CYAN "      ///////////////////////////         " RESET;
+    LOGO[18] = CYAN "         /////////////////////            " RESET;
+    LOGO[19] = CYAN "             /////////////                " RESET;
+
+    LOGO_SMALL[0] = CYAN "______              " RESET;
+    LOGO_SMALL[1] = CYAN "\\   _ \\        __   " RESET;
+    LOGO_SMALL[2] = CYAN " \\ \\ \\ \\      / /   " RESET;
+    LOGO_SMALL[3] = CYAN "  \\ \\_\\ \\    / /    " RESET;
+    LOGO_SMALL[4] = CYAN "   \\  ___\\  /_/     " RESET;
+    LOGO_SMALL[5] = CYAN "    \\ \\    _        " RESET;
+    LOGO_SMALL[6] = CYAN "   __\\_\\__(_)_      " RESET;
+    LOGO_SMALL[7] = CYAN "  (___________)`    " RESET;
+    for (int i = 8; i < minsize; i++) {
+      LOGO_SMALL[i]  = CYAN "                    " RESET;
     }
   } else if (
       strncmp((char *)logoname, "postmarketos", strlen("postmarketos")) == 0

@@ -99,6 +99,7 @@ void get_distro() {
   else if (strstr(buf, "opensuse") != NULL) distroname = "opensuse";
   else if (strstr(buf, "OmniOS") != NULL) distroname = "omnios";
   else if (strstr(buf, "Parabola") != NULL) distroname = "parabola";
+  else if (strstr(buf, "Pop!_OS") != NULL) distroname = "popos";
   else if (strstr(buf, "postmarketOS") != NULL) distroname = "postmarketos";
   else if (strstr(buf, "Red Hat") != NULL) distroname = "redhat";
   else if (strstr(buf, "Rocky") != NULL) distroname = "rocky";
