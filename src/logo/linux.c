@@ -385,6 +385,38 @@ void getDistro(const char *distroname) {
     for (int i = 7; i < minsize; i++) {
       LOGO_SMALL[i]  = MAGENTA "             " RESET;
     }
+  } else if (strncmp((char *)logoname, "hyperbola", strlen("hyperbola")) == 0) {
+    color = GREY;
+    titlecolor = WHITE;
+    logosize = 16;
+
+    LOGO[0]  = GREY "                     WW                  " RESET;
+    LOGO[1]  = GREY "                     KX              W   " RESET;
+    LOGO[2]  = GREY "                    WO0W          NX0O   " RESET;
+    LOGO[3]  = GREY "                    NOO0NW  WNXK0OOKW    " RESET;
+    LOGO[4]  = GREY "                    W0OOOOOOOOOOOOKN     " RESET;
+    LOGO[5]  = GREY "                     N0OOOOOOO0KXW       " RESET;
+    LOGO[6]  = GREY "                       WNXXXNW           " RESET;
+    LOGO[7]  = GREY "                 NXK00000KN              " RESET;
+    LOGO[8]  = GREY "             WNK0OOOOOOOOOO0W            " RESET;
+    LOGO[9]  = GREY "           NK0OOOOOOOOOOOOOO0W           " RESET;
+    LOGO[10] = GREY "         X0OOOOOOO00KK00OOOOOK           " RESET;
+    LOGO[11] = GREY "       X0OOOO0KNWW      WX0OO0W          " RESET;
+    LOGO[12] = GREY "     X0OO0XNW              KOOW          " RESET;
+    LOGO[13] = GREY "   N00KNW                   KOW          " RESET;
+    LOGO[14] = GREY " NKXN                       W0W          " RESET;
+    LOGO[15] = GREY "WW                           W           " RESET;
+
+    LOGO_SMALL[0] = GREY "    |`__.`/    " RESET;
+    LOGO_SMALL[1] = GREY "    \\____/     " RESET;
+    LOGO_SMALL[2] = GREY "    .--.       " RESET;
+    LOGO_SMALL[3] = GREY "   /    \\      " RESET;
+    LOGO_SMALL[4] = GREY "  /  ___ \\     " RESET;
+    LOGO_SMALL[5] = GREY " / .`   `.\\    " RESET;
+    LOGO_SMALL[6] = GREY "/.`      `.\\   " RESET;
+    for (int i = 7; i < minsize; i++) {
+      LOGO_SMALL[i]  = GREY "               " RESET;
+    }
   } else if (strncmp((char *)logoname, "kubuntu", strlen("kubuntu")) == 0) {
     color = BLUE;
     titlecolor = BLUE;
@@ -554,6 +586,74 @@ void getDistro(const char *distroname) {
     for (int i = 7; i < minsize; i++) {
       LOGO_SMALL[i]  = GREEN "            " RESET;
     }
+  } else if (strncmp((char *)logoname, "parabola", strlen("parabola")) == 0) {
+    color = MAGENTA;
+    titlecolor = MAGENTA;
+    logosize = 16;
+
+    LOGO[0]  = MAGENTA "                          `.-.    `.     " RESET;
+    LOGO[1]  = MAGENTA "                   `.`  `:++.   `-+o+.   " RESET;
+    LOGO[2]  = MAGENTA "             `` `:+/. `:+/.   `-+oooo+   " RESET;
+    LOGO[3]  = MAGENTA "        ``-::-.:+/. `:+/.   `-+oooooo+   " RESET;
+    LOGO[4]  = MAGENTA "    `.-:///-  ..`   .-.   `-+oooooooo-   " RESET;
+    LOGO[5]  = MAGENTA " `..-..`                 `+ooooooooo:    " RESET;
+    LOGO[6]  = MAGENTA "``                        :oooooooo/     " RESET;
+    LOGO[7]  = MAGENTA "                          `ooooooo:      " RESET;
+    LOGO[8]  = MAGENTA "                          `oooooo:       " RESET;
+    LOGO[9]  = MAGENTA "                          -oooo+.        " RESET;
+    LOGO[10] = MAGENTA "                          +ooo/`         " RESET;
+    LOGO[11] = MAGENTA "                         -ooo-           " RESET;
+    LOGO[12] = MAGENTA "                        `+o/.            " RESET;
+    LOGO[13] = MAGENTA "                        /+-              " RESET;
+    LOGO[14] = MAGENTA "                       //`               " RESET;
+    LOGO[15] = MAGENTA "                      -.                 " RESET;
+
+    LOGO_SMALL[0] = MAGENTA "  __ __ __  _     " RESET;
+    LOGO_SMALL[1] = MAGENTA ".`_//_//_/ / `.   " RESET;
+    LOGO_SMALL[2] = MAGENTA "          /  .`   " RESET;
+    LOGO_SMALL[3] = MAGENTA "         / .`     " RESET;
+    LOGO_SMALL[4] = MAGENTA "        /.`       " RESET;
+    LOGO_SMALL[5] = MAGENTA "       /`         " RESET;
+    for (int i = 6; i < minsize; i++) {
+      LOGO_SMALL[i]  = MAGENTA "                  " RESET;
+    }
+  } else if (strncmp((char *)logoname, "popos", strlen("popos")) == 0) {
+    color = CYAN;
+    titlecolor = CYAN;
+    logosize = 20;
+
+    LOGO[0]  = CYAN "             /////////////                " RESET;
+    LOGO[1]  = CYAN "         /////////////////////            " RESET;
+    LOGO[2]  = CYAN "      ///////" WHITE "*767" CYAN "////////////////         " RESET;
+    LOGO[3]  = CYAN "    //////" WHITE "7676767676*" CYAN "//////////////       " RESET;
+    LOGO[4]  = CYAN "   /////" WHITE "76767" CYAN "//" WHITE "7676767" CYAN "//////////////      " RESET;
+    LOGO[5]  = CYAN "  /////" WHITE "767676" CYAN "///" WHITE "*76767" CYAN "///////////////     " RESET;
+    LOGO[6]  = CYAN " ///////" WHITE "767676" CYAN "///" WHITE "76767" CYAN ".///" WHITE "7676*" CYAN "///////    " RESET;
+    LOGO[7]  = CYAN "/////////" WHITE "767676" CYAN "//" WHITE "76767" CYAN "///" WHITE "767676" CYAN "////////   " RESET;
+    LOGO[8]  = CYAN "//////////" WHITE "76767676767" CYAN "////" WHITE "76767" CYAN "/////////   " RESET;
+    LOGO[9]  = CYAN "///////////" WHITE "76767676" CYAN "//////" WHITE "7676" CYAN "//////////   " RESET;
+    LOGO[10] = CYAN "////////////," WHITE "7676" CYAN ",///////" WHITE "767" CYAN "///////////   " RESET;
+    LOGO[11] = CYAN "/////////////*" WHITE "7676" CYAN "///////" WHITE "76" CYAN "////////////   " RESET;
+    LOGO[12] = CYAN "///////////////" WHITE "7676" CYAN "////////////////////   " RESET;
+    LOGO[13] = CYAN " ///////////////" WHITE "7676" CYAN "///" WHITE "767" CYAN "////////////    " RESET;
+    LOGO[14] = CYAN "  //////////////////////" WHITE "'" CYAN "////////////     " RESET;
+    LOGO[15] = CYAN "   //////" WHITE ".7676767676767676767," CYAN "//////      " RESET;
+    LOGO[16] = CYAN "    /////" WHITE "767676767676767676767" CYAN "/////       " RESET;
+    LOGO[17] = CYAN "      ///////////////////////////         " RESET;
+    LOGO[18] = CYAN "         /////////////////////            " RESET;
+    LOGO[19] = CYAN "             /////////////                " RESET;
+
+    LOGO_SMALL[0] = CYAN "______              " RESET;
+    LOGO_SMALL[1] = CYAN "\\   _ \\        __   " RESET;
+    LOGO_SMALL[2] = CYAN " \\ \\ \\ \\      / /   " RESET;
+    LOGO_SMALL[3] = CYAN "  \\ \\_\\ \\    / /    " RESET;
+    LOGO_SMALL[4] = CYAN "   \\  ___\\  /_/     " RESET;
+    LOGO_SMALL[5] = CYAN "    \\ \\    _        " RESET;
+    LOGO_SMALL[6] = CYAN "   __\\_\\__(_)_      " RESET;
+    LOGO_SMALL[7] = CYAN "  (___________)`    " RESET;
+    for (int i = 8; i < minsize; i++) {
+      LOGO_SMALL[i]  = CYAN "                    " RESET;
+    }
   } else if (
       strncmp((char *)logoname, "postmarketos", strlen("postmarketos")) == 0
     ) {
@@ -658,6 +758,188 @@ void getDistro(const char *distroname) {
     LOGO_SMALL[4] = GREEN " \\/____/ " RESET;
     for (int i = 5; i < minsize; i++) {
       LOGO_SMALL[i]  = GREEN "         " RESET;
+    }
+  } else if (strncmp((char *)logoname, "ubuntubudgie", strlen("ubuntubudgie")) == 0) {
+    color = BLUE;
+    titlecolor = BLUE;
+    logosize = 20;
+
+    LOGO[0]  = WHITE "           ./oydmMMMMMMmdyo/.              " RESET;
+    LOGO[1]  = WHITE "        :smMMMMMMMMMMMhs+:++yhs:           " RESET;
+    LOGO[2]  = WHITE "     `omMMMMMMMMMMMN+`        `odo`        " RESET;
+    LOGO[3]  = WHITE "    /NMMMMMMMMMMMMN-            `sN/       " RESET;
+    LOGO[4]  = WHITE "  `hMMMMmhhmMMMMMMh               sMh`     " RESET;
+    LOGO[5]  = WHITE " .mMmo-     /yMMMMm`              `MMm.    " RESET;
+    LOGO[6]  = WHITE " mN/       yMMMMMMMd-              MMMm    " RESET;
+    LOGO[7]  = WHITE "oN-        oMMMMMMMMMms+//+o+:    :MMMMo   " RESET;
+    LOGO[8]  = WHITE "m/          +NMMMMMMMMMMMMMMMMm. :NMMMMm   " RESET;
+    LOGO[9]  = WHITE "M`           .NMMMMMMMMMMMMMMMNodMMMMMMM   " RESET;
+    LOGO[10] = WHITE "M-            sMMMMMMMMMMMMMMMMMMMMMMMMM   " RESET;
+    LOGO[11] = WHITE "mm`           mMMMMMMMMMNdhhdNMMMMMMMMMm   " RESET;
+    LOGO[12] = WHITE "oMm/        .dMMMMMMMMh:      :dMMMMMMMo   " RESET;
+    LOGO[13] = WHITE " mMMNyo/:/sdMMMMMMMMM+          sMMMMMm    " RESET;
+    LOGO[14] = WHITE " .mMMMMMMMMMMMMMMMMMs           `NMMMm.    " RESET;
+    LOGO[15] = WHITE "  `hMMMMMMMMMMM.oo+.            `MMMh`     " RESET;
+    LOGO[16] = WHITE "    /NMMMMMMMMMo                sMN/       " RESET;
+    LOGO[17] = WHITE "     `omMMMMMMMMy.            :dmo`        " RESET;
+    LOGO[18] = WHITE "        :smMMMMMMMh+-`   `.:ohs:           " RESET;
+    LOGO[19] = WHITE "           ./oydmMMMMMMdhyo/.              " RESET;
+
+    LOGO_SMALL[0] = WHITE "    ____    " RESET;
+    LOGO_SMALL[1] = WHITE "   /  / \\\\  " RESET;
+    LOGO_SMALL[2] = WHITE "  ///  \\/ \\ " RESET;
+    LOGO_SMALL[3] = WHITE "  | \\   /|| " RESET;
+    LOGO_SMALL[4] = WHITE "  \\\\\\/ \\ // " RESET;
+    LOGO_SMALL[5] = WHITE "   \\_____/  " RESET;
+    for (int i = 6; i < minsize; i++) {
+      LOGO_SMALL[i]  = WHITE "            " RESET;
+    }
+  } else if (strncmp(
+        (char *)logoname,
+        "ubuntucinnamon",
+        strlen("ubuntucinnamon")) == 0
+  ) {
+    color = RED;
+    titlecolor = RED;
+    logosize = 21;
+
+    LOGO[0] = RED "              +++++++++++++               " RESET; 
+    LOGO[1] = RED "         +++++++++++++++++++++            " RESET;
+    LOGO[2] = RED "       +++++++++++++++++++" WHITE "/|" RED "++++          " RESET;
+    LOGO[3] = RED "     ++++++++++++++++++++" WHITE "/x|" RED "++++++        " RESET;
+    LOGO[4] = RED "   +++++++++++++++++++++" WHITE "/xx|" RED "++++++++      " RESET;
+    LOGO[5] = RED "  +++++++++++++" WHITE "xxxxxxxxx" RED "-++:+++++++++     " RESET;
+    LOGO[6] = RED " +++++++++++" WHITE "xx" RED "++++++++++" WHITE "xxx" RED "+++++++++++    " RESET;
+    LOGO[7] = RED " ++++++++++" WHITE "xx" RED "+++++++++++++" WHITE "xx" RED "-+++++++++    " RESET;
+    LOGO[8] = RED "++++++++++" WHITE "xx" RED "+++++++++++++++" WHITE "xx" RED "=+++++++++   " RESET;
+    LOGO[9] = RED "+++++" WHITE "-/." RED "+." WHITE "x" RED "+++++++" WHITE "xxx" RED "++" WHITE "x" RED ":+++" WHITE "xx" RED "+++++++++   " RESET;
+    LOGO[10] = RED "+++" WHITE "<xxx" RED "-+" WHITE "xx" RED "+++++" WHITE "xxx" RED "-+=" WHITE "xxxx" RED "+++++++++++++   " RESET;
+    LOGO[11] = RED "+++++" WHITE "-\\." RED "+" WHITE "xx" RED "++++" WHITE "xx" RED ".++" WHITE "xxxxxxxxxx" RED "+++++++++   " RESET;
+    LOGO[12] = RED "++++++++++" WHITE "xx" RED "+" WHITE "xxx" RED "++." WHITE "xxxxxxxxxx" RED "++++++++++   " RESET;
+    LOGO[13] = RED " ++++++++++" WHITE "xxx" RED ":+=" WHITE "xxxxxxxxxxx" RED "++++++++++    " RESET;
+    LOGO[14] = RED " +++++++++++=++" WHITE "xxxxxxxxxxx" RED ".+++++++++++    " RESET;
+    LOGO[15] = RED "  +++++++++++++-" WHITE "xxxxxxx" RED "++++++++++++++     " RESET;
+    LOGO[16] = RED "   ++++++++++++++++++++=" WHITE "\\xx|" RED "++++++++      " RESET;
+    LOGO[17] = RED "     ++++++++++++++++++++" WHITE "\\_|" RED "++++++        " RESET;
+    LOGO[18] = RED "       +++++++++++++++++++++++++          " RESET;
+    LOGO[19] = RED "         +++++++++++++++++++++            " RESET;
+    LOGO[20] = RED "             +++++++++++++                " RESET;
+
+    LOGO_SMALL[0] = RED "    _____   " RESET;
+    LOGO_SMALL[1] = RED "   / ___/|  " RESET;
+    LOGO_SMALL[2] = RED "  / /   \\ \\ " RESET;
+    LOGO_SMALL[3] = RED "  <|/\\/\\| | " RESET;
+    LOGO_SMALL[4] = RED "  \\ \\___/ / " RESET;
+    LOGO_SMALL[5] = RED "   \\___\\|/  " RESET;
+    for (int i = 6; i < minsize; i++) {
+      LOGO_SMALL[i]  = RED "            " RESET;
+    }
+  } else if (strncmp((char *)logoname, "ubuntulomiri", strlen("ubuntulomiri")) == 0) {
+    color = RED;
+    titlecolor = GREY;
+    logosize = 21;
+
+    LOGO[0]  = RED  "     .....=++++++=....        " RESET;
+    LOGO[1]  = RED  "   ..+++++++++++++++++..      " RESET;
+    LOGO[2]  = RED  "  ..+++" GREY "%%%%%%%%%%%%%" RED "+++..     " RESET;
+    LOGO[3]  = RED  "..++++" GREY "%%%%%%%%%%%%%%%" RED "++++..   " RESET;
+    LOGO[4]  = RED  ".+++++" GREY "%%" WHITE "000" GREY "%%%%%" WHITE "000" GREY "%%" RED "+++++.   " RESET;
+    LOGO[5]  = RED  " ..+++" GREY "%%%%%%" WHITE "000" GREY "%%%%%%" RED "+++..    " RESET;
+    LOGO[6]  = RED  "  ..++++" GREY "%%%%%%%%%%%" RED "++++..     " RESET;
+    LOGO[7]  = RED  "   ...+++++++++++++++...      " RESET;
+    LOGO[8]  = WHITE "      ................        " RESET;
+    LOGO[9]  = RED  "     .++++++++++++++++.       " RESET;
+    LOGO[10] = RED  "    .:++++++++++++++++:.      " RESET;
+    LOGO[11] = RED  "  .++++++" GREY "%%%" RED "+++++++++++++.    " RESET;
+    LOGO[12] = RED  " .++++++++++++++++++++++++.   " RESET;
+    LOGO[13] = RED  ".+++..+++++++++++++++..+++.   " RESET;
+    LOGO[14] = RED  " ... .+++++++++++++++. ...    " RESET;
+    LOGO[15] = RED  "      .+++++++++++++.         " RESET;
+    LOGO[16] = RED  "      .+++++++++++++.         " RESET;
+    LOGO[17] = RED  "       .+++++++++++.          " RESET;
+    LOGO[18] = RED  "       ..+++++++++..          " RESET;
+    LOGO[19] = RED  "        ..=*+++*=..           " RESET;
+    LOGO[20] = RED  "           .:::.              " RESET;
+
+    LOGO_SMALL[0] = RED "       ++++++++++        " RESET;
+    LOGO_SMALL[1] = RED "   ++++++++++++++++++    " RESET;
+    LOGO_SMALL[2] = RED "  +++" GREY "##############" RED "+++   " RESET;
+    LOGO_SMALL[3] = RED "+" WHITE "|" RED "++" GREY "###" WHITE "$$" GREY "######" WHITE "$$" GREY "###" RED "++" WHITE "|" RED "+ " RESET;
+    LOGO_SMALL[4] = RED "+" WHITE "|" RED "++" GREY "###" WHITE "$$" GREY "######" WHITE "$$" GREY "###" RED "++" WHITE "|" RED "+ " RESET;
+    LOGO_SMALL[5] = RED "  +++" GREY "######" WHITE "$$" GREY "######" RED "+++   " RESET;
+    LOGO_SMALL[6] = RED "   ++++++++++++++++++    " RESET;
+    LOGO_SMALL[7] = RED "      -++++++++++-       " RESET;
+    for (int i = 8; i < minsize; i++) {
+      LOGO_SMALL[i]  = RED "                         " RESET;
+    }
+  } else if (strncmp((char *)logoname, "ubuntumate", strlen("ubuntumate")) == 0) {
+    color = GREEN;
+    titlecolor = GREEN;
+    logosize = 20;
+
+    LOGO[0]  = GREEN "           `:+shmNNMMNNmhs+:`              " RESET;
+    LOGO[1]  = GREEN "        .odMMMMMMMMMMMMMMMMMMdo.           " RESET;
+    LOGO[2]  = GREEN "      /dMMMMMMMMMMMMMMMmMMMMMMMMd/         " RESET;
+    LOGO[3]  = GREEN "    :mMMMMMMMMMMMMNNNNM/`/yNMMMMMMm:       " RESET;
+    LOGO[4]  = GREEN "  `yMMMMMMMMMms:..-::oM:    -omMMMMMy`     " RESET;
+    LOGO[5]  = GREEN " `dMMMMMMMMy-.odNMMMMMM:    -odMMMMMMd`    " RESET;
+    LOGO[6]  = GREEN " hMMMMMMMm-.hMMy/....+M:`/yNm+mMMMMMMMh    " RESET;
+    LOGO[7]  = GREEN "/MMMMNmMN-:NMy`-yNMMMMMmNyyMN:`dMMMMMMM/   " RESET;
+    LOGO[8]  = GREEN "hMMMMm -odMMh`sMMMMMMMMMMs sMN..MMMMMMMh   " RESET;
+    LOGO[9]  = GREEN "NMMMMm    `/yNMMMMMMMMMMMM: MM+ mMMMMMMN   " RESET;
+    LOGO[10] = GREEN "NMMMMm    `/yNMMMMMMMMMMMM: MM+ mMMMMMMN   " RESET;
+    LOGO[11] = GREEN "hMMMMm -odMMh sMMMMMMMMMMs oMN..MMMMMMMh   " RESET;
+    LOGO[12] = GREEN "/MMMMNNMN-:NMy`-yNMMMMMNNsyMN:`dMMMMMMM/   " RESET;
+    LOGO[13] = GREEN " hMMMMMMMm-.hMMy/....+M:.+hNd+mMMMMMMMh    " RESET;
+    LOGO[14] = GREEN " `dMMMMMMMMy-.odNMMMMMM:    :smMMMMMMd`    " RESET;
+    LOGO[15] = GREEN "   yMMMMMMMMMms/..-::oM:    .+dMMMMMy      " RESET;
+    LOGO[16] = GREEN "    :mMMMMMMMMMMMMNNNNM: :smMMMMMMm:       " RESET;
+    LOGO[17] = GREEN "      /dMMMMMMMMMMMMMMMdNMMMMMMMd/         " RESET;
+    LOGO[18] = GREEN "        .odMMMMMMMMMMMMMMMMMMdo.           " RESET;
+    LOGO[19] = GREEN "           `:+shmNNMMNNmhs+:`              " RESET;
+
+    LOGO_SMALL[0] = GREEN "    _____   " RESET;
+    LOGO_SMALL[1] = GREEN "   / ___|/\\ " RESET;
+    LOGO_SMALL[2] = GREEN "  / /    \\ \\" RESET;
+    LOGO_SMALL[3] = GREEN "  |>     | |" RESET;
+    LOGO_SMALL[4] = GREEN "  \\ \\__|\\ / " RESET;
+    LOGO_SMALL[5] = GREEN "   \\_____/  " RESET;
+    for (int i = 6; i < minsize; i++) {
+      LOGO_SMALL[i]  = GREEN "            " RESET;
+    }
+  } else if (strncmp((char *)logoname, "ubuntuunity", strlen("ubuntuunity")) == 0) {
+    color = RED;
+    titlecolor = BLUE;
+    logosize = 19;
+
+    LOGO[0]  = BLUE    "           SSSSSSSSSSSSS              " RESET;
+    LOGO[1]  = BLUE    "         SSSSSSSSSSSSSSSSS            " RESET;
+    LOGO[2]  = BLUE    "       SSSSSSS" WHITE "xxxx" BLUE "SS" WHITE "x" MAGENTA "EEEEEEEE         " RESET;
+    LOGO[3]  = BLUE    "     SSSSS" WHITE "xxx" BLUE "SSSSS" WHITE "xxxxxx" MAGENTA "EEEEEE        " RESET;
+    LOGO[4]  = BLUE    "    SSSS" WHITE "xx" BLUE "SSS" WHITE "xxxx" MAGENTA "E" WHITE "xxxxxx" MAGENTA "E" WHITE "xx" MAGENTA "EEEE       " RESET;
+    LOGO[5]  = BLUE    "   SSS" WHITE "xx" BLUE "SS" WHITE "xx" BLUE "SSS" WHITE "xxx" BLUE "S" WHITE "xxx" MAGENTA "EE" WHITE "x" MAGENTA "EE" WHITE "xx" MAGENTA "EEE      " RESET;
+    LOGO[6]  = BLUE    "  SSS" WHITE "xx" BLUE "SS" WHITE "x" BLUE "SS" WHITE "xx" MAGENTA "EEEEEEE" WHITE "xx" MAGENTA "EE" WHITE "x" MAGENTA "EE" WHITE "xx" MAGENTA "EEE     " RESET;
+    LOGO[7]  = BLUE    " SSS" WHITE "x" BLUE "SSS" WHITE "x" BLUE "S" WHITE "xx" MAGENTA "EEEEEEEEEEE" WHITE "x" RED "XX" WHITE "x" RED "XX" WHITE "x" RED "XXXX    " RESET;
+    LOGO[8]  = BLUE    "SSSSS" WHITE "xxx" MAGENTA "EEEEEEEEEEEEEEEE" WHITE "x" RED "X" WHITE "xx" RED "X" WHITE "x" RED "XXXXX   " RESET;
+    LOGO[9]  = BLUE    "SSSS" WHITE "xxxxxx" MAGENTA "EEEEEEEEEEEEEE" WHITE "x" RED "XX" WHITE "x" RED "XX" WHITE "x" RED "XXXX   " RESET;
+    LOGO[10] = BLUE    "SSSS" WHITE "xxxxxx" MAGENTA "EEEEEEEEEEEE" RED "XX" WHITE "x" RED "X" WHITE "xx" RED "XX" WHITE "x" RED "XXXX   " RESET;
+    LOGO[11] = MAGENTA "EEEEEE" WHITE "x" MAGENTA "EEEE" WHITE "x" MAGENTA "EEEEEEEE" RED "XXX" WHITE "x" RED "XX" WHITE "x" RED "XX" WHITE "xx" RED "XXXX   " RESET;
+    LOGO[12] = MAGENTA " EEEE" WHITE "xx" MAGENTA "E" WHITE "xx" MAGENTA "EE" WHITE "xx" MAGENTA "EEEE" RED "XXXX" WHITE "xxxxx" RED "X" WHITE "xx" RED "XXXX    " RESET;
+    LOGO[13] = MAGENTA "  EEEE" WHITE "xx" MAGENTA "EE" WHITE "xx" MAGENTA "EE" RED "X" WHITE "xxxx" RED "X" WHITE "xxxxxxx" RED "X" WHITE "x" RED "XXXX     " RESET;
+    LOGO[14] = MAGENTA "   EEEE" WHITE "xxx" MAGENTA "EE" WHITE "xxxxxxx" RED "X" WHITE "xxxxxxx" RED "XXXXX      " RESET;
+    LOGO[15] = MAGENTA "    EEEEE" WHITE "xxxx" RED "XXXXXXXX" WHITE "xxxxx" RED "XXXXX       " RESET;
+    LOGO[16] = MAGENTA "     EEEEEEE" WHITE "xxxxxxxxx+" RED "XXXXXXX         " RESET;
+    LOGO[17] = MAGENTA "       EEE" RED "XXXXXXXXXXXXXXXXX           " RESET;
+    LOGO[18] = RED     "         XXXXXXXXXXXXXXXX             " RESET;
+
+    LOGO_SMALL[0] = BLUE    "         _  " RESET;
+    LOGO_SMALL[1] = BLUE    "     ---<_> " RESET;
+    LOGO_SMALL[2] = MAGENTA " _/  ---  \\ " RESET;
+    LOGO_SMALL[3] = MAGENTA "<_> |   |   " RESET;
+    LOGO_SMALL[4] = RED     "  \\  --- _/ " RESET;
+    LOGO_SMALL[5] = RED     "     ---<_> " RESET;
+    for (int i = 6; i < minsize; i++) {
+      LOGO_SMALL[i]  = RED "            " RESET;
     }
   } else if (strncmp((char *)logoname, "ubuntu", strlen("ubuntu")) == 0) {
     color = RED;

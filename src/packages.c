@@ -20,11 +20,17 @@ const char *display_packages() {
   return run_command_s("pkg list | wc -l | sed 's/ *//' && echo \" (pkg list)\"");
 #elif defined(__linux__)
   if (access("/bin/xbps-query", F_OK) != -1) {
-    return run_command_s("xbps-query -l | wc -l | sed \"s/ //g\" "
-                         "&& echo \" (xbps-query)\"");
+    return run_command_s("xbps-query -l | wc -l | sed \"s/ //g\" && "
+                         "echo \" (xbps-query)\"");
   } else if (access("/usr/bin/dpkg-query", F_OK) != -1) {
     return run_command_s("dpkg-query -f '.\n' -W | wc -l | sed \"s/ //g\" && "
                          "echo \" (dpkg-query)\"");
+  } else if (access("/usr/bin/pacman", F_OK) != -1) {
+    return run_command_s("pacman -Qq | wc -l | sed \"s/ //g\" && "
+                         "echo \" (pacman)\"");
+  } else if (access("/usr/bin/rpm", F_OK) != -1) {
+    return run_command_s("rpm -qa | wc -l | sed \"s/ //g\" && "
+                         "echo \" (rpm)\"");
   }
 
   return NULL;

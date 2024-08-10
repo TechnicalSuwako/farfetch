@@ -93,10 +93,13 @@ void get_distro() {
   else if (strstr(buf, "Devuan") != NULL) distroname = "devuan";
   else if (strstr(buf, "Fedora") != NULL) distroname = "fedora";
   else if (strstr(buf, "Gentoo") != NULL) distroname = "gentoo";
+  else if (strstr(buf, "Hyperbola") != NULL) distroname = "hyperbola";
   else if (strstr(buf, "Linux Mint") != NULL) distroname = "linuxmint";
   else if (strstr(buf, "Manjaro") != NULL) distroname = "manjaro";
   else if (strstr(buf, "opensuse") != NULL) distroname = "opensuse";
   else if (strstr(buf, "OmniOS") != NULL) distroname = "omnios";
+  else if (strstr(buf, "Parabola") != NULL) distroname = "parabola";
+  else if (strstr(buf, "Pop!_OS") != NULL) distroname = "popos";
   else if (strstr(buf, "postmarketOS") != NULL) distroname = "postmarketos";
   else if (strstr(buf, "Red Hat") != NULL) distroname = "redhat";
   else if (strstr(buf, "Rocky") != NULL) distroname = "rocky";
@@ -109,7 +112,19 @@ void get_distro() {
     if (strncmp(desktop, "KDE", strlen("KDE")) == 0) distroname = "kubuntu";
     else if (strncmp(desktop, "XFCE", strlen("XFCE")) == 0) distroname = "xubuntu";
     else if (strncmp(desktop, "LXQt", strlen("LXQt")) == 0) distroname = "lubuntu";
-    // TODO: Ubuntu Budgie, Ubuntu Cinnamon, Ubuntu Kylin, Ubuntu MATE, Ubuntu Unity
+    else if (strncmp(desktop, "MATE", strlen("MATE")) == 0) distroname = "ubuntumate";
+    else if (strncmp(desktop, "X-Cinnamon", strlen("X-Cinnamon")) == 0)
+      distroname = "ubuntucinnamon";
+    else if (strncmp(desktop, "Budgie:GNOME", strlen("Budgie:GNOME")) == 0)
+      distroname = "ubuntubudgie";
+    else if (strncmp(desktop, "Lomiri", strlen("Lomiri")) == 0)
+      distroname = "ubuntulomiri";
+    else if (strncmp(
+          desktop,
+          "Unity:Unity7:ubuntu",
+          strlen("Unity:Unity7:ubuntu")
+    ) == 0)
+      distroname = "ubuntuunity";
   }
 }
 #endif
