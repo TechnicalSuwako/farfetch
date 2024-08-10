@@ -44,18 +44,20 @@ CNFPREFIX = /boot/home/config/settings
 
 CC = cc
 FILES = main.c src/*.c src/logo/*.c
-CFLAGS = -Wall -Wextra -O3 -I${PREFIX}/include -L${PREFIX}/lib
-.if ${UNAME_S} == "NetBSD"
-CFLAGS += -I/usr/pkg/include -L/usr/pkg/lib -I/usr/include -L/usr/lib
-.endif
+CFLAGS = -Wall -Wextra -O3
+
+LDFLAGS = -static -lc
+.if ${UNAME_S} == "Haiku" || ${UNAME_S} == "Darwin" || ${UNAME_S} == "SunOS"\
+	|| ${UNAME_S} == "Minix"
 LDFLAGS = -lc
+.endif
 
 all:
 	${CC} ${CFLAGS} -o ${NAME} ${FILES} ${LDFLAGS}
 	strip ${NAME}
 
 clean:
-	rm -f ${NAME}
+	rm -rf ${NAME}
 
 dist:
 	mkdir -p ${NAME}-${VERSION} release/src
@@ -69,9 +71,6 @@ man:
 	sed "s/VERSION/${VERSION}/g" < ${NAME}.1 > release/man/${VERSION}/${NAME}.1
 	sed "s/VERSION/${VERSION}/g" < ${NAME}.conf.5 > release/man/${VERSION}/${NAME}.conf.5
 
-depend:
-	${DEPS}
-
 release:
 	mkdir -p release/bin/${VERSION}/${OS}/${UNAME_M}
 	${CC} ${CFLAGS} -o release/bin/${VERSION}/${OS}/${UNAME_M}/${NAME} ${FILES}\
@@ -81,8 +80,8 @@ release:
 install:
 	mkdir -p ${DESTDIR}${PREFIX}/bin ${DESTDIR}${MANPREFIX}/man1\
 		${DESTDIR}${MANPREFIX}/man5
-	cp -f ${NAME} ${DESTDIR}${PREFIX}/bin
-	cp -f ${NAME}.conf ${DESTDIR}${CNFPREFIX}
+	cp -rf ${NAME} ${DESTDIR}${PREFIX}/bin
+	cp -rf ${NAME}.conf ${DESTDIR}${CNFPREFIX}
 	chmod 755 ${DESTDIR}${PREFIX}/bin/${NAME}
 	sed "s/VERSION/${VERSION}/g" < ${NAME}.1 > ${DESTDIR}${MANPREFIX}/man1/${NAME}.1
 	chmod 644 ${DESTDIR}${MANPREFIX}/man1/${NAME}.1
@@ -91,8 +90,8 @@ install:
 	chmod 644 ${DESTDIR}${MANPREFIX}/man5/${NAME}.conf.5
 
 uninstall:
-	rm -f ${DESTDIR}${PREFIX}/bin/${NAME}
-	rm -rf ${DESTDIR}${PREFIX}/man/man1/${NAME}.1
-	rm -rf ${DESTDIR}${PREFIX}/man/man5/${NAME}.conf.5
+	rm -rf ${DESTDIR}${PREFIX}/bin/${NAME}
+	rm -rf ${DESTDIR}${MANPREFIX}/man1/${NAME}.1
+	rm -rf ${DESTDIR}${MANPREFIX}/man5/${NAME}.conf.5
 
 .PHONY: all clean dist man release install uninstall

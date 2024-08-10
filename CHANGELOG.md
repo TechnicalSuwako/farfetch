@@ -7,6 +7,7 @@
 * Kubuntu、Xubuntu、Lubuntuロゴの追加
 * Arcoロゴの追加
 * Linux: 「hostname」コマンドがなければ、「cat /etc/hostname」を実効する様に
+* LinuxとBSD: 今から、静的リンクがデフォルトになりました（動的リンクには「make LDFLAGS=-lc」をご利用下さい）
 
 # 0.2.0
 * Manjaroのロゴの追加
