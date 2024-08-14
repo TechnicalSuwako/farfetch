@@ -1,5 +1,6 @@
 #if defined(__NetBSD__)
 #include "netbsd.h"
+#include "../config.h"
 #include "../resolution.h"
 #include "../wm.h"
 

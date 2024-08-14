@@ -1,5 +1,6 @@
 #if defined(__sun)
 #include "sunos.h"
+#include "../config.h"
 #include "../resolution.h"
 #include "../wm.h"
 
