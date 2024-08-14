@@ -2,6 +2,7 @@
 #define CONFIG_H
 
 #include <stdbool.h>
+#include <unistd.h>
 
 extern bool isos;
 extern bool ishost;
@@ -23,6 +24,8 @@ extern bool ismemory;
 extern bool isstorage;
 extern bool isbiglogo;
 extern bool issmalllogo;
+extern size_t biglogoi;
+extern size_t smalllogoi;
 extern const char *customcolor;
 extern const char *customtitlecolor;
 extern const char *customlogobig;

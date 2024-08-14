@@ -33,6 +33,13 @@ void getDistro(const char *distroname) {
     }
   }
 
+  if (!isbiglogo && !issmalllogo) {
+    for (int i = 0; i < LOGO_SIZE; i++) {
+      LOGO[i] = NULL;
+      LOGO_SMALL[i] = NULL;
+    }
+  }
+
   if (strncmp((char *)logoname, "omnios", strlen("omnios")) == 0) {
     if (!customcolor) color = YELLOW;
     else color = customcolor;
@@ -40,30 +47,47 @@ void getDistro(const char *distroname) {
     else titlecolor = customtitlecolor;
     logosize = 13;
 
-    LOGO[0]  = GREY   "      ######             " RESET;
-    LOGO[1]  = GREY   "   ###      ###          " RESET;
-    LOGO[2]  = GREY   "  ##          ##         " RESET;
-    LOGO[3]  = GREY   "##              ##       " RESET;
-    LOGO[4]  = GREY   "##          " YELLOW "######       " RESET;
-    LOGO[5]  = GREY   "  ##     " YELLOW "###  " GREY "##  " YELLOW "###    " RESET;
-    LOGO[6]  = GREY   "   ###  " YELLOW "##  " GREY "###     " YELLOW "##   " RESET;
-    LOGO[7]  = GREY   "      " YELLOW "##" GREY "####          " YELLOW "## " RESET;
-    LOGO[8]  = YELLOW "      ##              ## " RESET;
-    LOGO[9]  = YELLOW "        ##          ##   " RESET;
-    LOGO[10] = YELLOW "         ###      ###    " RESET;
-    LOGO[11] = YELLOW "            ######       " RESET;
-    for (size_t i = 12; i < logosize; i++) {
-      LOGO[i] = YELLOW "                         " RESET;
+    if (!isbiglogo) {
+      LOGO[0]  = GREY   "      ######             " RESET;
+      LOGO[1]  = GREY   "   ###      ###          " RESET;
+      LOGO[2]  = GREY   "  ##          ##         " RESET;
+      LOGO[3]  = GREY   "##              ##       " RESET;
+      LOGO[4]  = GREY   "##          " YELLOW "######       " RESET;
+      LOGO[5]  = GREY   "  ##     " YELLOW "###  " GREY "##  " YELLOW "###    " RESET;
+      LOGO[6]  = GREY   "   ###  " YELLOW "##  " GREY "###     " YELLOW "##   " RESET;
+      LOGO[7]  = GREY   "      " YELLOW "##" GREY "####          " YELLOW "## " RESET;
+      LOGO[8]  = YELLOW "      ##              ## " RESET;
+      LOGO[9]  = YELLOW "        ##          ##   " RESET;
+      LOGO[10] = YELLOW "         ###      ###    " RESET;
+      LOGO[11] = YELLOW "            ######       " RESET;
+      for (size_t i = 12; i < logosize; i++) {
+        LOGO[i] = YELLOW "                         " RESET;
+      }
+    } else {
+      logosize = biglogoi;
+      if (biglogoi < (size_t)minsize) {
+        for (size_t i = biglogoi; i < (size_t)minsize; i++) {
+          LOGO[i] = WHITE "                         " RESET;
+        }
+      }
     }
 
-    LOGO_SMALL[0] = GREY   "  __      " RESET;
-    LOGO_SMALL[1] = GREY   " /  \\     " RESET;
-    LOGO_SMALL[2] = GREY   "|    " YELLOW "__   " RESET;
-    LOGO_SMALL[3] = GREY   " \\_" YELLOW "/" GREY "/  " YELLOW "\\  " RESET;
-    LOGO_SMALL[4] = YELLOW "   |    | " RESET;
-    LOGO_SMALL[5] = YELLOW "    \\__/  " RESET;
-    for (int i = 6; i < minsize; i++) {
-      LOGO_SMALL[i] = YELLOW "          " RESET;
+    if (!issmalllogo) {
+      LOGO_SMALL[0] = GREY   "  __      " RESET;
+      LOGO_SMALL[1] = GREY   " /  \\     " RESET;
+      LOGO_SMALL[2] = GREY   "|    " YELLOW "__   " RESET;
+      LOGO_SMALL[3] = GREY   " \\_" YELLOW "/" GREY "/  " YELLOW "\\  " RESET;
+      LOGO_SMALL[4] = YELLOW "   |    | " RESET;
+      LOGO_SMALL[5] = YELLOW "    \\__/  " RESET;
+      for (int i = 6; i < minsize; i++) {
+        LOGO_SMALL[i] = YELLOW "          " RESET;
+      }
+    } else {
+      if (smalllogoi < (size_t)minsize) {
+        for (size_t i = smalllogoi; i < (size_t)minsize; i++) {
+          LOGO_SMALL[i] = WHITE "                 " RESET;
+        }
+      }
     }
   } else {
     if (!customcolor) color = BLUE;
@@ -72,23 +96,32 @@ void getDistro(const char *distroname) {
     else titlecolor = customtitlecolor;
     logosize = 17
 
-    LOGO[0]  = WHITE "                         .sy/              " RESET;
-    LOGO[1]  = WHITE "                         .yh+              " RESET;
-    LOGO[2]  = WHITE "                                           " RESET;
-    LOGO[3]  = BLUE  "           " BLUE "-+syyyo+-" WHITE "      /+.              " RESET;
-    LOGO[4]  = BLUE  "         " BLUE "+ddo/---/sdh/" WHITE "    ym-              " RESET;
-    LOGO[5]  = BLUE  "       " BLUE "`hm+        `sms" WHITE "   ym-```````.-.    " RESET;
-    LOGO[6]  = BLUE  "       " BLUE "sm+           sm/" WHITE "  ym-         +s   " RESET;
-    LOGO[7]  = BLUE  "       " BLUE "hm.           /mo" WHITE "  ym-         /h   " RESET;
-    LOGO[8]  = BLUE  "       " BLUE "omo           ym:" WHITE "  ym-       `os`   " RESET;
-    LOGO[9]  = BLUE  "        " BLUE "smo`       .ym+" WHITE "   ym-     .os-     " RESET;
-    LOGO[10] = WHITE "     ``  " BLUE ":ymy+///oyms-" WHITE "    ym-  .+s+.       " RESET;
-    LOGO[11] = WHITE "   ..`    " BLUE "`:+oo+/-`" WHITE "      -//oyo-           " RESET;
-    LOGO[12] = WHITE " -:`                   .:oys/.             " RESET;
-    LOGO[13] = WHITE "+-               `./oyys/.                 " RESET;
-    LOGO[14] = WHITE "h+`      `.-:+oyyyo/-`                     " RESET;
-    LOGO[15] = WHITE "`/ossssysso+/-.`                           " RESET;
-    LOGO[16] = WHITE "                                           " RESET;
+    if (!isbiglogo) {
+      LOGO[0]  = WHITE "                         .sy/              " RESET;
+      LOGO[1]  = WHITE "                         .yh+              " RESET;
+      LOGO[2]  = WHITE "                                           " RESET;
+      LOGO[3]  = BLUE  "           " BLUE "-+syyyo+-" WHITE "      /+.              " RESET;
+      LOGO[4]  = BLUE  "         " BLUE "+ddo/---/sdh/" WHITE "    ym-              " RESET;
+      LOGO[5]  = BLUE  "       " BLUE "`hm+        `sms" WHITE "   ym-```````.-.    " RESET;
+      LOGO[6]  = BLUE  "       " BLUE "sm+           sm/" WHITE "  ym-         +s   " RESET;
+      LOGO[7]  = BLUE  "       " BLUE "hm.           /mo" WHITE "  ym-         /h   " RESET;
+      LOGO[8]  = BLUE  "       " BLUE "omo           ym:" WHITE "  ym-       `os`   " RESET;
+      LOGO[9]  = BLUE  "        " BLUE "smo`       .ym+" WHITE "   ym-     .os-     " RESET;
+      LOGO[10] = WHITE "     ``  " BLUE ":ymy+///oyms-" WHITE "    ym-  .+s+.       " RESET;
+      LOGO[11] = WHITE "   ..`    " BLUE "`:+oo+/-`" WHITE "      -//oyo-           " RESET;
+      LOGO[12] = WHITE " -:`                   .:oys/.             " RESET;
+      LOGO[13] = WHITE "+-               `./oyys/.                 " RESET;
+      LOGO[14] = WHITE "h+`      `.-:+oyyyo/-`                     " RESET;
+      LOGO[15] = WHITE "`/ossssysso+/-.`                           " RESET;
+      LOGO[16] = WHITE "                                           " RESET;
+    } else {
+      logosize = biglogoi;
+      if (biglogoi < (size_t)minsize) {
+        for (size_t i = biglogoi; i < (size_t)minsize; i++) {
+          LOGO[i] = WHITE "                         " RESET;
+        }
+      }
+    }
   }
 }
 #endif

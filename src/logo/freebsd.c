@@ -26,31 +26,55 @@ void getOS() {
   if (!wm) minsize--;
   else free((void *)wm);
 
-  LOGO[0]  = WHITE "```                        " RED "`       " RESET;
-  LOGO[1]  = WHITE "  ` `.....---..." RED "....--.```   -/    " RESET;
-  LOGO[2]  = WHITE "  +o   .--`         " RED "/y:`      +.   " RESET;
-  LOGO[3]  = WHITE "   yo`:.            " RED ":o      `+-    " RESET;
-  LOGO[4]  = WHITE "    y/               " RED "-/`   -o/     " RESET;
-  LOGO[5]  = WHITE "   .-                  " RED "::/sy+:.    " RESET;
-  LOGO[6]  = WHITE "   /                     " RED "`--  /    " RESET;
-  LOGO[7]  = WHITE "  `:                          " RED ":`   " RESET;
-  LOGO[8] = WHITE "  `:                          " RED ":`   " RESET;
-  LOGO[9] = WHITE "   /                          " RED "/    " RESET;
-  LOGO[10] = WHITE "   .-                        " RED "-.    " RESET;
-  LOGO[11] = WHITE "    --                      " RED "-.     " RESET;
-  LOGO[12] = WHITE "     `:`                  " RED "`:`      " RESET;
-  LOGO[13] = RED   "       .--             `--.        " RESET;
-  LOGO[14] = RED   "          .---.....----.           " RESET;
-  LOGO[15] = RED   "                                   " RESET;
+  if (!isbiglogo && !issmalllogo) {
+    for (int i = 0; i < LOGO_SIZE; i++) {
+      LOGO[i] = NULL;
+      LOGO_SMALL[i] = NULL;
+    }
+  }
 
-  LOGO_SMALL[0] = RED "/\\,-'''''-,/\\  " RESET;
-  LOGO_SMALL[1] = RED "\\_)       (_/  " RESET;
-  LOGO_SMALL[2] = RED "|           |  " RESET;
-  LOGO_SMALL[3] = RED "|           |  " RESET;
-  LOGO_SMALL[4] = RED " ;         ;   " RESET;
-  LOGO_SMALL[5] = RED "  '-_____-'    " RESET;
-  for (int i = 6; i < minsize; i++) {
-    LOGO_SMALL[i]  = RED "               " RESET;
+  if (!isbiglogo) {
+    LOGO[0]  = WHITE "```                        " RED "`       " RESET;
+    LOGO[1]  = WHITE "  ` `.....---..." RED "....--.```   -/    " RESET;
+    LOGO[2]  = WHITE "  +o   .--`         " RED "/y:`      +.   " RESET;
+    LOGO[3]  = WHITE "   yo`:.            " RED ":o      `+-    " RESET;
+    LOGO[4]  = WHITE "    y/               " RED "-/`   -o/     " RESET;
+    LOGO[5]  = WHITE "   .-                  " RED "::/sy+:.    " RESET;
+    LOGO[6]  = WHITE "   /                     " RED "`--  /    " RESET;
+    LOGO[7]  = WHITE "  `:                          " RED ":`   " RESET;
+    LOGO[8] = WHITE "  `:                          " RED ":`   " RESET;
+    LOGO[9] = WHITE "   /                          " RED "/    " RESET;
+    LOGO[10] = WHITE "   .-                        " RED "-.    " RESET;
+    LOGO[11] = WHITE "    --                      " RED "-.     " RESET;
+    LOGO[12] = WHITE "     `:`                  " RED "`:`      " RESET;
+    LOGO[13] = RED   "       .--             `--.        " RESET;
+    LOGO[14] = RED   "          .---.....----.           " RESET;
+    LOGO[15] = RED   "                                   " RESET;
+  } else {
+    logosize = biglogoi;
+    if (biglogoi < (size_t)minsize) {
+      for (size_t i = biglogoi; i < (size_t)minsize; i++) {
+        LOGO[i] = WHITE "                                   " RESET;
+      }
+    }
+  }
+
+  if (!issmalllogo) {
+    LOGO_SMALL[0] = RED "/\\,-'''''-,/\\  " RESET;
+    LOGO_SMALL[1] = RED "\\_)       (_/  " RESET;
+    LOGO_SMALL[2] = RED "|           |  " RESET;
+    LOGO_SMALL[3] = RED "|           |  " RESET;
+    LOGO_SMALL[4] = RED " ;         ;   " RESET;
+    LOGO_SMALL[5] = RED "  '-_____-'    " RESET;
+    for (int i = 6; i < minsize; i++) {
+      LOGO_SMALL[i]  = RED "               " RESET;
+    }
+  } else {
+    if (smalllogoi < (size_t)minsize) {
+      for (size_t i = smalllogoi; i < (size_t)minsize; i++) {
+        LOGO_SMALL[i] = WHITE "               " RESET;
+      }
+    }
   }
 }
 #endif

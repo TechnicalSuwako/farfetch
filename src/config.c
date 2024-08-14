@@ -43,8 +43,10 @@ bool ismemory = true;
 bool isstorage = true;
 bool isbiglogo = false;
 bool issmalllogo = false;
-int biglogoi = 0;
-int smalllogoi = 0;
+bool mkbiglogo = false;
+bool mksmalllogo = false;
+size_t biglogoi = 0;
+size_t smalllogoi = 0;
 const char *customcolor;
 const char *customtitlecolor;
 const char *customlogobig;
@@ -60,6 +62,39 @@ const char *applycolor(const char *color) {
   else if (strncmp(color, "cyan", 4) == 0) return CYAN;
   else if (strncmp(color, "white", 5) == 0) return WHITE;
   return RESET;
+}
+
+char *colrep(const char *str, const char *old, const char *new) {
+  char *res;
+  int i, count = 0;
+  int nlen = strlen(new);
+  int olen = strlen(old);
+
+  for (i = 0; str[i] != '\0'; i++) {
+    if (strstr(&str[i], old) == &str[i]) {
+      count++;
+      i += olen - 1;
+    }
+  }
+
+  res = (char *)malloc(i + count * (nlen - olen) + 1);
+  if (!res) {
+    return NULL;
+  }
+
+  i = 0;
+  while (*str) {
+    if (strstr(str, old) == str) {
+      strncpy(&res[i], new, strlen(new));
+      i += nlen;
+      str += olen;
+    } else {
+      res[i++] = *str++;
+    }
+  }
+
+  res[i] = '\0';
+  return res;
 }
 
 bool containvocab(const char *line, const char *word) {
@@ -148,29 +183,61 @@ void getconf() {
 
     // カスタムロゴ
     if (strstr(line, "define custom big logo:") != NULL) {
-      isbiglogo = true;
+      mkbiglogo = true;
     }
     if (strstr(line, "define custom small logo:") != NULL) {
-      issmalllogo = true;
+      mksmalllogo = true;
     }
 
-    /* if (isbiglogo) { */
-    /*   if (strstr(line, "EOL") != NULL) { */
-    /*     isbiglogo = false; */
-    /*   } else if (biglogoi < logosize) { */
-    /*     LOGO[biglogoi] = strdup(line); */
-    /*     biglogoi++; */
-    /*   } */
-    /* } */
+    if (mkbiglogo) {
+      isbiglogo = true;
+      if (strstr(line, "define custom big logo:") != NULL) {
+        continue;
+      } else if (strstr(line, "EOL") != NULL) {
+        mkbiglogo = false;
+      } else if (biglogoi < logosize) {
+        LOGO[biglogoi] = strdup(line);
+        LOGO[biglogoi] = colrep(LOGO[biglogoi], "[GREY]", GREY);
+        LOGO[biglogoi] = colrep(LOGO[biglogoi], "[RED]", RED);
+        LOGO[biglogoi] = colrep(LOGO[biglogoi], "[GREEN]", GREEN);
+        LOGO[biglogoi] = colrep(LOGO[biglogoi], "[YELLOW]", YELLOW);
+        LOGO[biglogoi] = colrep(LOGO[biglogoi], "[BLUE]", BLUE);
+        LOGO[biglogoi] = colrep(LOGO[biglogoi], "[MAGENTA]", MAGENTA);
+        LOGO[biglogoi] = colrep(LOGO[biglogoi], "[CYAN]", CYAN);
+        LOGO[biglogoi] = colrep(LOGO[biglogoi], "[WHITE]", WHITE);
+        LOGO[biglogoi] = colrep(LOGO[biglogoi], "[RESET]", RESET);
+        size_t len = strlen(LOGO[biglogoi]);
+        if (len > 0 && LOGO[biglogoi][len - 1] == '\n') {
+          LOGO[biglogoi][len - 1] = '\0';
+        }
+        biglogoi++;
+      }
+    }
 
-    /* if (issmalllogo) { */
-    /*   if (strstr(line, "EOL") != NULL) { */
-    /*     issmalllogo = false; */
-    /*   } else if (smalllogoi < MIN_SIZE) { */
-    /*     LOGO_SMALL[smalllogoi] = strdup(line); */
-    /*     smalllogoi++; */
-    /*   } */
-    /* } */
+    if (mksmalllogo) {
+      issmalllogo = true;
+      if (strstr(line, "define custom small logo:") != NULL) {
+        continue;
+      } else if (strstr(line, "EOL") != NULL) {
+        mksmalllogo = false;
+      } else if (smalllogoi < MIN_SIZE) {
+        LOGO_SMALL[smalllogoi] = strdup(line);
+        LOGO_SMALL[smalllogoi] = colrep(LOGO_SMALL[smalllogoi], "[GREY]", GREY);
+        LOGO_SMALL[smalllogoi] = colrep(LOGO_SMALL[smalllogoi], "[RED]", RED);
+        LOGO_SMALL[smalllogoi] = colrep(LOGO_SMALL[smalllogoi], "[GREEN]", GREEN);
+        LOGO_SMALL[smalllogoi] = colrep(LOGO_SMALL[smalllogoi], "[YELLOW]", YELLOW);
+        LOGO_SMALL[smalllogoi] = colrep(LOGO_SMALL[smalllogoi], "[BLUE]", BLUE);
+        LOGO_SMALL[smalllogoi] = colrep(LOGO_SMALL[smalllogoi], "[MAGENTA]", MAGENTA);
+        LOGO_SMALL[smalllogoi] = colrep(LOGO_SMALL[smalllogoi], "[CYAN]", CYAN);
+        LOGO_SMALL[smalllogoi] = colrep(LOGO_SMALL[smalllogoi], "[WHITE]", WHITE);
+        LOGO_SMALL[smalllogoi] = colrep(LOGO_SMALL[smalllogoi], "[RESET]", RESET);
+        size_t len = strlen(LOGO_SMALL[smalllogoi]);
+        if (len > 0 && LOGO_SMALL[smalllogoi][len - 1] == '\n') {
+          LOGO_SMALL[smalllogoi][len - 1] = '\0';
+        }
+        smalllogoi++;
+      }
+    }
   }
 
   fclose(file);
