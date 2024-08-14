@@ -1,5 +1,6 @@
 #if defined(__linux__)
 #include "linux.h"
+#include "../config.h"
 #include "../resolution.h"
 #include "../wm.h"
 #include "../libc.h"
@@ -37,8 +38,10 @@ void getDistro(const char *distroname) {
   }
 
   if (strncmp((char *)logoname, "alpine", strlen("alpine")) == 0) {
-    color = MAGENTA;
-    titlecolor = BLUE;
+    if (!customcolor) color = MAGENTA;
+    else color = customcolor;
+    if (!customtitlecolor) titlecolor = BLUE;
+    else titlecolor = customtitlecolor;
     logosize = 21;
 
     LOGO[0]  = BLUE "       .hddddddddddddddddddddddh.          " RESET;
@@ -73,8 +76,10 @@ void getDistro(const char *distroname) {
       LOGO_SMALL[i]  = BLUE "              " RESET;
     }
   } else if (strncmp((char *)logoname, "arch", strlen("arch")) == 0) {
-    color = CYAN;
-    titlecolor = CYAN;
+    if (!customcolor) color = CYAN;
+    else color = customcolor;
+    if (!customtitlecolor) titlecolor = CYAN;
+    else titlecolor = customtitlecolor;
     logosize = 20;
 
     LOGO[0]  = CYAN "                  -`                    " RESET;
@@ -109,8 +114,10 @@ void getDistro(const char *distroname) {
       LOGO_SMALL[i]  = CYAN "                " RESET;
     }
   } else if (strncmp((char *)logoname, "arco", strlen("arch")) == 0) {
-    color = BLUE;
-    titlecolor = WHITE;
+    if (!customcolor) color = BLUE;
+    else color = customcolor;
+    if (!customtitlecolor) titlecolor = WHITE;
+    else titlecolor = customtitlecolor;
     logosize = 20;
 
     LOGO[0]  = BLUE "                    /-                      " RESET;
@@ -149,8 +156,10 @@ void getDistro(const char *distroname) {
       LOGO_SMALL[i]  = BLUE "                        " RESET;
     }
   } else if (strncmp((char *)logoname, "artix", strlen("artix")) == 0) {
-    color = CYAN;
-    titlecolor = CYAN;
+    if (!customcolor) color = CYAN;
+    else color = customcolor;
+    if (!customtitlecolor) titlecolor = CYAN;
+    else titlecolor = customtitlecolor;
     logosize = 21;
 
     LOGO[0]  = CYAN "                   '                     " RESET;
@@ -186,8 +195,10 @@ void getDistro(const char *distroname) {
       LOGO_SMALL[i]  = CYAN "                " RESET;
     }
   } else if (strncmp((char *)logoname, "centos", strlen("centos")) == 0) {
-    color = GREEN;
-    titlecolor = YELLOW;
+    if (!customcolor) color = GREEN;
+    else color = customcolor;
+    if (!customtitlecolor) titlecolor = YELLOW;
+    else titlecolor = customtitlecolor;
     logosize = 18;
 
     LOGO[0]  = YELLOW  "                 ..                    " RESET;
@@ -221,8 +232,10 @@ void getDistro(const char *distroname) {
       LOGO_SMALL[i]  = BLUE "              " RESET;
     }
   } else if (strncmp((char *)logoname, "crux", strlen("crux")) == 0) {
-    color = MAGENTA;
-    titlecolor = BLUE;
+    if (!customcolor) color = MAGENTA;
+    else color = customcolor;
+    if (!customtitlecolor) titlecolor = BLUE;
+    else titlecolor = customtitlecolor;
     logosize = 19;
 
     LOGO[0]  = BLUE    "         odddd             " RESET;
@@ -256,8 +269,10 @@ void getDistro(const char *distroname) {
       LOGO_SMALL[i]  = BLUE "            " RESET;
     }
   } else if (strncmp((char *)logoname, "debian", strlen("debian")) == 0) {
-    color = RED;
-    titlecolor = RED;
+    if (!customcolor) color = RED;
+    else color = customcolor;
+    if (!customtitlecolor) titlecolor = RED;
+    else titlecolor = customtitlecolor;
     logosize = 18;
 
     LOGO[0]  = WHITE "       _,met$$$$$gg.          " RESET;
@@ -289,8 +304,10 @@ void getDistro(const char *distroname) {
       LOGO_SMALL[i]  = RED "           " RESET;
     }
   } else if (strncmp((char *)logoname, "devuan", strlen("devuan")) == 0) {
-    color = MAGENTA;
-    titlecolor = MAGENTA;
+    if (!customcolor) color = MAGENTA;
+    else color = customcolor;
+    if (!customtitlecolor) titlecolor = MAGENTA;
+    else titlecolor = customtitlecolor;
     logosize = 16;
 
     LOGO[0]  = MAGENTA "   ..,,;;;::;,..                   " RESET;
@@ -317,8 +334,10 @@ void getDistro(const char *distroname) {
       LOGO_SMALL[i]  = MAGENTA "     " RESET;
     }
   } else if (strncmp((char *)logoname, "fedora", strlen("fedora")) == 0) {
-    color = BLUE;
-    titlecolor = BLUE;
+    if (!customcolor) color = BLUE;
+    else color = customcolor;
+    if (!customtitlecolor) titlecolor = BLUE;
+    else titlecolor = customtitlecolor;
     logosize = 17;
 
     LOGO[0]  = BLUE "          /:-------------:\\          " RESET;
@@ -351,8 +370,10 @@ void getDistro(const char *distroname) {
       LOGO_SMALL[i] = BLUE  "                 " RESET;
     }
   } else if (strncmp((char *)logoname, "gentoo", strlen("gentoo")) == 0) {
-    color = MAGENTA;
-    titlecolor = MAGENTA;
+    if (!customcolor) color = MAGENTA;
+    else color = customcolor;
+    if (!customtitlecolor) titlecolor = MAGENTA;
+    else titlecolor = customtitlecolor;
     logosize = 19;
 
     LOGO[0]  = MAGENTA "         -/oyddmdhs+:.                " RESET;
@@ -386,8 +407,10 @@ void getDistro(const char *distroname) {
       LOGO_SMALL[i]  = MAGENTA "             " RESET;
     }
   } else if (strncmp((char *)logoname, "hyperbola", strlen("hyperbola")) == 0) {
-    color = GREY;
-    titlecolor = WHITE;
+    if (!customcolor) color = GREY;
+    else color = customcolor;
+    if (!customtitlecolor) titlecolor = WHITE;
+    else titlecolor = customtitlecolor;
     logosize = 16;
 
     LOGO[0]  = GREY "                     WW                  " RESET;
@@ -418,8 +441,10 @@ void getDistro(const char *distroname) {
       LOGO_SMALL[i]  = GREY "               " RESET;
     }
   } else if (strncmp((char *)logoname, "kubuntu", strlen("kubuntu")) == 0) {
-    color = BLUE;
-    titlecolor = BLUE;
+    if (!customcolor) color = BLUE;
+    else color = customcolor;
+    if (!customtitlecolor) titlecolor = BLUE;
+    else titlecolor = customtitlecolor;
     logosize = 20;
 
     LOGO[0]  = BLUE "           `.:/ossyyyysso/:.               " RESET;
@@ -453,8 +478,10 @@ void getDistro(const char *distroname) {
       LOGO_SMALL[i]  = BLUE "            " RESET;
     }
   } else if (strncmp((char *)logoname, "linuxmint", strlen("linuxmint")) == 0) {
-    color = GREEN;
-    titlecolor = GREEN;
+    if (!customcolor) color = GREEN;
+    else color = customcolor;
+    if (!customtitlecolor) titlecolor = GREEN;
+    else titlecolor = customtitlecolor;
     logosize = 19;
 
     LOGO[0]  = WHITE "             ...-:::::-...               " RESET;
@@ -488,8 +515,10 @@ void getDistro(const char *distroname) {
       LOGO_SMALL[i]  = GREEN "              " RESET;
     }
   } else if (strncmp((char *)logoname, "lubuntu", strlen("lubuntu")) == 0) {
-    color = BLUE;
-    titlecolor = BLUE;
+    if (!customcolor) color = BLUE;
+    else color = customcolor;
+    if (!customtitlecolor) titlecolor = BLUE;
+    else titlecolor = customtitlecolor;
     logosize = 20;
 
     LOGO[0]  = BLUE "           `-mddhhhhhhhhhddmss`             " RESET;
@@ -523,8 +552,10 @@ void getDistro(const char *distroname) {
       LOGO_SMALL[i]  = BLUE "            " RESET;
     }
   } else if (strncmp((char *)logoname, "manjaro", strlen("manjaro")) == 0) {
-    color = GREEN;
-    titlecolor = GREEN;
+    if (!customcolor) color = GREEN;
+    else color = customcolor;
+    if (!customtitlecolor) titlecolor = GREEN;
+    else titlecolor = customtitlecolor;
     logosize = 14;
 
     LOGO[0]  = GREEN "██████████████████  ████████  " RESET;
@@ -553,8 +584,10 @@ void getDistro(const char *distroname) {
       LOGO_SMALL[i]  = GREEN "               " RESET;
     }
   } else if (strncmp((char *)logoname, "opensuse", strlen("opensuse")) == 0) {
-    color = GREEN;
-    titlecolor = GREEN;
+    if (!customcolor) color = GREEN;
+    else color = customcolor;
+    if (!customtitlecolor) titlecolor = GREEN;
+    else titlecolor = customtitlecolor;
     logosize = 18;
 
     LOGO[0]  = WHITE "           .;ldkO0000Okdl;.            " RESET;
@@ -587,8 +620,10 @@ void getDistro(const char *distroname) {
       LOGO_SMALL[i]  = GREEN "            " RESET;
     }
   } else if (strncmp((char *)logoname, "parabola", strlen("parabola")) == 0) {
-    color = MAGENTA;
-    titlecolor = MAGENTA;
+    if (!customcolor) color = MAGENTA;
+    else color = customcolor;
+    if (!customtitlecolor) titlecolor = MAGENTA;
+    else titlecolor = customtitlecolor;
     logosize = 16;
 
     LOGO[0]  = MAGENTA "                          `.-.    `.     " RESET;
@@ -618,8 +653,10 @@ void getDistro(const char *distroname) {
       LOGO_SMALL[i]  = MAGENTA "                  " RESET;
     }
   } else if (strncmp((char *)logoname, "popos", strlen("popos")) == 0) {
-    color = CYAN;
-    titlecolor = CYAN;
+    if (!customcolor) color = CYAN;
+    else color = customcolor;
+    if (!customtitlecolor) titlecolor = CYAN;
+    else titlecolor = customtitlecolor;
     logosize = 20;
 
     LOGO[0]  = CYAN "             /////////////                " RESET;
@@ -657,8 +694,10 @@ void getDistro(const char *distroname) {
   } else if (
       strncmp((char *)logoname, "postmarketos", strlen("postmarketos")) == 0
     ) {
-    color = GREEN;
-    titlecolor = GREEN;
+    if (!customcolor) color = GREEN;
+    else color = customcolor;
+    if (!customtitlecolor) titlecolor = GREEN;
+    else titlecolor = customtitlecolor;
     logosize = 18;
 
     LOGO[0]  = GREEN "                 /\\                    " RESET;
@@ -694,8 +733,10 @@ void getDistro(const char *distroname) {
       LOGO_SMALL[i]  = GREEN "                    " RESET;
     }
   } else if (strncmp((char *)logoname, "redhat", strlen("redhat")) == 0) {
-    color = RED;
-    titlecolor = RED;
+    if (!customcolor) color = RED;
+    else color = customcolor;
+    if (!customtitlecolor) titlecolor = RED;
+    else titlecolor = customtitlecolor;
     logosize = 18;
 
     LOGO[0]  = RED "           .MMM..:MMMMMMM                  " RESET;
@@ -729,8 +770,10 @@ void getDistro(const char *distroname) {
       LOGO_SMALL[i]  = RED "                " RESET;
     }
   } else if (strncmp((char *)logoname, "rocky", strlen("rocky")) == 0) {
-    color = GREEN;
-    titlecolor = GREEN;
+    if (!customcolor) color = GREEN;
+    else color = customcolor;
+    if (!customtitlecolor) titlecolor = GREEN;
+    else titlecolor = customtitlecolor;
     logosize = 17;
 
     LOGO[0]  = GREEN "            .-/+oossssoo+/-.               " RESET;
@@ -760,8 +803,10 @@ void getDistro(const char *distroname) {
       LOGO_SMALL[i]  = GREEN "         " RESET;
     }
   } else if (strncmp((char *)logoname, "ubuntubudgie", strlen("ubuntubudgie")) == 0) {
-    color = BLUE;
-    titlecolor = BLUE;
+    if (!customcolor) color = BLUE;
+    else color = customcolor;
+    if (!customtitlecolor) titlecolor = BLUE;
+    else titlecolor = customtitlecolor;
     logosize = 20;
 
     LOGO[0]  = WHITE "           ./oydmMMMMMMmdyo/.              " RESET;
@@ -799,8 +844,10 @@ void getDistro(const char *distroname) {
         "ubuntucinnamon",
         strlen("ubuntucinnamon")) == 0
   ) {
-    color = RED;
-    titlecolor = RED;
+    if (!customcolor) color = RED;
+    else color = customcolor;
+    if (!customtitlecolor) titlecolor = RED;
+    else titlecolor = customtitlecolor;
     logosize = 21;
 
     LOGO[0] = RED "              +++++++++++++               " RESET; 
@@ -835,8 +882,10 @@ void getDistro(const char *distroname) {
       LOGO_SMALL[i]  = RED "            " RESET;
     }
   } else if (strncmp((char *)logoname, "ubuntulomiri", strlen("ubuntulomiri")) == 0) {
-    color = RED;
-    titlecolor = GREY;
+    if (!customcolor) color = RED;
+    else color = customcolor;
+    if (!customtitlecolor) titlecolor = GREY;
+    else titlecolor = customtitlecolor;
     logosize = 21;
 
     LOGO[0]  = RED  "     .....=++++++=....        " RESET;
@@ -873,8 +922,10 @@ void getDistro(const char *distroname) {
       LOGO_SMALL[i]  = RED "                         " RESET;
     }
   } else if (strncmp((char *)logoname, "ubuntumate", strlen("ubuntumate")) == 0) {
-    color = GREEN;
-    titlecolor = GREEN;
+    if (!customcolor) color = GREEN;
+    else color = customcolor;
+    if (!customtitlecolor) titlecolor = GREEN;
+    else titlecolor = customtitlecolor;
     logosize = 20;
 
     LOGO[0]  = GREEN "           `:+shmNNMMNNmhs+:`              " RESET;
@@ -908,8 +959,10 @@ void getDistro(const char *distroname) {
       LOGO_SMALL[i]  = GREEN "            " RESET;
     }
   } else if (strncmp((char *)logoname, "ubuntuunity", strlen("ubuntuunity")) == 0) {
-    color = RED;
-    titlecolor = BLUE;
+    if (!customcolor) color = RED;
+    else color = customcolor;
+    if (!customtitlecolor) titlecolor = BLUE;
+    else titlecolor = customtitlecolor;
     logosize = 19;
 
     LOGO[0]  = BLUE    "           SSSSSSSSSSSSS              " RESET;
@@ -942,8 +995,10 @@ void getDistro(const char *distroname) {
       LOGO_SMALL[i]  = RED "            " RESET;
     }
   } else if (strncmp((char *)logoname, "ubuntu", strlen("ubuntu")) == 0) {
-    color = RED;
-    titlecolor = RED;
+    if (!customcolor) color = RED;
+    else color = customcolor;
+    if (!customtitlecolor) titlecolor = RED;
+    else titlecolor = customtitlecolor;
     logosize = 20;
 
     LOGO[0]  = RED "            .-/+oossssoo+/-.             " RESET;
@@ -977,8 +1032,10 @@ void getDistro(const char *distroname) {
       LOGO_SMALL[i]  = RED "            " RESET;
     }
   } else if (strncmp((char *)logoname, "void", strlen("void")) == 0) {
-    color = WHITE;
-    titlecolor = GREEN;
+    if (!customcolor) color = WHITE;
+    else color = customcolor;
+    if (!customtitlecolor) titlecolor = GREEN;
+    else titlecolor = customtitlecolor;
     logosize = 19;
 
     LOGO[0]  = GREEN "                __.;=====;.__                    " RESET;
@@ -1012,8 +1069,10 @@ void getDistro(const char *distroname) {
       LOGO_SMALL[i]  = GREEN "               " RESET;
     }
   } else if (strncmp((char *)logoname, "xubuntu", strlen("xubuntu")) == 0) {
-    color = BLUE;
-    titlecolor = BLUE;
+    if (!customcolor) color = BLUE;
+    else color = customcolor;
+    if (!customtitlecolor) titlecolor = BLUE;
+    else titlecolor = customtitlecolor;
     logosize = 20;
 
     LOGO[0]  = BLUE "           `-/osyhddddhyso/-`              " RESET;
@@ -1047,8 +1106,10 @@ void getDistro(const char *distroname) {
       LOGO_SMALL[i]  = BLUE "            " RESET;
     }
   } else {
-    color = WHITE;
-    titlecolor = WHITE;
+    if (!customcolor) color = WHITE;
+    else color = customcolor;
+    if (!customtitlecolor) titlecolor = WHITE;
+    else titlecolor = customtitlecolor;
     logosize = 13;
 
     LOGO[0]  = GREY   "        #####           " RESET;

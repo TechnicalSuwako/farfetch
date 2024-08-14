@@ -21,6 +21,12 @@ extern bool iscpu;
 extern bool isgpu;
 extern bool ismemory;
 extern bool isstorage;
+extern bool isbiglogo;
+extern bool issmalllogo;
+extern const char *customcolor;
+extern const char *customtitlecolor;
+extern const char *customlogobig;
+extern const char *customlogosmall;
 
 void getconf();
 

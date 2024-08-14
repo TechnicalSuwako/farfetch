@@ -34,8 +34,10 @@ void getDistro(const char *distroname) {
   }
 
   if (strncmp((char *)logoname, "omnios", strlen("omnios")) == 0) {
-    color = YELLOW;
-    titlecolor = GREY;
+    if (!customcolor) color = YELLOW;
+    else color = customcolor;
+    if (!customtitlecolor) titlecolor = GREY;
+    else titlecolor = customtitlecolor;
     logosize = 13;
 
     LOGO[0]  = GREY   "      ######             " RESET;
@@ -64,8 +66,11 @@ void getDistro(const char *distroname) {
       LOGO_SMALL[i] = YELLOW "          " RESET;
     }
   } else {
-    color = BLUE;
-    titlecolor = BLUE;
+    if (!customcolor) color = BLUE;
+    else color = customcolor;
+    if (!customtitlecolor) titlecolor = BLUE;
+    else titlecolor = customtitlecolor;
+    logosize = 17
 
     LOGO[0]  = WHITE "                         .sy/              " RESET;
     LOGO[1]  = WHITE "                         .yh+              " RESET;

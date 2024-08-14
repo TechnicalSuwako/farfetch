@@ -6,6 +6,22 @@
 #include <ctype.h>
 
 #include "config.h"
+#include "logo/colors.h"
+#if defined(__OpenBSD__)
+#include "logo/openbsd.h"
+#elif defined(__NetBSD__)
+#include "logo/netbsd.h"
+#elif defined(__FreeBSD__)
+#include "logo/freebsd.h"
+#elif defined(__linux__)
+#include "logo/linux.h"
+#elif defined(__sun)
+#include "logo/sunos.h"
+#elif defined(__APPLE__)
+#include "logo/macos.h"
+#elif defined(__HAIKU__)
+#include "logo/haiku.h"
+#endif
 
 bool isos = true;
 bool ishost = true;
@@ -25,6 +41,26 @@ bool iscpu = true;
 bool isgpu = true;
 bool ismemory = true;
 bool isstorage = true;
+bool isbiglogo = false;
+bool issmalllogo = false;
+int biglogoi = 0;
+int smalllogoi = 0;
+const char *customcolor;
+const char *customtitlecolor;
+const char *customlogobig;
+const char *customlogosmall;
+
+const char *applycolor(const char *color) {
+  if (strncmp(color, "grey", 4) == 0) return GREY;
+  else if (strncmp(color, "red", 3) == 0) return RED;
+  else if (strncmp(color, "green", 5) == 0) return GREEN;
+  else if (strncmp(color, "yellow", 6) == 0) return YELLOW;
+  else if (strncmp(color, "blue", 4) == 0) return BLUE;
+  else if (strncmp(color, "magenta", 7) == 0) return MAGENTA;
+  else if (strncmp(color, "cyan", 4) == 0) return CYAN;
+  else if (strncmp(color, "white", 5) == 0) return WHITE;
+  return RESET;
+}
 
 bool containvocab(const char *line, const char *word) {
   const char *p = line;
@@ -74,7 +110,7 @@ void getconf() {
     return;
   }
 
-  char line[20];
+  char line[256];
   while (fgets(line, sizeof(line), file)) {
     if (line[0] == '#' || line[0] == '\n') continue;
     if (strstr(line, "hide ") != NULL) {
@@ -97,6 +133,44 @@ void getconf() {
       if (containvocab(line, "memory")) ismemory = false;
       if (containvocab(line, "storage")) isstorage = false;
     }
+
+    // 色
+    if (strstr(line, "set color") != NULL) {
+      char color[10];
+      sscanf(line, "set color %s", color);
+      customcolor = applycolor(color);
+    }
+    if (strstr(line, "set titlecolor") != NULL) {
+      char color[10];
+      sscanf(line, "set titlecolor %s", color);
+      customtitlecolor = applycolor(color);
+    }
+
+    // カスタムロゴ
+    if (strstr(line, "define custom big logo:") != NULL) {
+      isbiglogo = true;
+    }
+    if (strstr(line, "define custom small logo:") != NULL) {
+      issmalllogo = true;
+    }
+
+    /* if (isbiglogo) { */
+    /*   if (strstr(line, "EOL") != NULL) { */
+    /*     isbiglogo = false; */
+    /*   } else if (biglogoi < logosize) { */
+    /*     LOGO[biglogoi] = strdup(line); */
+    /*     biglogoi++; */
+    /*   } */
+    /* } */
+
+    /* if (issmalllogo) { */
+    /*   if (strstr(line, "EOL") != NULL) { */
+    /*     issmalllogo = false; */
+    /*   } else if (smalllogoi < MIN_SIZE) { */
+    /*     LOGO_SMALL[smalllogoi] = strdup(line); */
+    /*     smalllogoi++; */
+    /*   } */
+    /* } */
   }
 
   fclose(file);

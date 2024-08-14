@@ -9,6 +9,7 @@
 * Linux: 「hostname」コマンドがなければ、「cat /etc/hostname」を実効する様に
 * Linux: pacman、rpm対応
 * LinuxとBSD: 今から、静的リンクがデフォルトになりました（動的リンクには「make LDFLAGS=-lc」をご利用下さい）
+* 色コンフィグの追加
 
 # 0.2.0
 * Manjaroのロゴの追加

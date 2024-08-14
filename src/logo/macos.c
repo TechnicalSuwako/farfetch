@@ -13,8 +13,10 @@ size_t logosize = 17;
 int minsize = MIN_SIZE;
 
 void getOS() {
-  color = YELLOW;
-  titlecolor = GREEN;
+  if (!customcolor) color = YELLOW;
+  else color = customcolor;
+  if (!customtitlecolor) titlecolor = GREEN;
+  else titlecolor = customtitlecolor;
   const char *pac = display_packages();
   if (!pac) minsize--;
   else free((void *)pac);

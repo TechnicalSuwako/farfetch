@@ -1,5 +1,6 @@
 #if defined(__FreeBSD__)
 #include "freebsd.h"
+#include "../config.h"
 #include "../resolution.h"
 #include "../wm.h"
 
@@ -14,8 +15,10 @@ size_t logosize = 16;
 int minsize = MIN_SIZE;
 
 void getOS() {
-  color = RED;
-  titlecolor = RED;
+  if (!customcolor) color = RED;
+  else color = customcolor;
+  if (!customtitlecolor) titlecolor = RED;
+  else titlecolor = customtitlecolor;
   const char *res = display_resolution();
   if (!res) minsize--;
   else free((void *)res);

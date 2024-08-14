@@ -1,5 +1,6 @@
 #if defined(__HAIKU__)
 #include "haiku.h"
+#include "../config.h"
 #include "../resolution.h"
 
 #include <string.h>
@@ -13,8 +14,10 @@ size_t logosize = 20;
 int minsize = MIN_SIZE;
 
 void getOS() {
-  color = GREEN;
-  titlecolor = RED;
+  if (!customcolor) color = GREEN;
+  else color = customcolor;
+  if (!customtitlecolor) titlecolor = RED;
+  else titlecolor = customtitlecolor;
   const char *res = display_resolution();
   if (!res) minsize--;
   else free((void *)res);
