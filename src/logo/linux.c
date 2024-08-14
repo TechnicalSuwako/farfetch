@@ -37,13 +37,6 @@ void getDistro(const char *distroname) {
     }
   }
 
-  if (!isbiglogo && !issmalllogo) {
-    for (int i = 0; i < LOGO_SIZE; i++) {
-      LOGO[i] = NULL;
-      LOGO_SMALL[i] = NULL;
-    }
-  }
-
   if (strncmp((char *)logoname, "alpine", strlen("alpine")) == 0) {
     if (!customcolor) color = MAGENTA;
     else color = customcolor;

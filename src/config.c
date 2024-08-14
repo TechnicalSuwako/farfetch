@@ -85,7 +85,7 @@ char *colrep(const char *str, const char *old, const char *new) {
   i = 0;
   while (*str) {
     if (strstr(str, old) == str) {
-      strncpy(&res[i], new, strlen(new));
+      memcpy(&res[i], new, strlen(new));
       i += nlen;
       str += olen;
     } else {
