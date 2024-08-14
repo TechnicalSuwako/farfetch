@@ -26,13 +26,6 @@ void getOS() {
   if (!wm) minsize--;
   else free((void *)wm);
 
-  if (!isbiglogo && !issmalllogo) {
-    for (int i = 0; i < LOGO_SIZE; i++) {
-      LOGO[i] = NULL;
-      LOGO_SMALL[i] = NULL;
-    }
-  }
-
   if (!isbiglogo) {
     LOGO[0]  = MAGENTA "                     `-/oshdmNMNdhyo+:-`   " RESET;
     LOGO[1]  = WHITE   "y" MAGENTA "/s+:-``    `.-:+oydNMMMMNhs/-``           " RESET;
