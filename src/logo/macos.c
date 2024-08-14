@@ -1,5 +1,6 @@
 #if defined(__APPLE__)
 #include "macos.h"
+#include "../config.h"
 #include "../packages.h"
 
 #include <string.h>
