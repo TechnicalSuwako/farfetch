@@ -117,7 +117,9 @@ void delete_cache() {
 
   if (stat("/tmp/farfetch/os", &st) == 0) remove("/tmp/farfetch/os");
   if (stat("/tmp/farfetch/host", &st) == 0) remove("/tmp/farfetch/host");
+#if defined(__linux__) || defined(__sunos)
   if (stat("/tmp/farfetch/distro", &st) == 0) remove("/tmp/farfetch/distro");
+#endif
   if (stat("/tmp/farfetch/cpu", &st) == 0) remove("/tmp/farfetch/cpu");
   if (stat("/tmp/farfetch/gpu", &st) == 0) remove("/tmp/farfetch/gpu");
 }
