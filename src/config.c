@@ -23,6 +23,9 @@
 #include "logo/haiku.h"
 #endif
 
+bool islogob = true;
+bool islogos = false;
+bool islogod = true;
 bool isos = true;
 bool ishost = true;
 #if defined(__linux__) || defined(__sunos)
@@ -149,6 +152,7 @@ void getconf() {
   while (fgets(line, sizeof(line), file)) {
     if (line[0] == '#' || line[0] == '\n') continue;
     if (strstr(line, "hide ") != NULL) {
+      if (containvocab(line, "logo")) islogod = false;
       if (containvocab(line, "os")) isos = false;
       if (containvocab(line, "host")) ishost = false;
 #if defined(__linux__) || defined(__sunos)
@@ -181,6 +185,17 @@ void getconf() {
       customtitlecolor = applycolor(color);
     }
 
+    // デフォルトは大きいロゴ
+    if (strstr(line, "show logo") != NULL) {
+      if (containvocab(line, "small")) {
+        islogob = false;
+        islogos = true;
+      } else {
+        islogob = true;
+        islogos = false;
+      }
+    }
+
     // カスタムロゴ
     if (strstr(line, "define custom big logo:") != NULL) {
       mkbiglogo = true;
@@ -191,6 +206,7 @@ void getconf() {
 
     if (mkbiglogo) {
       isbiglogo = true;
+      islogob = true;
       if (strstr(line, "define custom big logo:") != NULL) {
         continue;
       } else if (strstr(line, "EOL") != NULL) {
@@ -216,6 +232,7 @@ void getconf() {
 
     if (mksmalllogo) {
       issmalllogo = true;
+      islogos = true;
       if (strstr(line, "define custom small logo:") != NULL) {
         continue;
       } else if (strstr(line, "EOL") != NULL) {

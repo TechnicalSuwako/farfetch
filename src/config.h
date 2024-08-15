@@ -4,6 +4,9 @@
 #include <stdbool.h>
 #include <unistd.h>
 
+extern bool islogob;
+extern bool islogos;
+extern bool islogod;
 extern bool isos;
 extern bool ishost;
 #if defined(__linux__) || defined(__sunos)

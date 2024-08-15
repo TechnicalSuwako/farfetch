@@ -174,7 +174,7 @@ int main(int argc, char *argv[]) {
   }
 #endif
 
-  if (issmall) {
+  if (issmall || islogos) {
     size_t ne = sizeof(LOGO_SMALL) / sizeof(LOGO_SMALL[0]);
     for (size_t i = 0; i < ne; i++) {
       LOGO[i] = LOGO_SMALL[i];
