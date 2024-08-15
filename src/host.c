@@ -75,7 +75,9 @@ const char *display_host() {
   if (!cmd) return "Unknown";
 
   out = (char *)run_command_s(cmd);
+#if defined(__linux__)
   free((void *)cmd);
+#endif
 #if !defined(__HAIKU__)
   to_cache("/tmp/farfetch/host", out);
 #endif
