@@ -62,14 +62,19 @@ clean:
 dist:
 	mkdir -p ${NAME}-${VERSION} release/src
 	cp -R LICENSE.txt Makefile README.md CHANGELOG.md\
-		${NAME}.conf ${NAME}.1 ${NAME}.conf.5 main.c src ${NAME}-${VERSION}
+		${NAME}.conf ${NAME}.1 ${NAME}-en.1 ${NAME}.conf.5 ${NAME}.conf-en.5\
+		main.c src ${NAME}-${VERSION}
 	tar zcfv release/src/${NAME}-${VERSION}.tar.gz ${NAME}-${VERSION}
 	rm -rf ${NAME}-${VERSION}
 
 man:
 	mkdir -p release/man/${VERSION}
 	sed "s/VERSION/${VERSION}/g" < ${NAME}.1 > release/man/${VERSION}/${NAME}.1
-	sed "s/VERSION/${VERSION}/g" < ${NAME}.conf.5 > release/man/${VERSION}/${NAME}.conf.5
+	sed "s/VERSION/${VERSION}/g" < ${NAME}-en.1 > release/man/${VERSION}/${NAME}-en.1
+	sed "s/VERSION/${VERSION}/g" < ${NAME}.conf.5 >\
+		release/man/${VERSION}/${NAME}.conf.5
+	sed "s/VERSION/${VERSION}/g" < ${NAME}.conf-en.5 >\
+		release/man/${VERSION}/${NAME}.conf-en.5
 
 release:
 	mkdir -p release/bin/${VERSION}/${OS}/${UNAME_M}
@@ -85,13 +90,21 @@ install:
 	chmod 755 ${DESTDIR}${PREFIX}/bin/${NAME}
 	sed "s/VERSION/${VERSION}/g" < ${NAME}.1 > ${DESTDIR}${MANPREFIX}/man1/${NAME}.1
 	chmod 644 ${DESTDIR}${MANPREFIX}/man1/${NAME}.1
+	sed "s/VERSION/${VERSION}/g" < ${NAME}-en.1 >\
+		${DESTDIR}${MANPREFIX}/man1/${NAME}-en.1
+	chmod 644 ${DESTDIR}${MANPREFIX}/man1/${NAME}-en.1
 	sed "s/VERSION/${VERSION}/g" < ${NAME}.conf.5 >\
 		${DESTDIR}${MANPREFIX}/man5/${NAME}.conf.5
 	chmod 644 ${DESTDIR}${MANPREFIX}/man5/${NAME}.conf.5
+	sed "s/VERSION/${VERSION}/g" < ${NAME}.conf-en.5 >\
+		${DESTDIR}${MANPREFIX}/man5/${NAME}.conf-en.5
+	chmod 644 ${DESTDIR}${MANPREFIX}/man5/${NAME}.conf-en.5
 
 uninstall:
 	rm -rf ${DESTDIR}${PREFIX}/bin/${NAME}
 	rm -rf ${DESTDIR}${MANPREFIX}/man1/${NAME}.1
+	rm -rf ${DESTDIR}${MANPREFIX}/man1/${NAME}-en.1
 	rm -rf ${DESTDIR}${MANPREFIX}/man5/${NAME}.conf.5
+	rm -rf ${DESTDIR}${MANPREFIX}/man5/${NAME}-en.conf.5
 
 .PHONY: all clean dist man release install uninstall

@@ -3,27 +3,27 @@
 .B farfetch.conf
 .SH DESCRIPTION
 .PP
-利用するには、`cp /etc/farfetch.conf ~/.config`を実効して下さい。
+To use it, run `cp /etc/farfetch.conf ~/.config`.
 .br
-Haikuの場合は不要です。
+This is not necessary for Haiku.
 .SH GLOBAL CONFIGURATION
 .TP
 \fB\,hide\fR [\fI\,context\fR]
-隠す
+hide
 .TP
 \fB\,show\fR [\fI\,context\fR]
-表示
+express
 .TP
 \fB\,set color\fR [\fI\,red|green|blue|yellow|magenta|white|grey|cyan\fR]
-モジュール色の変更
+Change module color
 .TP
 \fB\,set titlecolor\fR [\fI\,red|green|blue|yellow|magenta|white|grey|cyan\fR]
-タイトル色の変更
+Change title color
 .TP
 \fB\,define custom\fR [\fI\,big|small\fR] \fB,logo:\fR
-EOLまでカスタムロゴを表示出来る
+Custom logo can be displayed until EOL
 .br
-色の設置も可能ですが、「[RESET]」で終わる事が必須
+You can also set the color, but it must end with "[RESET]".
 .SH EXAMPLES
 hide packages
 show os
@@ -77,6 +77,6 @@ define custom big logo:
 EOL
 .SH AUTHORS
 .PP
-テクニカル諏訪子（開発者）
+TechnicalSuwako (Developer)
 .br
-ハツラツ太郎（開発者）
+Hatuhatu Taro (Developer)
