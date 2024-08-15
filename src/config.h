@@ -7,6 +7,7 @@
 extern bool islogob;
 extern bool islogos;
 extern bool islogod;
+extern bool islogocustom;
 extern bool isos;
 extern bool ishost;
 #if defined(__linux__) || defined(__sunos)

@@ -26,6 +26,7 @@
 bool islogob = true;
 bool islogos = false;
 bool islogod = true;
+bool islogocustom = false;
 bool isos = true;
 bool ishost = true;
 #if defined(__linux__) || defined(__sunos)
@@ -187,12 +188,20 @@ void getconf() {
 
     // デフォルトは大きいロゴ
     if (strstr(line, "show logo") != NULL) {
+      puts("show logo");
       if (containvocab(line, "small")) {
+        puts("small");
         islogob = false;
         islogos = true;
       } else {
+        puts("big");
         islogob = true;
         islogos = false;
+      }
+
+      if (containvocab(line, "custom")) {
+        puts("custom");
+        islogocustom = true;
       }
     }
 
@@ -204,9 +213,8 @@ void getconf() {
       mksmalllogo = true;
     }
 
-    if (mkbiglogo) {
+    if (mkbiglogo && islogocustom && islogob) {
       isbiglogo = true;
-      islogob = true;
       if (strstr(line, "define custom big logo:") != NULL) {
         continue;
       } else if (strstr(line, "EOL") != NULL) {
@@ -230,9 +238,8 @@ void getconf() {
       }
     }
 
-    if (mksmalllogo) {
+    if (mksmalllogo && islogocustom && islogos) {
       issmalllogo = true;
-      islogos = true;
       if (strstr(line, "define custom small logo:") != NULL) {
         continue;
       } else if (strstr(line, "EOL") != NULL) {
