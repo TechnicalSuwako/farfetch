@@ -22,13 +22,6 @@ void getOS() {
   if (!pac) minsize--;
   else free((void *)pac);
 
-  if (!isbiglogo && !issmalllogo) {
-    for (int i = 0; i < LOGO_SIZE; i++) {
-      LOGO[i] = NULL;
-      LOGO_SMALL[i] = NULL;
-    }
-  }
-
   if (!isbiglogo) {
     LOGO[0]  = GREEN   "                    'c.          " RESET;
     LOGO[1]  = GREEN   "                 ,xNMM.          " RESET;
