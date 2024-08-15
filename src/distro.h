@@ -2,6 +2,9 @@
 #ifndef DISTRO_H
 #define DISTRO_H
 
+#include <stdbool.h>
+
+bool is_distro(const char *buf);
 const char *display_distro();
 void get_distro();
 

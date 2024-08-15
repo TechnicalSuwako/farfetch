@@ -8,6 +8,10 @@ extern bool islogob;
 extern bool islogos;
 extern bool islogod;
 extern bool islogocustom;
+#if defined(__linux__) || defined(__sunos)
+extern bool islogodistro;
+extern char *distrostring;
+#endif
 extern bool isos;
 extern bool ishost;
 #if defined(__linux__) || defined(__sunos)

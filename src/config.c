@@ -15,6 +15,7 @@
 #include "logo/freebsd.h"
 #elif defined(__linux__)
 #include "logo/linux.h"
+#include "distro.h"
 #elif defined(__sun)
 #include "logo/sunos.h"
 #elif defined(__APPLE__)
@@ -27,6 +28,10 @@ bool islogob = true;
 bool islogos = false;
 bool islogod = true;
 bool islogocustom = false;
+#if defined(__linux__) || defined(__sunos)
+bool islogodistro = false;
+char *distrostring;
+#endif
 bool isos = true;
 bool ishost = true;
 #if defined(__linux__) || defined(__sunos)
@@ -55,6 +60,15 @@ const char *customcolor;
 const char *customtitlecolor;
 const char *customlogobig;
 const char *customlogosmall;
+
+void rmstr(char *str, const char *sub) {
+  char *pos;
+  size_t len = strlen(sub);
+  
+  while ((pos = strstr(str, sub)) != NULL) {
+    memmove(pos, pos + len, strlen(pos + len) + 1);
+  }
+}
 
 const char *applycolor(const char *color) {
   if (strncmp(color, "grey", 4) == 0) return GREY;
@@ -188,20 +202,32 @@ void getconf() {
 
     // デフォルトは大きいロゴ
     if (strstr(line, "show logo") != NULL) {
-      puts("show logo");
       if (containvocab(line, "small")) {
-        puts("small");
         islogob = false;
         islogos = true;
       } else {
-        puts("big");
         islogob = true;
         islogos = false;
       }
 
       if (containvocab(line, "custom")) {
-        puts("custom");
         islogocustom = true;
+#if defined(__linux__) || defined(__sunos)
+      } else {
+        distrostring = strdup(line);
+        if (!distrostring) {
+          perror("メモリの役割に失敗");
+          return;
+        }
+        rmstr(distrostring, "show logo");
+        if (containvocab(line, "small")) rmstr(distrostring, "small");
+        else rmstr(distrostring, "big");
+        rmstr(distrostring, "\n");
+        rmstr(distrostring, " ");
+
+        if (is_distro(distrostring)) islogodistro = true;
+        else distrostring = NULL;
+#endif
       }
     }
 
@@ -235,6 +261,7 @@ void getconf() {
           LOGO[biglogoi][len - 1] = '\0';
         }
         biglogoi++;
+        free(LOGO[biglogoi]);
       }
     }
 
@@ -260,6 +287,7 @@ void getconf() {
           LOGO_SMALL[smalllogoi][len - 1] = '\0';
         }
         smalllogoi++;
+        free(LOGO[smalllogoi]);
       }
     }
   }

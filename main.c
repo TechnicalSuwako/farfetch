@@ -57,6 +57,8 @@ void flags(int opt) {
 #if defined(__linux__) || defined(__sunos)
     case 'l':
       islogo = 1;
+      islogodistro = 0;
+      islogocustom = 0;
       break;
 #endif
 #if !defined(__HAIKU__)
@@ -171,10 +173,18 @@ int main(int argc, char *argv[]) {
   if (islogo) {
     logoname = argv[2];
     getDistro(logoname);
+  } else if (islogodistro) {
+    logoname = distrostring;
+    getDistro(logoname);
+    free(distrostring);
   }
 #endif
 
-  if (issmall || islogos) {
+  bool smol = false;
+  if (issmall && !islogos) smol = true;
+  else if (!issmall && islogos) smol = true;
+
+  if (smol) {
     size_t ne = sizeof(LOGO_SMALL) / sizeof(LOGO_SMALL[0]);
     for (size_t i = 0; i < ne; i++) {
       LOGO[i] = LOGO_SMALL[i];

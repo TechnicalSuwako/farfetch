@@ -9,6 +9,39 @@
 
 const char *distroname;
 
+bool is_distro(const char *buf) {
+#if defined(__sunos)
+  if (strncmp(buf, "openindiana") == 0) return 1;
+  else if (strncmp(buf, "omnios") == 0) return 1;
+  else if (strncmp(buf, "solaris") == 0) return 1;
+#else
+  if (strncmp(buf, "alpine", sizeof("alpine")) == 0) return 1;
+  else if (strncmp(buf, "arch", sizeof("arch")) == 0) return 1;
+  else if (strncmp(buf, "arco", sizeof("arco")) == 0) return 1;
+  else if (strncmp(buf, "artix", sizeof("artix")) == 0) return 1;
+  else if (strncmp(buf, "centos", sizeof("centos")) == 0) return 1;
+  else if (strncmp(buf, "crux", sizeof("crux")) == 0) return 1;
+  else if (strncmp(buf, "debian", sizeof("debian")) == 0) return 1;
+  else if (strncmp(buf, "devuan", sizeof("devuan")) == 0) return 1;
+  else if (strncmp(buf, "fedora", sizeof("fedora")) == 0) return 1;
+  else if (strncmp(buf, "gentoo", sizeof("gentoo")) == 0) return 1;
+  else if (strncmp(buf, "hyperbola", sizeof("hyperbola")) == 0) return 1;
+  else if (strncmp(buf, "linuxmint", sizeof("linuxmint")) == 0) return 1;
+  else if (strncmp(buf, "manjaro", sizeof("manjaro")) == 0) return 1;
+  else if (strncmp(buf, "opensuse", sizeof("opensuse")) == 0) return 1;
+  else if (strncmp(buf, "parabola", sizeof("parabola")) == 0) return 1;
+  else if (strncmp(buf, "popos", sizeof("popos")) == 0) return 1;
+  else if (strncmp(buf, "postmarketos", sizeof("postmarketos")) == 0) return 1;
+  else if (strncmp(buf, "redhat", sizeof("redhat")) == 0) return 1;
+  else if (strncmp(buf, "rocky", sizeof("rocky")) == 0) return 1;
+  else if (strncmp(buf, "ubuntu", sizeof("ubuntu")) == 0) return 1;
+  else if (strncmp(buf, "void", sizeof("void")) == 0) return 1;
+  else if (strncmp(buf, "linux", sizeof("linux"))) return 1;
+#endif
+
+  return 0;
+}
+
 const char *display_distro() {
   char buf[1288];
   char *out = NULL;
@@ -108,7 +141,8 @@ void get_distro() {
   else if (strstr(buf, "Hyperbola") != NULL) distroname = "hyperbola";
   else if (strstr(buf, "Linux Mint") != NULL) distroname = "linuxmint";
   else if (strstr(buf, "Manjaro") != NULL) distroname = "manjaro";
-  else if (strstr(buf, "opensuse") != NULL) distroname = "opensuse";
+  else if (strstr(buf, "OpenIndiana") != NULL) distroname = "openindiana";
+  else if (strstr(buf, "openSUSE") != NULL) distroname = "opensuse";
   else if (strstr(buf, "OmniOS") != NULL) distroname = "omnios";
   else if (strstr(buf, "Parabola") != NULL) distroname = "parabola";
   else if (strstr(buf, "Pop!_OS") != NULL) distroname = "popos";
