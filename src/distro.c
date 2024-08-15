@@ -14,7 +14,11 @@ const char *display_distro() {
   char *out = NULL;
   size_t outsize = 0;
 
-  const char *cmd = NULL;
+  const char *cmd = from_cache("/tmp/farfetch/distro");
+
+  if (cmd) {
+    return cmd;
+  }
 
   if (access("/bedrock/etc/bedrock-release", F_OK) != -1) {
     cmd = "cat /bedrock/etc/bedrock-release | grep '^PRETTY_NAME' | "
@@ -69,12 +73,12 @@ const char *display_distro() {
     }
 
     out = nout;
-
     memccpy(out + outsize, buf, sizeof(buf), len);
     outsize += len;
     out[outsize] = '\0';
   }
 
+  to_cache("/tmp/farfetch/distro", out);
   pclose(p);
 
   return out;
@@ -82,6 +86,14 @@ const char *display_distro() {
 
 void get_distro() {
   const char *buf = display_distro();
+  if (!buf) {
+#if defined(__sunos)
+    distroname = "solaris";
+#else
+    distroname = "linux";
+#endif
+    return;
+  }
 
   if (strstr(buf, "Alpine") != NULL) distroname = "alpine";
   else if (strstr(buf, "Arch Linux") != NULL) distroname = "arch";
@@ -105,7 +117,11 @@ void get_distro() {
   else if (strstr(buf, "Rocky") != NULL) distroname = "rocky";
   else if (strstr(buf, "Ubuntu") != NULL) distroname = "ubuntu";
   else if (strstr(buf, "Void Linux") != NULL) distroname = "void";
+#if defined(__sunos)
+  else distroname = "solaris";
+#else
   else distroname = "linux";
+#endif
 
   if (strncmp(distroname, "ubuntu", strlen("ubuntu")) == 0) {
     const char *desktop = run_command_s("echo $XDG_CURRENT_DESKTOP");

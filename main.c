@@ -214,11 +214,10 @@ int main(int argc, char *argv[]) {
 #endif
 
 #if !defined(__HAIKU__)
+  const char *machine = display_host();
   if (ishost) {
     printf("%s ", LOGO[lc]);
-    printf("%s%s%s%s", color, "Host", reset, ": ");
-    display_host_model();
-    printf("\n");
+    printf("%sHost%s: %s\n", color, reset, machine);
     lc++;
   } else minsize--;
 #endif

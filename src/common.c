@@ -1,8 +1,12 @@
-#include "common.h"
-
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <sys/stat.h>
+#include <errno.h>
+#include <string.h>
+#include <unistd.h>
+
+#include "common.h"
 
 long long int run_command_lld(const char *command) {
   char buf[128];
@@ -58,3 +62,53 @@ const char *run_command_s(const char *command) {
 
   return out;
 }
+
+#if !defined(__HAIKU__)
+const char *from_cache(const char *file) {
+  struct stat st;
+  if (stat(file, &st) != 0) {
+    return NULL;
+  }
+
+  FILE *f = fopen(file, "r");
+  if (!f) {
+    return NULL;
+  }
+
+  char *cmd = (char *)malloc(128 * sizeof(char));
+  if (!cmd) {
+    fclose(f);
+    return NULL;
+  }
+
+  if (fgets(cmd, 128, f) == NULL) {
+    free(cmd);
+    fclose(f);
+    return NULL;
+  }
+
+  fclose(f);
+
+  cmd[strcspn(cmd, "\n")] = '\0';
+  return cmd;
+}
+
+int to_cache(const char *file, const char *res) {
+  char dir[256];
+  snprintf(dir, sizeof(dir), "%s", "/tmp/farfetch");
+
+  struct stat st;
+
+  if (stat(dir, &st) != 0) {
+    if (mkdir(dir, 0755) != 0 && errno != EEXIST) return -1;
+  }
+
+  FILE *f = fopen(file, "w");
+  if (!f) return -1;
+
+  fprintf(f, "%s", res);
+  fclose(f);
+
+  return 0;
+}
+#endif
