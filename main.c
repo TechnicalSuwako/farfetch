@@ -25,13 +25,16 @@
 #include "src/storage.h"
 
 #include "src/config.h"
+#include "src/common.h"
 
 const char *sofname = "farfetch";
 const char *version = "0.3.0";
 #if defined(__linux__) || defined(__sun)
-const char *avalopt = "ls";
-#else
+const char *avalopt = "lrs";
+#elif defined(__HAIKU__)
 const char *avalopt = "s";
+#else
+const char *avalopt = "rs";
 #endif
 
 int opt;
@@ -43,7 +46,7 @@ int iserr = 0;
 
 void usage() {
 #if defined(__linux__) || defined(__sun)
-  printf("%s-%s\nusage: %s [-s] [-l distro]\n", sofname, version, sofname);
+  printf("%s-%s\nusage: %s [-rs] [-l distro]\n", sofname, version, sofname);
 #else
   printf("%s-%s\nusage: %s [-%s]\n", sofname, version, sofname, avalopt);
 #endif
@@ -54,6 +57,11 @@ void flags(int opt) {
 #if defined(__linux__) || defined(__sunos)
     case 'l':
       islogo = 1;
+      break;
+#endif
+#if !defined(__HAIKU__)
+    case 'r':
+      delete_cache();
       break;
 #endif
     case 's':

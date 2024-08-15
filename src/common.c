@@ -111,4 +111,14 @@ int to_cache(const char *file, const char *res) {
 
   return 0;
 }
+
+void delete_cache() {
+  struct stat st;
+
+  if (stat("/tmp/farfetch/os", &st) == 0) remove("/tmp/farfetch/os");
+  if (stat("/tmp/farfetch/host", &st) == 0) remove("/tmp/farfetch/host");
+  if (stat("/tmp/farfetch/distro", &st) == 0) remove("/tmp/farfetch/distro");
+  if (stat("/tmp/farfetch/cpu", &st) == 0) remove("/tmp/farfetch/cpu");
+  if (stat("/tmp/farfetch/gpu", &st) == 0) remove("/tmp/farfetch/gpu");
+}
 #endif
