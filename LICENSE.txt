@@ -1,4 +1,3 @@
-Copyright © 2004-2011 by Internet Systems Consortium, Inc. ("ISC")
 Copyright © 2018-2024 by 076.moe
 
 Permission to use, copy, modify, and/or distribute this software for any
